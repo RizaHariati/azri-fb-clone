@@ -12,8 +12,8 @@ import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { handleOpenMenu } from "../../app/store/post";
 import { FriendType, OpenMenuType } from "../../typing.d";
 
-import IconButton from "../Buttons/IconButton";
-import ImgButton from "../Buttons/ImgButton";
+import IconButton from "../Buttons/IconBtn";
+import ImgBtn from "../Buttons/ImgBtn";
 import CreateMenu from "./navBarDropMenu/CreateMenu";
 import MainMenu from "./navBarDropMenu/MainMenu";
 import NotificationMenu from "./navBarDropMenu/NotificationMenu";
@@ -74,7 +74,7 @@ const NavMenu = () => {
             onClick={() => dispatch(handleOpenMenu("Profile"))}
           >
             {mainProfile?.picture !== "" && (
-              <ImgButton
+              <ImgBtn
                 src={mainProfile?.picture}
                 text={"Your Profile"}
                 imgClass="img-icon"

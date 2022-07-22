@@ -8,12 +8,11 @@ interface Props {
 }
 const Layout = ({ children }: Props) => {
   const { postModal } = useAppSelector((state) => state.tool);
-  console.log(postModal);
+
   return (
     <div className="relative">
       <Navbar />
       {children}
-
       {postModal && <ModalPost />}
     </div>
   );

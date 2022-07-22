@@ -10,7 +10,7 @@ interface Props {
   icon: IconProp;
   color: string;
 }
-const LinkIconTextButton = ({ href, text, icon, color }: Props) => {
+const LinkIconTextBtn = ({ href, text, icon, color }: Props) => {
   return (
     <Link href={href}>
       <button className="icon-round-text-btn text-sky-500">
@@ -21,4 +21,4 @@ const LinkIconTextButton = ({ href, text, icon, color }: Props) => {
   );
 };
 
-export default LinkIconTextButton;
+export default LinkIconTextBtn;

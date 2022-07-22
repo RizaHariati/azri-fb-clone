@@ -8,10 +8,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import moment from "moment";
 import React, { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { togglePostDetail } from "../../app/store/tool";
+import { setPostDetail } from "../../app/store/tool";
 import { FriendType } from "../../typing.d";
-import IconRoundTextButton from "../Buttons/IconRoundTextButton";
-import LinkImgButton from "../Buttons/LinkImgButton";
+import IconRoundTextButton from "../Buttons/IconRoundTextBtn";
+import LinkImgButton from "../Buttons/LinkImgBtn";
 
 interface HeaderProps {
   owner: FriendType;
@@ -22,10 +22,9 @@ const PostHeader = ({ owner, published, postID }: HeaderProps) => {
   const mainProfile: FriendType = useAppSelector(
     (state) => state.friend.mainProfile
   );
-  const { postDetail } = useAppSelector((state) => state.tool);
+  const postDetail: number = useAppSelector((state) => state.tool.postDetail);
 
   const dispatch = useAppDispatch();
-  const [showDetail, setShowDetail] = useState<boolean>(false);
   const date = moment(published).format("LL");
   return (
     <div className="grid grid-cols-9 gap-2 px-5 ">
@@ -47,18 +46,18 @@ const PostHeader = ({ owner, published, postID }: HeaderProps) => {
         <div className="relative">
           <button
             onClick={() => {
-              console.log(postDetail === postID);
-              dispatch(togglePostDetail(postID));
+              console.log({ postDetail });
+              // dispatch(setPostDetail(postID));
             }}
             className="icon-btn bg-primaryMediumDark hover:bg-primaryMedium"
           >
             <FontAwesomeIcon icon={faEllipsis} className="text-xl" />
           </button>
-          {postDetail === postID && (
+          {/* {postDetail === postID && (
             <div className="absolute w-52 h-32 bg-primaryMedium rounded-md right-0 z-10 p-3">
               <IconRoundTextButton text="Delete Post" icon={faTrashAlt} />
             </div>
-          )}
+          )} */}
         </div>
       )}
     </div>

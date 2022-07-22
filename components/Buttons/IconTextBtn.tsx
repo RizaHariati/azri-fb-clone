@@ -9,7 +9,7 @@ interface Props {
   icon: IconProp;
   classAdd?: string;
 }
-const IconTextButton = ({ text, icon, iconClass, classAdd }: Props) => {
+const IconTextBtn = ({ text, icon, iconClass, classAdd }: Props) => {
   return (
     <button className={`icon-round-text-btn text-textMedium ${classAdd}`}>
       <FontAwesomeIcon icon={icon} className={`text-xl w-8 ${iconClass}`} />
@@ -18,4 +18,4 @@ const IconTextButton = ({ text, icon, iconClass, classAdd }: Props) => {
   );
 };
 
-export default IconTextButton;
+export default IconTextBtn;

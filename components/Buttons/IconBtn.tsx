@@ -9,13 +9,13 @@ interface Props {
   onClick?: () => void;
 }
 
-const IconButton = ({ icon, text, btnClass, onClick }: Props) => {
+const IconBtn = ({ icon, text, btnClass, onClick }: Props) => {
   return (
-    <button onClick={onClick} className={btnClass ? btnClass : "icon-btn"}>
+    <div onClick={onClick} className={btnClass ? btnClass : "icon-btn"}>
       <FontAwesomeIcon icon={icon} />
       <p className="icon-note">{text}</p>
-    </button>
+    </div>
   );
 };
 
-export default IconButton;
+export default IconBtn;

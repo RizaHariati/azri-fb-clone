@@ -6,9 +6,8 @@ interface Props {
   src: string;
   text?: string;
   imgClass: string;
-  onClick?: (() => void | {}) | undefined;
 }
-const ImgButton = ({ src, text, imgClass, onClick }: Props) => {
+const ImgBtn = ({ src, text, imgClass }: Props) => {
   return (
     <div className={imgClass}>
       <Image
@@ -24,7 +23,7 @@ const ImgButton = ({ src, text, imgClass, onClick }: Props) => {
   );
 };
 
-export default ImgButton;
+export default ImgBtn;
 
 // <LinkImgButton
 //   src="/images/websiteImages/profile.jpg"

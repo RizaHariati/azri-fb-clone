@@ -7,7 +7,7 @@ interface Props {
   src: string;
   text: string;
 }
-const ExtLinkTextButton = ({ href, src, text }: Props) => {
+const ExtLinkTextBtn = ({ href, src, text }: Props) => {
   return (
     <a href={href}>
       <button className="icon-round-text-btn my-1">
@@ -26,7 +26,7 @@ const ExtLinkTextButton = ({ href, src, text }: Props) => {
   );
 };
 
-export default ExtLinkTextButton;
+export default ExtLinkTextBtn;
 
 //  <LinkImgTextButton
 //    href="/profile"

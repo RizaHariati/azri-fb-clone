@@ -10,7 +10,7 @@ interface Props {
   onClick?: () => {} | void;
   buttonClass?: string;
 }
-const LinkImgTextButton = ({
+const LinkImgTextBtn = ({
   href,
   src,
   text,
@@ -39,7 +39,7 @@ const LinkImgTextButton = ({
   );
 };
 
-export default LinkImgTextButton;
+export default LinkImgTextBtn;
 
 //  <LinkImgTextButton
 //    href="/profile"

@@ -4,9 +4,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import { useAppSelector } from "../../app/hooks";
 import { mainLeftLinks, mainShortcuts } from "../../data/main-data";
-import ExtLinkTextButton from "../Buttons/ExtLinkTextButton";
-import LinkIconTextButton from "../Buttons/LinkIconTextButton";
-import LinkImgTextButton from "../Buttons/LinkImgTextButton";
+import ExtLinkTextBtn from "../Buttons/ExtLinkTextBtn";
+import LinkIconTextBtn from "../Buttons/LinkIconTextBtn";
+import LinkImgTextBtn from "../Buttons/LinkImgTextBtn";
 
 type IconTextBtn = {
   name: string;
@@ -32,7 +32,7 @@ const MainLeftSidebar = ({ leftClass }: Props) => {
     <div className={leftClass}>
       {/* ------------------------- main profile ------------------------- */}
       {mainProfile?.id !== "" && (
-        <LinkImgTextButton
+        <LinkImgTextBtn
           href="/profile"
           src={
             mainProfile?.picture
@@ -52,7 +52,7 @@ const MainLeftSidebar = ({ leftClass }: Props) => {
       >
         {mainLeftLinks.map((link: IconTextBtn, index: number) => {
           return (
-            <LinkIconTextButton
+            <LinkIconTextBtn
               key={index}
               href={link.href}
               text={link.name}
@@ -80,7 +80,7 @@ const MainLeftSidebar = ({ leftClass }: Props) => {
         <h4 className="text-base text-textDark">Your shorcuts</h4>
         {mainShortcuts.map((shortcut: ShortcutType) => {
           return (
-            <ExtLinkTextButton
+            <ExtLinkTextBtn
               key={shortcut.id}
               href={shortcut.link}
               text={shortcut.name}

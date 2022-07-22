@@ -11,7 +11,7 @@ interface Props {
   href?: string;
 }
 
-const ExtIconSquareButton = ({
+const ExtIconSquareBtn = ({
   href,
   icon,
   text,
@@ -28,4 +28,4 @@ const ExtIconSquareButton = ({
   );
 };
 
-export default ExtIconSquareButton;
+export default ExtIconSquareBtn;

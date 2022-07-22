@@ -11,13 +11,7 @@ interface Props {
   href?: string;
 }
 
-const IconSquareButton = ({
-  href,
-  icon,
-  text,
-  iconClass,
-  hideClass,
-}: Props) => {
+const IconSquareBtn = ({ href, icon, text, iconClass, hideClass }: Props) => {
   return (
     <Link href={href ? href : "/"}>
       <button className={`icon-btn-square ${hideClass}`}>
@@ -28,4 +22,4 @@ const IconSquareButton = ({
   );
 };
 
-export default IconSquareButton;
+export default IconSquareBtn;
