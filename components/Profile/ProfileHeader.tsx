@@ -15,6 +15,9 @@ interface Props {
   classAddition: string;
 }
 
+/* ---------------------------------------------------------------- */
+/*                           Main function                          */
+/* ---------------------------------------------------------------- */
 const ProfileHeader = ({
   fixHeaderBar,
   friendList,
@@ -25,9 +28,7 @@ const ProfileHeader = ({
 }: Props) => {
   return (
     <div className={`profile-header-container ${classAddition} z-20`}>
-      <div
-        className={fixHeaderBar ? "profile-header-show" : "profile-header-hide"}
-      >
+      <div className="profile-header">
         {/* ------------------------- header image ------------------------- */}
         <div className="relative h-full row-span-3 w-full md:rounded-b-lg img-base overflow-hidden">
           <Image

@@ -3,12 +3,12 @@ import { HYDRATE } from "next-redux-wrapper";
 
 export interface ToolState {
   postModal: boolean;
-  postDetail: number;
+  postDetail: string;
 }
 
 const initialState: ToolState = {
   postModal: false,
-  postDetail: 0,
+  postDetail: "",
 };
 export const ToolSlice = createSlice({
   name: "tool",
@@ -21,10 +21,19 @@ export const ToolSlice = createSlice({
       state.postModal = false;
     },
     setPostDetail: (state, action) => {
-      console.log(action.payload);
+      const postId = action.payload;
+      if (state.postDetail === postId) {
+        state.postDetail = "";
+      } else {
+        state.postDetail = postId;
+      }
+    },
+    closePostDetail: (state) => {
+      state.postDetail = "";
     },
     resetTool: (state) => {
       state.postModal = false;
+      state.postDetail = "";
     },
   },
   extraReducers: {
@@ -42,6 +51,11 @@ export const ToolSlice = createSlice({
   },
 });
 
-export const { openPostModal, closePostModal, resetTool, setPostDetail } =
-  ToolSlice.actions;
+export const {
+  openPostModal,
+  closePostModal,
+  resetTool,
+  setPostDetail,
+  closePostDetail,
+} = ToolSlice.actions;
 export default ToolSlice.reducer;

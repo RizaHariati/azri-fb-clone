@@ -2,8 +2,7 @@ import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { mainMenuLeft, mainMenuRight } from "../../../data/main-menu-data";
-import IconRoundTextButton from "../../Buttons/IconRoundTextButton";
-import IconTextButton from "../../Buttons/IconTextButton";
+import IconRoundTextBtn from "../../Buttons/IconRoundTextBtn";
 
 type MenuRight = {
   name: string;
@@ -74,7 +73,7 @@ const MainMenu = () => {
                   key={index}
                   className=" border-b border-primaryMediumLight pb-2"
                 >
-                  <IconRoundTextButton
+                  <IconRoundTextBtn
                     key={index}
                     text={menu.name}
                     icon={menu.icon}
@@ -83,7 +82,7 @@ const MainMenu = () => {
               );
             } else {
               return (
-                <IconRoundTextButton
+                <IconRoundTextBtn
                   key={index}
                   text={menu.name}
                   icon={menu.icon}

@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { HYDRATE } from "next-redux-wrapper";
 import { CommentType, OpenMenuType, PostType } from "../../typing.d";
+import postIDExist from "../../util/postExist";
 
 export interface PostState {
   stories: PostType[];
@@ -11,16 +12,20 @@ export interface PostState {
   comments: CommentType[];
   commentPage: number;
   openMenu: OpenMenuType;
+  imagePost: string | null | undefined;
+  hiddenPost: string[];
 }
 
 const initialState: PostState = {
   stories: [],
-  storyPage: 0,
+  storyPage: 3,
   posts: [],
-  page: 1,
+  page: 0,
   comments: [],
   commentPage: 0,
   openMenu: { status: false, menuTitle: "" },
+  imagePost: null,
+  hiddenPost: [],
 };
 
 export const PostSlice = createSlice({
@@ -37,7 +42,14 @@ export const PostSlice = createSlice({
     },
 
     addMorePosts: (state, action: PayloadAction<PostType[]>) => {
-      state.posts = [...action.payload];
+      const postFiltered = action.payload.filter((post: PostType) => {
+        if (postIDExist(state.hiddenPost, post.id)) {
+          return false;
+        } else {
+          return true;
+        }
+      });
+      state.posts = [...postFiltered];
       if (state.page === 20) {
         state.page = 1;
       } else {
@@ -54,19 +66,29 @@ export const PostSlice = createSlice({
       state.commentPage = state.commentPage + 1;
     },
 
-    resetPosts: (state) => {
-      state.stories = [];
-      state.storyPage = 0;
-      state.posts = [];
-      state.page = 1;
-      state.comments = [];
-      state.commentPage = 0;
-      state.openMenu = { status: false, menuTitle: "" };
+    setImagePost: (state, action) => {
+      state.imagePost = action.payload;
     },
+    removeImagePost: (state) => {
+      state.imagePost = null;
+    },
+    addToHiddenPost: (state, action) => {
+      const postExist = postIDExist(state.hiddenPost, action.payload);
 
+      if (state.hiddenPost.length < 1) {
+        state.hiddenPost = [action.payload];
+      } else {
+        if (postExist) {
+          state.hiddenPost = [...state.hiddenPost];
+        } else {
+          state.hiddenPost = [...state.hiddenPost, action.payload];
+        }
+      }
+      state.posts = state.posts.filter((post) => post.id !== action.payload);
+    },
     handleOpenMenu: (state, action: PayloadAction<string>) => {
       const menu = action.payload;
-      if (menu === "Notifications") {
+      if (menu === "Notification") {
         state.commentPage = 0;
         state.comments = [];
       }
@@ -76,11 +98,26 @@ export const PostSlice = createSlice({
         state.openMenu = { status: false, menuTitle: menu };
       }
     },
+    handleDeleteNotification: (state) => {
+      state.openMenu = { status: false, menuTitle: "" };
+      state.commentPage = 0;
+    },
+
+    resetPosts: (state) => {
+      state.stories = [];
+      state.storyPage = 3;
+      state.posts = [];
+      state.page = 0;
+      state.comments = [];
+      state.commentPage = 0;
+      state.openMenu = { status: false, menuTitle: "" };
+      state.imagePost = null;
+      state.hiddenPost = [];
+    },
   },
 
   extraReducers: {
     [HYDRATE]: (state, action) => {
-      console.log(action.payload.post.openMenu);
       if (!action.payload.post.posts) {
         return state;
       }
@@ -93,10 +130,18 @@ export const PostSlice = createSlice({
       if (!action.payload.post.openMenu) {
         return state;
       }
+      if (!action.payload.post.imagePost) {
+        return state;
+      }
+      if (!action.payload.post.hiddenPost) {
+        return state;
+      }
       state.posts = action.payload.post.posts;
       state.stories = action.payload.post.stories;
       state.comments = action.payload.post.comments;
       state.openMenu = action.payload.post.openMenu;
+      state.imagePost = action.payload.post.imagePost;
+      state.hiddenPost = action.payload.post.hiddenPost;
     },
   },
 });
@@ -108,5 +153,9 @@ export const {
   addMoreComments,
   resetPosts,
   handleOpenMenu,
+  handleDeleteNotification,
+  setImagePost,
+  removeImagePost,
+  addToHiddenPost,
 } = PostSlice.actions;
 export default PostSlice.reducer;

@@ -1,16 +1,23 @@
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
 import moment from "moment";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
-import { addMoreComments } from "../../../app/store/post";
-
+import {
+  addMoreComments,
+  handleDeleteNotification,
+} from "../../../app/store/post";
 import { CommentType } from "../../../typing.d";
-import IconButton from "../../Buttons/IconButton";
-
+import IconBtn from "../../Buttons/IconBtn";
+import toast from "react-hot-toast";
 const config = {
   method: "GET",
+  headers: { "app-id": process.env.KEYWORD_API || "key" },
+};
+
+const configDelete = {
+  method: "DELETE",
   headers: { "app-id": process.env.KEYWORD_API || "key" },
 };
 
@@ -46,8 +53,20 @@ const NotificationMenu = () => {
     }
   };
 
-  const handleDelete = () => {
-    console.log(commentPage, " delete");
+  const handleDelete = async (id: string) => {
+    try {
+      const res = await fetch(
+        "https://dummyapi.io/data/v1/comment/" + id,
+        configDelete
+      );
+      const data = await res.json();
+      if (data.id === id) {
+        toast.success("Comment Deleted");
+        dispatch(handleDeleteNotification());
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <div className="notification-menu">
@@ -82,11 +101,11 @@ const NotificationMenu = () => {
                   <p>"{comment.message} "</p>
                   <p className="text-xs text-textDark">{date} </p>
                 </div>
-                <IconButton
+                <IconBtn
                   text="delete"
-                  icon={faTrash}
+                  icon={faTrashCan}
                   btnClass="icon-btn block sm:hidden group-hover:block"
-                  onClick={() => handleDelete()}
+                  onClick={() => handleDelete(comment.id)}
                 />
               </div>
             );
@@ -113,11 +132,11 @@ const NotificationMenu = () => {
                   <p>"{comment.message} "</p>
                   <p className="text-xs text-textDark">{date} </p>
                 </div>
-                <IconButton
+                <IconBtn
                   text="delete"
-                  icon={faTrash}
-                  btnClass="icon-btn block sm:hidden group-hover:block"
-                  onClick={() => handleDelete()}
+                  icon={faTrashCan}
+                  btnClass="icon-btn "
+                  onClick={() => handleDelete(comment.id)}
                 />
               </div>
             );

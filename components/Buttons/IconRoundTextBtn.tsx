@@ -10,7 +10,7 @@ interface Props {
   classAdd?: string;
   onClick?: () => {} | void;
 }
-const IconRoundTextButton = ({
+const IconRoundTextBtn = ({
   text,
   icon,
   iconClass,
@@ -30,4 +30,4 @@ const IconRoundTextButton = ({
   );
 };
 
-export default IconRoundTextButton;
+export default IconRoundTextBtn;

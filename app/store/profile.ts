@@ -65,6 +65,14 @@ export const ProfileSlice = createSlice({
     setGuestfullProfile: (state, action: PayloadAction<FullProfileType>) => {
       state.guestProfile = action.payload;
     },
+    hideProfilePost: (state, action: PayloadAction<string>) => {
+      state.guestPosts = state.guestPosts.filter((post) => {
+        return post.id !== action.payload;
+      });
+      state.mainProfilePosts = state.mainProfilePosts.filter((post) => {
+        return post.id !== action.payload;
+      });
+    },
     resetProfile: (state) => {
       state.mainProfilePosts = [];
       state.guestPosts = [];
@@ -134,5 +142,6 @@ export const {
   resetProfile,
   setGuestProfilePost,
   setGuestfullProfile,
+  hideProfilePost,
 } = ProfileSlice.actions;
 export default ProfileSlice.reducer;

@@ -3,19 +3,14 @@ import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { setFriendData } from "../../app/store/friend";
-import {
-  addMoreComments,
-  addMorePosts,
-  setStories,
-} from "../../app/store/post";
+import { addMorePosts, setStories } from "../../app/store/post";
 import MainContent from "../../components/HomePage/MainContent";
 import MainLeftSidebar from "../../components/HomePage/MainLeftSidebar";
 import MainRightSidebar from "../../components/HomePage/MainRightSidebar";
-import { CommentType, FriendType } from "../../typing.d";
+import { FriendType } from "../../typing.d";
 
 const URL_USER = "https://dummyapi.io/data/v1/user?";
 const URL_POST = "https://dummyapi.io/data/v1/post?";
-const URL_COMMENT = "https://dummyapi.io/data/v1/comment/?";
 
 const config = {
   method: "GET",
@@ -89,9 +84,12 @@ export const getServerSideProps = async () => {
 
   /* ----------------------- getting comments ----------------------- */
 
-  return {
-    props: {
-      friends: friend.data,
-    },
-  };
+  if (friend.data) {
+    return {
+      props: {
+        friends: friend.data,
+      },
+    };
+  }
+  return { notFound: true };
 };

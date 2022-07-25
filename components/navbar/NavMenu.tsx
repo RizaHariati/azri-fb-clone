@@ -1,18 +1,11 @@
-import {
-  faAdd,
-  faBell,
-  faListDots,
-  faMessage,
-} from "@fortawesome/free-solid-svg-icons";
-import { useRouter } from "next/router";
+import { faAdd, faBell, faListDots } from "@fortawesome/free-solid-svg-icons";
+import Image from "next/image";
 
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import React from "react";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { handleOpenMenu } from "../../app/store/post";
 import { FriendType, OpenMenuType } from "../../typing.d";
-
-import IconButton from "../Buttons/IconBtn";
+import IconBtn from "../Buttons/IconBtn";
 import ImgBtn from "../Buttons/ImgBtn";
 import CreateMenu from "./navBarDropMenu/CreateMenu";
 import MainMenu from "./navBarDropMenu/MainMenu";
@@ -33,7 +26,7 @@ const NavMenu = () => {
           {mainProfile && (
             <>
               <div className="relative h-14 items-center flex xl:hidden">
-                <IconButton
+                <IconBtn
                   icon={faAdd}
                   text="Create"
                   btnClass="icon-btn "
@@ -45,7 +38,7 @@ const NavMenu = () => {
               </div>
 
               <div className="relative h-14 items-center  hidden xl:flex">
-                <IconButton
+                <IconBtn
                   icon={faListDots}
                   text="Menu"
                   btnClass="icon-btn"
@@ -57,7 +50,7 @@ const NavMenu = () => {
               </div>
 
               <div className="relative h-14 items-center flex">
-                <IconButton
+                <IconBtn
                   icon={faBell}
                   text="Notification"
                   onClick={() => {
@@ -69,20 +62,26 @@ const NavMenu = () => {
             </>
           )}
 
-          <button
-            className="relative h-fit items-center flex"
-            onClick={() => dispatch(handleOpenMenu("Profile"))}
-          >
+          <div className="relative h-fit items-center flex">
             {mainProfile?.picture !== "" && (
-              <ImgBtn
-                src={mainProfile?.picture}
-                text={"Your Profile"}
-                imgClass="img-icon"
-              />
+              <button
+                onClick={() => dispatch(handleOpenMenu("Profile"))}
+                className="img-icon"
+              >
+                <Image
+                  src={mainProfile?.picture}
+                  width={50}
+                  height={50}
+                  layout="responsive"
+                  className="img-base rounded-full"
+                  alt={mainProfile?.firstName}
+                />
+                <p className="icon-note">{"Your Profile"}</p>{" "}
+              </button>
             )}
 
             {openMenu.menuTitle === "Profile" && <ProfileMenu />}
-          </button>
+          </div>
         </div>
       </div>
     );

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import React, { LegacyRef, useState } from "react";
+import React, { useState } from "react";
 import { CommentType, PostType } from "../../typing.d";
 import PostComment from "./PostComment";
 import PostContent from "./PostContent";

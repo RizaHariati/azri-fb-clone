@@ -7,7 +7,6 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import React from "react";
-import { useSelector } from "react-redux";
 import { useAppSelector } from "../../app/hooks";
 import { FriendType } from "../../typing.d";
 
@@ -47,8 +46,8 @@ const PostContent = ({
         {(!likes || likes === 0) && (
           <div className=" col-span-7 flex items-center gap-1 "></div>
         )}
-        {likes && likes <= 10 && (
-          <div className=" col-span-7 flex items-center gap-1 ">
+        {likes > 0 && likes <= 10 && (
+          <div className=" col-span-6 flex items-center gap-1 ">
             <div className="w-5 h-5 flex items-center justify-center bg-blue-600 rounded-full">
               <FontAwesomeIcon
                 icon={faThumbsUp}
@@ -58,8 +57,8 @@ const PostContent = ({
             <p> {friend && `${friend.firstName} ${friend.lastName}`}</p>
           </div>
         )}
-        {likes && likes > 10 && (
-          <div className=" col-span-7 flex items-center gap-1 ">
+        {likes > 0 && likes > 10 && (
+          <div className="col-span-6 flex items-center gap-1 ">
             <div className="w-5 h-5 flex items-center justify-center bg-blue-600 rounded-full">
               <FontAwesomeIcon
                 icon={faThumbsUp}
@@ -79,7 +78,7 @@ const PostContent = ({
           </div>
         )}
         <button
-          className=" col-span-2 text-right"
+          className="col-start-7 col-span-2 text-right"
           onClick={() => getComments(postId)}
         >
           <p className=" underline underline-offset-2 text-textDark hover:text-textMedium">

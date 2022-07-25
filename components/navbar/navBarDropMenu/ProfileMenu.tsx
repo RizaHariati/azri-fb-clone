@@ -12,10 +12,9 @@ import React, { useState } from "react";
 
 import { useAppSelector } from "../../../app/hooks";
 import { settingData, supportData } from "../../../data/navbar-menu-data";
-
-import IconButton from "../../Buttons/IconButton";
-import IconTextButton from "../../Buttons/IconTextButton";
-import LinkImgTextButton from "../../Buttons/LinkImgTextButton";
+import IconBtn from "../../Buttons/IconBtn";
+import IconTextBtn from "../../Buttons/IconTextBtn";
+import LinkImgTextBtn from "../../Buttons/LinkImgTextBtn";
 
 const ProfileMenu = () => {
   const { mainProfile } = useAppSelector((state) => state.friend);
@@ -47,7 +46,7 @@ const ProfileMenu = () => {
         <Setting openSide={openSide} handleOpenSide={handleOpenSide} />
         <Support openSide={openSide} handleOpenSide={handleOpenSide} />
         <div>
-          <LinkImgTextButton
+          <LinkImgTextBtn
             href="/profile"
             src={
               mainProfile.picture
@@ -152,7 +151,7 @@ const Setting = ({ openSide, handleOpenSide }: SettingProps) => {
       }`}
     >
       <div className="flex gap-3 items-center">
-        <IconButton
+        <IconBtn
           icon={faArrowLeft}
           text="Create"
           btnClass="icon-btn "
@@ -165,7 +164,7 @@ const Setting = ({ openSide, handleOpenSide }: SettingProps) => {
         {settingData.map(
           (data: { text: string; icon: IconProp }, index: number) => {
             return (
-              <IconTextButton key={index} text={data.text} icon={data.icon} />
+              <IconTextBtn key={index} text={data.text} icon={data.icon} />
             );
           }
         )}
@@ -184,7 +183,7 @@ const Support = ({ openSide, handleOpenSide }: SettingProps) => {
       }`}
     >
       <div className="flex gap-3 items-center">
-        <IconButton
+        <IconBtn
           icon={faArrowLeft}
           text="Create"
           btnClass="icon-btn "
@@ -197,7 +196,7 @@ const Support = ({ openSide, handleOpenSide }: SettingProps) => {
         {supportData.map(
           (data: { text: string; icon: IconProp }, index: number) => {
             return (
-              <IconTextButton key={index} text={data.text} icon={data.icon} />
+              <IconTextBtn key={index} text={data.text} icon={data.icon} />
             );
           }
         )}

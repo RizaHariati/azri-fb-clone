@@ -11,7 +11,10 @@ interface Props {
 
 const IconBtn = ({ icon, text, btnClass, onClick }: Props) => {
   return (
-    <div onClick={onClick} className={btnClass ? btnClass : "icon-btn"}>
+    <div
+      onClick={() => onClick?.()}
+      className={btnClass ? btnClass : "icon-btn"}
+    >
       <FontAwesomeIcon icon={icon} />
       <p className="icon-note">{text}</p>
     </div>

@@ -1,5 +1,4 @@
 import React from "react";
-import { useAppSelector } from "../../app/hooks";
 import { FullProfileType, PostType } from "../../typing.d";
 import ProfileFriends from "./ProfileFriends";
 import ProfileInfo from "./ProfileInfo";

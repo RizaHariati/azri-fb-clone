@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import { useAppSelector } from "../../app/hooks";
-import LinkImgTextButton from "../Buttons/LinkImgTextButton";
+import LinkImgTextBtn from "../Buttons/LinkImgTextBtn";
 import Contacts from "./Contacts";
 
 const MainRightSidebar = () => {
@@ -68,7 +68,7 @@ const PagesProfile = () => {
     <div>
       <h4 className=" text-textDark font-semibold">Your Pages and profiles</h4>
       <div>
-        <LinkImgTextButton
+        <LinkImgTextBtn
           href="/profile"
           src="/images/profile/profile.jpg"
           text="Riza Hariati"

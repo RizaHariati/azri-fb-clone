@@ -1,10 +1,9 @@
 import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
-import { useAppSelector } from "../../app/hooks";
 import { FullProfileType } from "../../typing.d";
-import IconSquareButton from "../Buttons/IconSquareButton";
-import LinkImgTextButton from "../Buttons/LinkImgTextButton";
-import TextButton from "../Buttons/TextButton";
+import IconSquareBtn from "../Buttons/IconSquareBtn";
+import LinkImgTextBtn from "../Buttons/LinkImgTextBtn";
+import TextBtn from "../Buttons/TextBtn";
 
 const headBarMenu = [
   { name: "Posts" },
@@ -21,12 +20,11 @@ interface Props {
 const HeaderBar = ({ fixHeaderBar, profile }: Props) => {
   return (
     <div
-      className=" header-bar absolute bottom-0 "
-      // className={
-      //   fixHeaderBar
-      //     ? " header-bar absolute bottom-0 "
-      //     : " header-bar fixed top-14"
-      // }
+      className={
+        fixHeaderBar
+          ? " header-bar absolute bottom-0  w-full "
+          : " header-bar fixed top-14 z-50"
+      }
     >
       <div className=" max-w-4xl mx-auto h-full grid grid-cols-9 px-2 md:px-5 lg:px-10 items-center border-t border-primaryMediumLight">
         <div className="relative col-span-8 h-full w-full">
@@ -37,7 +35,7 @@ const HeaderBar = ({ fixHeaderBar, profile }: Props) => {
           >
             <div className="flex-nowrap flex " style={{ width: "700px" }}>
               {headBarMenu.map((item, index: number) => {
-                return <TextButton key={index} text={item.name} />;
+                return <TextBtn key={index} text={item.name} />;
               })}
             </div>
           </div>
@@ -50,7 +48,7 @@ const HeaderBar = ({ fixHeaderBar, profile }: Props) => {
           >
             <div className="w-96 ">
               {profile?.id !== "" && (
-                <LinkImgTextButton
+                <LinkImgTextBtn
                   href="/profile"
                   src={
                     profile?.picture
@@ -66,7 +64,7 @@ const HeaderBar = ({ fixHeaderBar, profile }: Props) => {
           </div>
         </div>
         <div className="h-full ">
-          <IconSquareButton
+          <IconSquareBtn
             hideClass="mt-1 bg-primaryMedium"
             href="/profile"
             icon={faEllipsis}

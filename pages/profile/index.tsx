@@ -6,11 +6,13 @@ import {
   setMainFullProfile,
   setMainProfilePost,
 } from "../../app/store/profile";
+import MainPosts from "../../components/HomePage/MainPosts";
 import PostingForm from "../../components/HomePage/PostingForm";
 import ProfileHeader from "../../components/Profile/ProfileHeader";
 import ProfileLeft from "../../components/Profile/ProfileLeftSide";
 import ProfilePost from "../../components/Profile/ProfilePost";
 import { FullProfileType, PostType } from "../../typing.d";
+import postIDExist from "../../util/postExist";
 const URL_USER = "https://dummyapi.io/data/v1/user/";
 const config = {
   method: "GET",
@@ -28,10 +30,20 @@ const MainProfile = () => {
   const mainProfilePosts: PostType[] = useAppSelector(
     (state) => state.profile.mainProfilePosts
   );
+  const hiddenPost: string[] = useAppSelector((state) => state.post.hiddenPost);
   const [fixHeaderBar, setFixHeaderBar] = useState<boolean>(true);
-  const [position, setPosition] = useState(0);
   const router = useRouter();
   const dispatch = useAppDispatch();
+
+  const setProfileHeader = () => {
+    if (window.scrollY < window.innerHeight - 100) {
+      setFixHeaderBar(true);
+    } else {
+      setFixHeaderBar(false);
+    }
+  };
+  window.addEventListener("scroll", setProfileHeader);
+
   useEffect(() => {
     if (mainProfile?.id === "") {
       router.push("/");
@@ -40,22 +52,21 @@ const MainProfile = () => {
     }
   }, [mainProfile]);
 
-  const handleScroll = (e: ChangeEvent) => {
-    let current = e.currentTarget.getClientRects()[0].y || 0;
-    setPosition(current);
-    const height = ref.current?.clientHeight || 0;
-    if (current < position && current < -380) {
-      setFixHeaderBar(false);
-    } else if (current > position && Math.abs(current) < height) {
-      setFixHeaderBar(true);
-    }
-  };
-
   const fetchMainProfile = async (id: string) => {
     const res = await fetch(URL_USER + id + "/post", config);
     const mainprofilePosts = await res.json();
     if (mainprofilePosts.data) {
-      dispatch(setMainProfilePost(mainprofilePosts.data));
+      const mainProfilePostFiltered = mainprofilePosts.data.filter(
+        (post: PostType) => {
+          if (postIDExist(hiddenPost, post.id)) {
+            return false;
+          } else {
+            return true;
+          }
+        }
+      );
+
+      dispatch(setMainProfilePost(mainProfilePostFiltered));
     }
     const resUser = await fetch(URL_USER + id, config);
     const mainFullProfile = await resUser.json();
@@ -73,10 +84,7 @@ const MainProfile = () => {
           <meta name="description" content="Your timeline homepage" />
           <link rel="icon" href="/favicon.ico" />
         </Head>
-        <main
-          className="h-fit w-full scroll-smooth"
-          onWheelCapture={(e: any) => handleScroll(e)}
-        >
+        <main className="h-fit w-full scroll-smooth">
           {/* ------------------------ profile header ------------------------ */}
           <div ref={ref} className="">
             <ProfileHeader

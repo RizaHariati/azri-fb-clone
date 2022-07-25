@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { useAppSelector } from "../../app/hooks";
 import { CommentType, FriendType } from "../../typing.d";
-import LinkImgButton from "../Buttons/LinkImgButton";
+import LinkImgBtn from "../Buttons/LinkImgBtn";
 
 interface Props {
   commentList?: CommentType[];
@@ -22,7 +22,7 @@ const PostComment = ({ commentList }: Props) => {
       <hr className="w-full mb-3 border-b border-primaryMedium" />
 
       <div className="grid grid-cols-9 mt-5 px-5">
-        <LinkImgButton
+        <LinkImgBtn
           src={
             mainProfile?.picture
               ? mainProfile.picture
@@ -51,7 +51,7 @@ const PostComment = ({ commentList }: Props) => {
           {commentList.map((comment: CommentType) => {
             return (
               <div key={comment.id} className="grid grid-cols-9 mt-5 px-5 ">
-                <LinkImgButton
+                <LinkImgBtn
                   src={comment.owner.picture}
                   href="/profile"
                   imgClass="img-icon-small"

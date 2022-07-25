@@ -4,8 +4,6 @@ import { FullProfileType } from "../../typing.d";
 import {
   faCakeCandles,
   faEnvelope,
-  faLocation,
-  faLocationCrosshairs,
   faLocationPin,
   faPhone,
   faUser,

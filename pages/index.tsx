@@ -12,6 +12,7 @@ import {
 import { resetPosts } from "../app/store/post";
 import { resetProfile } from "../app/store/profile";
 import { FriendType } from "../typing.d";
+
 const URL_USER = "https://dummyapi.io/data/v1/user/";
 const config = {
   method: "GET",
@@ -112,9 +113,13 @@ export const getStaticProps = async () => {
   const responseFriend = await fetch(URL_USER, config);
   const friend = await responseFriend.json();
 
-  return {
-    props: {
-      friendData: friend.data,
-    },
-  };
+  if (friend.data) {
+    return {
+      props: {
+        friendData: friend.data,
+      },
+    };
+  } else {
+    return { notFound: true };
+  }
 };

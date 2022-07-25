@@ -46,4 +46,11 @@ export type OpenMenuType = {
   status: boolean;
   menuTitle: string;
 };
+
+export type PostDataType = {
+  text: string;
+  image: string | null | undefined;
+  likes: number;
+  owner: string;
+};
 /// <reference types="redux-persist" />
