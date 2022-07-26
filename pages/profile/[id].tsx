@@ -2,7 +2,8 @@ import { GetStaticProps, GetStaticPaths } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { useRef, useState } from "react";
-import { useAppSelector } from "../../app/hooks";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { closeNavbarMenu } from "../../app/store/post";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import ProfileHeader from "../../components/Profile/ProfileHeader";
 import ProfileLeft from "../../components/Profile/ProfileLeftSide";
@@ -23,10 +24,12 @@ const Profile = ({ guestPost, guestProfile }: Props) => {
   const [fixHeaderBar, setFixHeaderBar] = useState<boolean>(true);
   const router = useRouter();
   const { friendList } = useAppSelector((state) => state.friend);
+  const dispatch = useAppDispatch();
 
   const setProfileHeader = () => {
     if (window.scrollY < window.innerHeight - 100) {
       setFixHeaderBar(true);
+      dispatch(closeNavbarMenu());
     } else {
       setFixHeaderBar(false);
     }
@@ -63,7 +66,7 @@ const Profile = ({ guestPost, guestProfile }: Props) => {
             />
           </div>
           {/* ------------------------- profile body ------------------------- */}
-          <div className="h-fit w-full max-w-4xl bg-primaryDark grid mx-auto grid-cols-1 md:grid-cols-5 grid-rows-2   last:md:grid-rows-1  box-border">
+          <div className="h-fit md:h-screen w-full max-w-4xl bg-primaryDark grid mx-auto grid-cols-1 md:grid-cols-5 grid-rows-1 :md:grid-rows-1 ">
             {/* ------------------------- profile left ------------------------- */}
 
             <ProfileLeft fullProfile={guestProfile} profilePosts={guestPost} />

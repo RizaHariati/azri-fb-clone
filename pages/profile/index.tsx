@@ -2,6 +2,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { ChangeEvent, useEffect, useRef, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { closeNavbarMenu } from "../../app/store/post";
 import {
   setMainFullProfile,
   setMainProfilePost,
@@ -38,6 +39,7 @@ const MainProfile = () => {
   const setProfileHeader = () => {
     if (window.scrollY < window.innerHeight - 100) {
       setFixHeaderBar(true);
+      dispatch(closeNavbarMenu());
     } else {
       setFixHeaderBar(false);
     }
@@ -97,7 +99,7 @@ const MainProfile = () => {
             />
           </div>
           {/* ------------------------- profile body ------------------------- */}
-          <div className="h-fit w-full max-w-4xl bg-primaryDark grid mx-auto grid-cols-1 md:grid-cols-5 grid-rows-2   last:md:grid-rows-1 ">
+          <div className="h-fit md:h-screen w-full max-w-4xl bg-primaryDark grid mx-auto grid-cols-1 md:grid-cols-5 grid-rows-1 :md:grid-rows-1 ">
             {/* ------------------------- profile left ------------------------- */}
 
             <ProfileLeft

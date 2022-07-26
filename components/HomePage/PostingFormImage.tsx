@@ -49,7 +49,7 @@ const PostingButton = ({ icon, buttonText, color }: Props) => {
   const getImageUrl = async (e: any) => {
     e.preventDefault();
     if (!postModal) {
-      dispatch(openPostModal());
+      dispatch(openPostModal("Create"));
     }
     const reader = new FileReader();
     if (e.target.files[0]) {

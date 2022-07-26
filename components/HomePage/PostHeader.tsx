@@ -6,19 +6,23 @@ import {
 import {
   faCircle,
   faEllipsis,
-  faExclamation,
-  faExclamationCircle,
   faGlobeAsia,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import moment from "moment";
 import { useRouter } from "next/router";
 import React from "react";
-import toast, { Toast } from "react-hot-toast";
+import toast from "react-hot-toast";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { addToHiddenPost, resetPosts } from "../../app/store/post";
 import { hideProfilePost } from "../../app/store/profile";
-import { closePostDetail, setPostDetail } from "../../app/store/tool";
+import {
+  closePostDetail,
+  closePostModal,
+  openPostModal,
+  setPostDetail,
+  setPostModalID,
+} from "../../app/store/tool";
 import { FriendType } from "../../typing.d";
 import IconRoundTextBtn from "../Buttons/IconRoundTextBtn";
 import LinkImgBtn from "../Buttons/LinkImgBtn";
@@ -46,7 +50,7 @@ const PostHeader = ({ owner, published, postID }: HeaderProps) => {
     (state) => state.friend.mainProfile
   );
   const postDetail: string = useAppSelector((state) => state.tool.postDetail);
-  const hiddenPost: string[] = useAppSelector((state) => state.post.hiddenPost);
+
   const dispatch = useAppDispatch();
   const router = useRouter();
   const date = moment(published).format("LL");
@@ -100,11 +104,15 @@ const PostHeader = ({ owner, published, postID }: HeaderProps) => {
       ));
     } else if (text === "Edit") {
       if (ownerId === mainProfile?.id) {
-        toast.success("Editing this post");
+        dispatch(openPostModal("Edit"));
+        dispatch(setPostModalID(postID));
+        dispatch(closePostDetail());
       } else {
+        dispatch(closePostModal());
         dispatch(closePostDetail());
       }
     } else {
+      dispatch(closePostModal());
       dispatch(closePostDetail());
     }
   };
@@ -154,16 +162,18 @@ const PostHeader = ({ owner, published, postID }: HeaderProps) => {
                   text="Edit Post"
                   icon={faEdit}
                 />
-                <hr className="w-full my-3 border-b border-primaryMediumLight" />
+                {/* <hr className="w-full my-3 border-b border-primaryMediumLight" /> */}
               </>
             )}
-            <IconRoundTextBtn
-              onClick={() => {
-                handlePost(postID, owner.id, "Hide");
-              }}
-              text="Hide Post"
-              icon={faRectangleXmark}
-            />
+            {mainProfile?.id !== owner.id && (
+              <IconRoundTextBtn
+                onClick={() => {
+                  handlePost(postID, owner.id, "Hide");
+                }}
+                text="Hide Post"
+                icon={faRectangleXmark}
+              />
+            )}
           </div>
         )}
       </div>

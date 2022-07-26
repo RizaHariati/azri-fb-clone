@@ -84,12 +84,7 @@ html {
   .post-comment-input::-webkit-scrollbar {
     display: none;
   }
-  .posting-form-image {
-    @apply w-full h-72  overflow-y-scroll;
-  }
-  .posting-form-image::-webkit-scrollbar {
-    display: none;
-  }
+
   /* ----------------------------- post ----------------------------- */
 
   /* ---------------------------- Navbar ---------------------------- */
@@ -121,7 +116,7 @@ html {
   }
 
   .menu-list {
-    @apply fixed sm:absolute top-12 sm:top-14 right-0 bg-primaryMediumDark w-screen sm:w-96 rounded-none sm:rounded-md text-textPrimary shadow-md z-20 shadow-black transition-all h-44 overflow-hidden;
+    @apply fixed sm:absolute top-12 sm:top-14 right-0 bg-primaryMediumDark w-screen sm:w-96 rounded-none sm:rounded-md text-textPrimary shadow-md z-50 shadow-black transition-all h-44 overflow-hidden;
   }
   .profile-menu {
     @apply menu-list h-fit;
@@ -170,12 +165,18 @@ html {
 
   /* ---------------------------- Modal ---------------------------- */
   .modal-base {
-    @apply bg-primaryDark bg-opacity-80 fixed left-0 top-0 w-full h-full z-30 flex justify-center;
+    @apply bg-primaryDark bg-opacity-80 fixed left-0 top-0 w-full h-full z-50 flex justify-center;
   }
   .modal-container {
-    @apply relative rounded-lg shadow-md shadow-black border border-primaryMedium mt-0 sm:mt-20 z-40 bg-primaryMediumDark p-5 w-full sm:w-9/12 md:w-7/12 lg:w-6/12 xl:w-5/12 transition-all overflow-hidden;
+    @apply relative rounded-lg shadow-md shadow-black border border-primaryMedium mt-0 sm:mt-10 z-50 bg-primaryMediumDark p-5 w-full sm:w-9/12 md:w-7/12 lg:w-6/12 xl:w-5/12 transition-all overflow-hidden h-full sm:h-fit;
 
-    height: 80vh;
+    /* height: 80vh; */
+  }
+  .posting-form-image {
+    @apply w-full h-full overflow-y-scroll;
+  }
+  .posting-form-image::-webkit-scrollbar {
+    display: none;
   }
   .text-area-modal {
     @apply w-full text-xl text-textPrimary rounded-md p-3 bg-primaryMediumDark outline-none;
@@ -265,7 +266,7 @@ html {
   }
 
   .header-bar {
-    @apply z-10 h-14 w-full transition-all left-0 bg-primaryMediumDark;
+    @apply z-0 h-14 w-full transition-all left-0 bg-primaryMediumDark;
   }
 
   .header-bar-menu {
@@ -284,7 +285,7 @@ html {
     @apply flex gap-2 items-center mb-3;
   }
   .profile-right {
-    @apply w-full col-span-3 overflow-y-scroll h-screen;
+    @apply w-full col-span-1 md:col-span-3 overflow-y-visible md:overflow-y-scroll h-fit md:h-screen;
   }
   .profile-right::-webkit-scrollbar {
     display: none;
@@ -292,7 +293,7 @@ html {
   }
 
   .profile-left {
-    @apply h-screen overflow-y-scroll w-full col-span-2;
+    @apply h-fit md:h-screen overflow-y-visible md:overflow-y-scroll w-full col-span-1 md:col-span-2;
   }
 
   .profile-left::-webkit-scrollbar {

@@ -2,23 +2,28 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { HYDRATE } from "next-redux-wrapper";
 
 export interface ToolState {
-  postModal: boolean;
+  postModal: string;
+  postModalID: string;
   postDetail: string;
 }
 
 const initialState: ToolState = {
-  postModal: false,
+  postModal: "",
+  postModalID: "",
   postDetail: "",
 };
 export const ToolSlice = createSlice({
   name: "tool",
   initialState,
   reducers: {
-    openPostModal: (state) => {
-      state.postModal = true;
+    openPostModal: (state, action) => {
+      state.postModal = action.payload;
     },
     closePostModal: (state) => {
-      state.postModal = false;
+      state.postModal = "";
+    },
+    setPostModalID: (state, action) => {
+      state.postModalID = action.payload;
     },
     setPostDetail: (state, action) => {
       const postId = action.payload;
@@ -32,7 +37,7 @@ export const ToolSlice = createSlice({
       state.postDetail = "";
     },
     resetTool: (state) => {
-      state.postModal = false;
+      state.postModal = "";
       state.postDetail = "";
     },
   },
@@ -41,11 +46,15 @@ export const ToolSlice = createSlice({
       if (!action.payload.tool.postModal) {
         return state;
       }
+      if (!action.payload.tool.postModalID) {
+        return state;
+      }
       if (!action.payload.tool.postDetail) {
         return state;
       }
 
       state.postModal = action.payload.tool.postModal;
+      state.postModalID = action.payload.tool.postModalID;
       state.postDetail = action.payload.tool.postDetail;
     },
   },
@@ -53,6 +62,7 @@ export const ToolSlice = createSlice({
 
 export const {
   openPostModal,
+  setPostModalID,
   closePostModal,
   resetTool,
   setPostDetail,

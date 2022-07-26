@@ -27,7 +27,7 @@ const ProfileHeader = ({
   classAddition,
 }: Props) => {
   return (
-    <div className={`profile-header-container ${classAddition} z-20`}>
+    <div className={`profile-header-container ${classAddition} z-10`}>
       <div className="profile-header">
         {/* ------------------------- header image ------------------------- */}
         <div className="relative h-full row-span-3 w-full md:rounded-b-lg img-base overflow-hidden">

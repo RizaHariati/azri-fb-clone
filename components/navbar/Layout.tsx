@@ -3,6 +3,7 @@ import { useAppSelector } from "../../app/hooks";
 import ModalPost from "./modals/ModalPost";
 import Navbar from "./Navbar";
 import { Toaster } from "react-hot-toast";
+import ModalEdit from "./modals/ModalEdit";
 interface Props {
   children?: JSX.Element | JSX.Element[];
 }
@@ -14,7 +15,8 @@ const Layout = ({ children }: Props) => {
       <Toaster position="top-center" reverseOrder={false} />
       <Navbar />
       {children}
-      {postModal && <ModalPost />}
+      {postModal === "Create" && <ModalPost />}
+      {postModal === "Edit" && <ModalEdit />}
     </div>
   );
 };

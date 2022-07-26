@@ -4,23 +4,34 @@ import axios from "axios";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
-import toast from "react-hot-toast";
+import toast, { ErrorIcon } from "react-hot-toast";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
-import { removeImagePost, resetPosts } from "../../../app/store/post";
+import {
+  removeImagePost,
+  resetPosts,
+  setImagePost,
+} from "../../../app/store/post";
 import { closePostModal } from "../../../app/store/tool";
-import { PostDataType, PostType } from "../../../typing.d";
+import { FriendType, PostType } from "../../../typing.d";
 import IconBtn from "../../Buttons/IconBtn";
 import LinkImgTextBtn from "../../Buttons/LinkImgTextBtn";
 import PostingFormImage from "../../HomePage/PostingFormImage";
 import LoadingSpinner from "../../LoadingSpinner";
 
-const ModalPost = () => {
+interface DataType {
+  text: string;
+  image: string | null | undefined;
+}
+const ModalEdit = () => {
   const dispatch = useAppDispatch();
-  const [text, setText] = useState<string>("");
-  const [data, setData] = useState<PostDataType | null>(null);
+  const [editText, setEditText] = useState<string>("");
+  const [singlePost, setSinglePost] = useState<PostType | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
+  const [data, setData] = useState<DataType | null>(null);
+
   const { imagePost } = useAppSelector((state) => state.post);
   const { mainProfile } = useAppSelector((state) => state.friend);
+  const { postModalID } = useAppSelector((state) => state.tool);
   const URL_POST = "https://dummyapi.io/data/v1/post/";
   const URL_BASE = "https://dummyapi.io/data/v1/";
   const headers = { "app-id": "615d134132c9c40bf2a39437" };
@@ -31,20 +42,40 @@ const ModalPost = () => {
     headers: { "app-id": process.env.KEYWORD_API || "" },
   };
 
-  const fetchImage = async () => {
+  /* ------------------------- fetching data ------------------------ */
+  const fetchSinglePost = async () => {
+    try {
+      const res = await fetch(`${URL_POST}${postModalID}`, config);
+      const singlePostData: PostType = await res.json();
+      if (singlePostData) {
+        setSinglePost(singlePostData);
+        // const singleText = singlePost?.text || null;
+        setEditText(singlePostData.text);
+
+        // const image = singlePost?.image || null;
+        dispatch(setImagePost(singlePostData.image));
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const fetchImage = async (newText: string) => {
+    if (!singlePost) return;
     try {
       const res = await fetch(`${URL_BASE}tag/nature/post`, config);
       const imagePosts = await res.json();
       if (imagePosts.data) {
         const image: PostType =
           imagePosts.data[Math.floor(Math.random() * imagePosts.data.length)];
-        const randomNumber = Math.floor(Math.random() * 100);
-        setData({
-          text,
-          image: image.image,
-          likes: randomNumber,
-          owner: mainProfile.id,
-        });
+        if (imagePost && imagePost !== singlePost.image) {
+          setData({
+            text: newText,
+            image: image.image,
+          });
+        } else {
+          setData({ text: newText, image: singlePost.image });
+        }
       } else {
         return;
       }
@@ -54,47 +85,56 @@ const ModalPost = () => {
   };
 
   useEffect(() => {
-    if (!data) {
-      return;
-    }
-    fetchPostData(data);
-  }, [data]);
+    fetchSinglePost();
+  }, []);
+  /* ------------------------- fetching data ------------------------ */
 
-  const fetchPostData = async (data: PostDataType) => {
+  /* ------------------------ uploading data ----------------------- */
+
+  const fetchUpdatePost = async (data: DataType | null) => {
+    if (!data || !singlePost) return;
     setLoading(true);
-    if (!data) return;
+
     await axios({
-      method: "post",
-      url: URL_POST + "create",
+      method: "put",
+      url: URL_POST + singlePost.id,
       headers,
       data,
     })
       .then((res) => {
         if (res.status === 200) {
-          toast.success("Your Post is successfully sent");
-          dispatch(closePostModal());
-          setText("");
+          toast.success("Post updated!");
+          dispatch(removeImagePost());
           dispatch(resetPosts());
+          dispatch(closePostModal());
           setLoading(false);
+          setEditText("");
+          setSinglePost(null);
+          setData(null);
           setTimeout(() => {
             router.reload();
           }, 1000);
         }
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(ErrorIcon));
   };
+  useEffect(() => {
+    if (!data || !singlePost) return;
+    if (data.text === singlePost.text && data.image === singlePost.image) {
+      toast.error("You have not edit anything");
+      return;
+    } else {
+      fetchUpdatePost(data);
+    }
+  }, [data]);
 
   const handleSubmit = async () => {
-    if (!text) {
-      toast.error("You have not written anything");
-      return;
+    if (!singlePost) return;
+    let newText = singlePost.text;
+    if (editText && editText != newText) {
+      newText = editText;
     }
-    if (!imagePost) {
-      toast.error("Please select an image");
-      return;
-    }
-    await fetchImage();
-    return;
+    fetchImage(newText);
   };
 
   return (
@@ -107,13 +147,14 @@ const ModalPost = () => {
             onClick={() => {
               dispatch(closePostModal());
               dispatch(removeImagePost());
+              setData(null);
             }}
           />
         </div>
-        <div>
-          <div className="h-full flex flex-col gap-2 ">
+        <div className="h-full flex flex-col gap-2 ">
+          <div>
             <h2 className="text-textLight text-xl font-bold w-full text-center">
-              Create post
+              Edit post
             </h2>
             <hr className="w-full my-2 border-b border-primaryMedium" />
             <div className="grid  grid-cols-2">
@@ -130,25 +171,27 @@ const ModalPost = () => {
                   onClick={() => dispatch(closePostModal())}
                 />
               )}
+              <hr className="w-full my-5 border-b border-primaryMedium" />
             </div>
           </div>
-
-          <hr className="w-full my-5 border-b border-primaryMedium" />
-          {loading && <LoadingSpinner />}
-          {!loading && (
+          {!singlePost && <LoadingSpinner />}
+          {singlePost && (
             <div className="posting-form-image">
               <div>
-                <textarea
-                  rows={4}
-                  value={text}
-                  placeholder={`what's on your mind,  ${mainProfile.firstName} ?`}
-                  className={
-                    imagePost ? "text-area-modal text-sm" : "text-area-modal "
-                  }
-                  onChange={(e: any) => {
-                    setText(e.target.value);
-                  }}
-                />
+                {loading && <LoadingSpinner />}
+                {!loading && (
+                  <textarea
+                    rows={4}
+                    value={editText || ""}
+                    placeholder={`what's on your mind,  ${mainProfile.firstName} ?`}
+                    className={
+                      imagePost ? "text-area-modal text-sm" : "text-area-modal "
+                    }
+                    onChange={(e: any) => {
+                      setEditText(e.target.value);
+                    }}
+                  />
+                )}
               </div>
 
               {imagePost && (
@@ -168,7 +211,6 @@ const ModalPost = () => {
                   </button>
                 </div>
               )}
-
               {!imagePost && (
                 <div className="border border-primaryMedium rounded-md h-16 w-full flex justify-center items-center px-2 ">
                   <PostingFormImage />
@@ -189,4 +231,4 @@ const ModalPost = () => {
   );
 };
 
-export default ModalPost;
+export default ModalEdit;

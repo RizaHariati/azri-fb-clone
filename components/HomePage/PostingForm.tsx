@@ -25,7 +25,7 @@ const PostingForm = () => {
         )}
 
         <button
-          onClick={() => dispatch(openPostModal())}
+          onClick={() => dispatch(openPostModal("Create"))}
           className="height-10 text-textDark hover:text-textMedium col-span-9 text-left bg-primaryMedium hover:bg-primaryMediumLight transition-all px-3 rounded-full"
         >
           {`  What's on your mind, ${mainProfile?.firstName} ${mainProfile?.lastName} `}

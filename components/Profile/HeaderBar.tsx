@@ -23,7 +23,7 @@ const HeaderBar = ({ fixHeaderBar, profile }: Props) => {
       className={
         fixHeaderBar
           ? " header-bar absolute bottom-0  w-full "
-          : " header-bar fixed top-14 z-50"
+          : " header-bar fixed top-14 z-30"
       }
     >
       <div className=" max-w-4xl mx-auto h-full grid grid-cols-9 px-2 md:px-5 lg:px-10 items-center border-t border-primaryMediumLight">

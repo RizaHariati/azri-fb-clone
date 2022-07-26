@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
+import { persistor } from "../../app";
 import { useAppDispatch } from "../../app/hooks";
 import { resetFriend } from "../../app/store/friend";
 import { resetPosts } from "../../app/store/post";
@@ -19,6 +20,8 @@ const LogoSearch = () => {
     dispatch(resetPosts());
     dispatch(resetProfile());
     dispatch(resetTool());
+    persistor.flush();
+    persistor.purge();
   };
   return (
     <div className="logo-search-container ">

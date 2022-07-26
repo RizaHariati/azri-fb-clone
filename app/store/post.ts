@@ -98,6 +98,9 @@ export const PostSlice = createSlice({
         state.openMenu = { status: false, menuTitle: menu };
       }
     },
+    closeNavbarMenu: (state) => {
+      state.openMenu = { status: false, menuTitle: "" };
+    },
     handleDeleteNotification: (state) => {
       state.openMenu = { status: false, menuTitle: "" };
       state.commentPage = 0;
@@ -118,6 +121,7 @@ export const PostSlice = createSlice({
 
   extraReducers: {
     [HYDRATE]: (state, action) => {
+      console.log(action.payload.post.imageBank);
       if (!action.payload.post.posts) {
         return state;
       }
@@ -136,6 +140,7 @@ export const PostSlice = createSlice({
       if (!action.payload.post.hiddenPost) {
         return state;
       }
+
       state.posts = action.payload.post.posts;
       state.stories = action.payload.post.stories;
       state.comments = action.payload.post.comments;
@@ -157,5 +162,6 @@ export const {
   setImagePost,
   removeImagePost,
   addToHiddenPost,
+  closeNavbarMenu,
 } = PostSlice.actions;
 export default PostSlice.reducer;

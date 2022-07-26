@@ -2,13 +2,8 @@ import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React from "react";
-import { store, wrapper } from "../app";
 import { useAppDispatch } from "../app/hooks";
-import {
-  resetFriend,
-  setFriendData,
-  setMainProfile,
-} from "../app/store/friend";
+import { resetFriend, setMainProfile } from "../app/store/friend";
 import { resetPosts } from "../app/store/post";
 import { resetProfile } from "../app/store/profile";
 import { FriendType } from "../typing.d";
@@ -21,21 +16,23 @@ const config = {
 
 interface Props {
   friendData: FriendType[];
+  allImage: string[];
 }
-const Welcome = ({ friendData }: Props) => {
+const Welcome = ({ friendData, allImage }: Props) => {
   const route = useRouter();
   const dispatch = useAppDispatch();
+
   const fetchMainProfile = async (id: string) => {
     try {
       const res = await fetch(URL_USER + id, config);
       const profiledata = await res.json();
       if (profiledata) {
         const { id, title, firstName, lastName, picture } = profiledata;
+
         dispatch(resetFriend());
         dispatch(resetPosts());
         dispatch(resetProfile());
         dispatch(setMainProfile({ id, title, firstName, lastName, picture }));
-
         setTimeout(() => {
           route.push("/main/home");
         }, 1000);
@@ -113,7 +110,7 @@ export const getStaticProps = async () => {
   const responseFriend = await fetch(URL_USER, config);
   const friend = await responseFriend.json();
 
-  if (friend.data) {
+  if (friend.data.length > 0) {
     return {
       props: {
         friendData: friend.data,
