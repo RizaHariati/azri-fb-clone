@@ -25,6 +25,7 @@ const Post = ({ post }: Props) => {
         const comments = await res.json();
 
         if (comments.data.length > 0) {
+          console.log(comments.data);
           setCommentList(comments.data);
         }
       } catch (error) {

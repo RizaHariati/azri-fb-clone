@@ -1,13 +1,9 @@
 import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
 import moment from "moment";
 import Image from "next/image";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
-import {
-  addMoreComments,
-  handleDeleteNotification,
-} from "../../../app/store/post";
 import { CommentType } from "../../../typing.d";
 import IconBtn from "../../Buttons/IconBtn";
 import toast from "react-hot-toast";
@@ -15,15 +11,19 @@ const config = {
   method: "GET",
   headers: { "app-id": process.env.KEYWORD_API || "key" },
 };
+import { addMoreComments, filteredComments } from "../../../app/store/post";
 
 const configDelete = {
   method: "DELETE",
   headers: { "app-id": process.env.KEYWORD_API || "key" },
 };
 
+/* ---------------------------------------------------------------- */
+/*                        start main function                       */
+/* ---------------------------------------------------------------- */
 const NotificationMenu = () => {
   const { comments, commentPage } = useAppSelector((state) => state.post);
-
+  const [dataComments, setDataComments] = useState<CommentType[]>([]);
   const dispatch = useAppDispatch();
 
   const { ref, inView } = useInView();
@@ -40,12 +40,14 @@ const NotificationMenu = () => {
   const fetchData = async () => {
     try {
       const res = await fetch(
-        "https://dummyapi.io/data/v1/comment/?limit=10&page=" + commentPage,
+        "https://dummyapi.io/data/v1/comment/?limit=5&page=" + commentPage,
         config
       );
       const data = await res.json();
       if (data.data) {
         dispatch(addMoreComments(comments.concat(data.data)));
+        setDataComments((prev) => [...prev, ...data.data]);
+
         setTimeout(() => {}, 1000);
       }
     } catch (error) {
@@ -62,7 +64,12 @@ const NotificationMenu = () => {
       const data = await res.json();
       if (data.id === id) {
         toast.success("Comment Deleted");
-        dispatch(handleDeleteNotification());
+        dispatch(filteredComments(id));
+
+        const filterComments = comments.filter(
+          (comment: CommentType) => comment.id !== id
+        );
+        setDataComments(filterComments);
       }
     } catch (error) {
       console.log(error);
@@ -75,9 +82,9 @@ const NotificationMenu = () => {
       </h3>
       <hr className="w-full my-3 border-b border-primaryMedium" />
       <div className="notifications-container">
-        {comments.map((comment: CommentType, index: number) => {
+        {dataComments.map((comment: CommentType, index: number) => {
           const date = moment(comment.publishDate).format("LL");
-          if (comments.length - 1 === index) {
+          if (dataComments.length - 1 === index) {
             return (
               <div
                 key={comment.id}

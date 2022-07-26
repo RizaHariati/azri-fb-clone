@@ -66,6 +66,11 @@ export const PostSlice = createSlice({
       state.commentPage = state.commentPage + 1;
     },
 
+    filteredComments: (state, action) => {
+      const id = action.payload;
+      state.comments = state.comments.filter((item) => item.id !== id);
+    },
+
     setImagePost: (state, action) => {
       state.imagePost = action.payload;
     },
@@ -163,5 +168,6 @@ export const {
   removeImagePost,
   addToHiddenPost,
   closeNavbarMenu,
+  filteredComments,
 } = PostSlice.actions;
 export default PostSlice.reducer;

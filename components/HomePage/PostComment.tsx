@@ -2,6 +2,7 @@ import {
   faImage,
   faLaugh,
   faStickyNote,
+  faTrashCan,
 } from "@fortawesome/free-regular-svg-icons";
 import { faCamera, faEllipsis } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -61,8 +62,13 @@ const PostComment = ({ commentList }: Props) => {
                   <p className="text-xs font-medium text-textPrimary">{`${comment.owner.firstName} ${comment.owner.lastName}`}</p>
                   <p className="text-xs text-textLight">{comment.message}</p>
                 </div>
-                <button className="icon-btn h-8 w-8 bg-primaryMediumDark hover:bg-primaryMedium place-self-center">
-                  <FontAwesomeIcon icon={faEllipsis} className="text-lg" />
+                <button
+                  onClick={() => {
+                    console.log(comment.id);
+                  }}
+                  className="icon-btn h-8 w-8 bg-primaryMediumDark hover:bg-primaryMedium place-self-center active:bg-primaryMediumLight"
+                >
+                  <FontAwesomeIcon icon={faTrashCan} className="text-lg" />
                 </button>
               </div>
             );
