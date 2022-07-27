@@ -15,6 +15,7 @@ const MainPosts = () => {
   const { ref, inView } = useInView();
   useEffect(() => {
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inView]);
 
   const fetchData = async () => {

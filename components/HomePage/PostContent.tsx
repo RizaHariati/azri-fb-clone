@@ -6,7 +6,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { openCommentSection } from "../../app/store/tool";
 import { FriendType } from "../../typing.d";
@@ -26,8 +26,20 @@ const PostContent = ({
   postId,
 }: ContentProps) => {
   const { friendList } = useAppSelector((state) => state.friend);
+  const [likePost, setLikePost] = useState(false);
+  const [likesTotal, setLikesTotal] = useState(likes);
+  // const { likePost } = useAppSelector((state) => state.tool);
   const dispatch = useAppDispatch();
   const friend: FriendType = friendList[Math.floor(Math.random() * 19)];
+  const handleLike = () => {
+    if (!likePost) {
+      setLikePost(true);
+      setLikesTotal(likes + 1);
+    } else {
+      setLikePost(false);
+      setLikesTotal(likes);
+    }
+  };
   return (
     <div className=" text-textMedium">
       <div className="px-5 py-3">
@@ -55,7 +67,12 @@ const PostContent = ({
                 className=" text-textMedium w-3 h-3 rounded-full"
               />
             </div>
-            <p> {friend && `${friend.firstName} ${friend.lastName}`}</p>
+            {likePost && <p>{`You, and ${likesTotal} others`}</p>}
+            {!likePost && (
+              <p>
+                {`${friend?.firstName} ${friend?.lastName} and ${likesTotal} others`}
+              </p>
+            )}
           </div>
         )}
         {likes > 0 && likes > 10 && (
@@ -72,10 +89,14 @@ const PostContent = ({
                 className=" text-textMedium w-3 h-3 rounded-full"
               />
             </div>
-            <p>
-              {friend &&
-                `${friend.firstName}, ${friend.lastName} and ${likes} others`}
-            </p>
+            {!likePost && (
+              <p>
+                {`${friend?.firstName}, ${friend?.lastName} and ${likesTotal} others`}
+              </p>
+            )}
+            {likePost && (
+              <p>{`You, ${friend?.lastName}, ${friend?.firstName} and ${likesTotal} others`}</p>
+            )}
           </div>
         )}
         <button
@@ -92,8 +113,16 @@ const PostContent = ({
       </div>
       {/* ------------------------- postReaction ------------------------- */}
       <div className="flex items-center justify-center gap-2 text-center h-10 px-5 border-t border-primaryMedium">
-        <button className="icon-btn-square w-full text-sm font-medium gap-2">
-          <FontAwesomeIcon icon={faThumbsUp} className="text-xl " />
+        <button
+          onClick={() => handleLike()}
+          className="h-10 w-10  sm:h-11 sm:w-full bg-none text-textDark flex items-center justify-center hover:bg-primaryMedium rounded-md transition-all relative focus:h-full gap-2"
+        >
+          <FontAwesomeIcon
+            icon={faThumbsUp}
+            className={
+              likePost ? "text-xl text-accentMain font-bold " : "text-xl"
+            }
+          />
           Like
         </button>
         <button
@@ -101,12 +130,12 @@ const PostContent = ({
             dispatch(openCommentSection(postId));
             getComments(postId);
           }}
-          className="icon-btn-square w-full text-sm font-medium gap-2"
+          className="icon-btn-square w-full text-sm font-medium gap-2 focus:border-none foc"
         >
-          <FontAwesomeIcon icon={faComment} className="text-xl " />
+          <FontAwesomeIcon icon={faComment} className="text-xl" />
           Comment
         </button>
-        <button className="icon-btn-square w-full text-sm font-medium gap-2">
+        <button className="icon-btn-square w-full text-sm font-medium gap-2 focus:border-none">
           <FontAwesomeIcon icon={faShare} className="text-xl " />
           Share
         </button>

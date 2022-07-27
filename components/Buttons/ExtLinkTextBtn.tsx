@@ -18,6 +18,7 @@ const ExtLinkTextBtn = ({ href, src, text }: Props) => {
             height={30}
             layout="responsive"
             className="img-base rounded-md"
+            alt={src}
           />
         </div>
         <p className="text-textMedium">{text}</p>

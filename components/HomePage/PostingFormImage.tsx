@@ -28,7 +28,7 @@ const PostingFormImage = () => {
         />
       </div>
       <p className="text-xs text-textDark w-full text-center">
-        your image won't really be uploaded for security reasons.
+        your image is not going to be uploaded for security reasons.
       </p>
     </div>
   );

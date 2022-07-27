@@ -127,8 +127,32 @@ html {
     height: calc(100vh - 20px);
   }
 
+  .search-menu {
+    @apply fixed top-0 left-0 bg-primaryMediumDark w-screen md:w-80 rounded-none sm:rounded-b-md text-textPrimary z-50 transition-all h-screen md:h-fit md:max-h-screen overflow-y-scroll opacity-100 delay-75;
+  }
+  .search-menu::-webkit-scrollbar {
+    display: none;
+  }
+  .search-form-container {
+    @apply flex items-center gap-1 sm:gap-2  border-b border-primaryMedium h-14;
+  }
+  .search-form {
+    @apply h-10 w-64 bg-primaryMedium flex items-center justify-start rounded-full overflow-clip transition-all relative outline-none hover:bg-primaryMediumLight;
+  }
+  .search-form-navbar {
+    @apply search-form w-10 2xl:w-72;
+  }
+  .search-input {
+    @apply absolute left-10 h-full w-full group-focus-within:left-0 px-3 text-textMedium bg-transparent transition-all active:ring-0 active:bg-primaryMedium group-hover:bg-primaryMediumLight outline-none cursor-pointer;
+  }
+  .search-button-magnify {
+    @apply icon-btn absolute group-hover:bg-primaryMediumLight group-focus-within:hidden;
+  }
+  .search-button-arrow {
+    @apply h-10 w-12 bg-transparent hover:bg-primaryMedium rounded-full;
+  }
   .main-menu {
-    @apply menu-list -right-24;
+    @apply menu-list -left-24;
     height: calc(100vh - 70px);
     width: 600px;
   }

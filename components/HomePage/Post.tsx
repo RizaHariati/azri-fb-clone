@@ -44,12 +44,14 @@ const Post = ({
     if (mainProfile.id) {
       setCommentData({ ...commentData, owner: mainProfile.id, post: post.id });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     if (commentData.message) {
       fetchPostComment();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [commentData]);
 
   const fetchPostComment = async () => {

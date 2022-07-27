@@ -97,6 +97,7 @@ const Contacts = () => {
                     height={30}
                     layout="responsive"
                     className="img-base rounded-full"
+                    alt={friend.lastName}
                   />
                 </div>
                 <p className="text-textMedium font-normal">{`${
@@ -117,6 +118,7 @@ const Contacts = () => {
                     layout="responsive"
                     src={friend.picture}
                     className="img-base rounded-full "
+                    alt={friend.firstName}
                   />
                 </div>
                 <div>

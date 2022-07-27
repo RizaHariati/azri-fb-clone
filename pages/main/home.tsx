@@ -46,6 +46,7 @@ const Home = ({ friends }: Props) => {
       fetchData();
       dispatch(setFriendData(friends));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mainProfile]);
 
   if (mainProfile?.id === "") return <div></div>;

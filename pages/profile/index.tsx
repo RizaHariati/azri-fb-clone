@@ -48,6 +48,7 @@ const MainProfile = () => {
     } else {
       fetchMainProfile(mainProfile.id);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mainProfile]);
 
   const fetchMainProfile = async (id: string) => {

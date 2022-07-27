@@ -56,6 +56,7 @@ const Stories = () => {
                         height={700}
                         layout="responsive"
                         className="img-base z-0"
+                        alt={story.owner.firstName}
                       />
                     </div>
                     <Link href="/profile">

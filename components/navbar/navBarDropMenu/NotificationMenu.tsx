@@ -29,12 +29,14 @@ const NotificationMenu = () => {
   const { ref, inView } = useInView();
   useEffect(() => {
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     if (inView) {
       fetchData();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inView]);
 
   const fetchData = async () => {
@@ -87,7 +89,7 @@ const NotificationMenu = () => {
                 ref={ref}
                 className="grid grid-cols-9 cursor-pointer items-center hover:bg-primaryMedium p-2 sm:rounded-md transition-all group"
               >
-                <div className="object-full object-center w-14 h-14 col-span-2 rounded-full overflow-hidden  ">
+                <div className="object-full object-center w-14 h-14 col-span-2 rounded-full overflow-hidden">
                   <Image
                     src={comment.owner.picture}
                     alt={comment.owner.firstName}
@@ -102,11 +104,11 @@ const NotificationMenu = () => {
                   )}
                   {comment.owner.id !== mainProfile?.id && (
                     <p>
-                      {comment.owner.firstName} {comment.owner.lastName}{" "}
+                      {comment.owner.firstName} {comment.owner.lastName}
                       commented:
                     </p>
                   )}
-                  <p>"{comment.message} "</p>
+                  <p>{comment.message} </p>
                   <p className="text-xs text-textDark">{date} </p>
                 </div>
                 <IconBtn
@@ -138,11 +140,11 @@ const NotificationMenu = () => {
                   )}
                   {comment.owner.id !== mainProfile?.id && (
                     <p>
-                      {comment.owner.firstName} {comment.owner.lastName}{" "}
+                      {comment.owner.firstName} {comment.owner.lastName}
                       commented:
                     </p>
                   )}
-                  <p>"{comment.message} "</p>
+                  <p>{comment.message} </p>
                   <p className="text-xs text-textDark">{date} </p>
                 </div>
                 <IconBtn

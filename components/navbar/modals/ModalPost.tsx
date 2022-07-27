@@ -57,6 +57,7 @@ const ModalPost = () => {
       return;
     }
     fetchPostData(data);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
   const fetchPostData = async (data: PostDataType) => {

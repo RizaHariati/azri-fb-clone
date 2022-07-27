@@ -26,6 +26,7 @@ const Profile = ({ guestPost, guestProfile }: Props) => {
 
   useEffect(() => {
     dispatch(setGuestProfilePost(guestPost));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const setProfileHeader = () => {

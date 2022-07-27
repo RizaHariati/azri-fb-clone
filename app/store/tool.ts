@@ -6,7 +6,6 @@ export interface ToolState {
   postModalID: string;
   postDetail: string;
   postCommentSection: string;
-  randomNumber: number;
 }
 
 const initialState: ToolState = {
@@ -14,7 +13,6 @@ const initialState: ToolState = {
   postModalID: "",
   postDetail: "",
   postCommentSection: "",
-  randomNumber: 0,
 };
 export const ToolSlice = createSlice({
   name: "tool",

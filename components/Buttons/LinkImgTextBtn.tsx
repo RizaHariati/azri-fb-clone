@@ -31,6 +31,7 @@ const LinkImgTextBtn = ({
             height={30}
             layout="responsive"
             className="img-base rounded-full"
+            alt={src.slice(0, 5)}
           />
         </div>
         <p className="text-textMedium font-normal">{text}</p>

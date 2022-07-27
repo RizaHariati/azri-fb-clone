@@ -85,6 +85,7 @@ const ModalEdit = () => {
 
   useEffect(() => {
     fetchSinglePost();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   /* ------------------------- fetching data ------------------------ */
 
@@ -125,6 +126,7 @@ const ModalEdit = () => {
     } else {
       fetchUpdatePost(data);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
   const handleSubmit = async () => {

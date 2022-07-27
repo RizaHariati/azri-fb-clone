@@ -79,6 +79,7 @@ const Welcome = ({ friendData, randomNumber }: Props) => {
                   <div className="img-icon">
                     <Image
                       src={friend.picture}
+                      alt={friend.firstName}
                       width={30}
                       height={30}
                       layout="responsive"
