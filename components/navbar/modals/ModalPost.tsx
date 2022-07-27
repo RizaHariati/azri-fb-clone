@@ -9,6 +9,7 @@ import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import { removeImagePost, resetPosts } from "../../../app/store/post";
 import { closePostModal } from "../../../app/store/tool";
 import { PostDataType, PostType } from "../../../typing.d";
+import { header, URL_BASE, URL_POST } from "../../../util/configAPI";
 import IconBtn from "../../Buttons/IconBtn";
 import LinkImgTextBtn from "../../Buttons/LinkImgTextBtn";
 import PostingFormImage from "../../HomePage/PostingFormImage";
@@ -21,9 +22,7 @@ const ModalPost = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const { imagePost } = useAppSelector((state) => state.post);
   const { mainProfile } = useAppSelector((state) => state.friend);
-  const URL_POST = "https://dummyapi.io/data/v1/post/";
-  const URL_BASE = "https://dummyapi.io/data/v1/";
-  const headers = { "app-id": "615d134132c9c40bf2a39437" };
+
   const router = useRouter();
 
   const config = {
@@ -66,7 +65,7 @@ const ModalPost = () => {
     await axios({
       method: "post",
       url: URL_POST + "create",
-      headers,
+      headers: header,
       data,
     })
       .then((res) => {

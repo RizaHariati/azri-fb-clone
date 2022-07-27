@@ -7,7 +7,8 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import React from "react";
-import { useAppSelector } from "../../app/hooks";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { openCommentSection } from "../../app/store/tool";
 import { FriendType } from "../../typing.d";
 
 interface ContentProps {
@@ -25,8 +26,8 @@ const PostContent = ({
   postId,
 }: ContentProps) => {
   const { friendList } = useAppSelector((state) => state.friend);
+  const dispatch = useAppDispatch();
   const friend: FriendType = friendList[Math.floor(Math.random() * 19)];
-
   return (
     <div className=" text-textMedium">
       <div className="px-5 py-3">
@@ -79,7 +80,10 @@ const PostContent = ({
         )}
         <button
           className="col-start-7 col-span-2 text-right"
-          onClick={() => getComments(postId)}
+          onClick={() => {
+            dispatch(openCommentSection(postId));
+            getComments(postId);
+          }}
         >
           <p className=" underline underline-offset-2 text-textDark hover:text-textMedium">
             comments
@@ -93,7 +97,10 @@ const PostContent = ({
           Like
         </button>
         <button
-          onClick={() => getComments(postId)}
+          onClick={() => {
+            dispatch(openCommentSection(postId));
+            getComments(postId);
+          }}
           className="icon-btn-square w-full text-sm font-medium gap-2"
         >
           <FontAwesomeIcon icon={faComment} className="text-xl " />

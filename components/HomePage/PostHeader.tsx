@@ -23,7 +23,7 @@ import {
   setPostDetail,
   setPostModalID,
 } from "../../app/store/tool";
-import { FriendType } from "../../typing.d";
+import { FriendType, PostType } from "../../typing.d";
 import IconRoundTextBtn from "../Buttons/IconRoundTextBtn";
 import LinkImgBtn from "../Buttons/LinkImgBtn";
 import Confirming from "../navbar/modals/Confirming";
@@ -39,18 +39,31 @@ interface HeaderProps {
   owner: FriendType;
   published: string;
   postID: string;
+  setMainPosts?: React.Dispatch<React.SetStateAction<PostType[]>>;
+  setProfilePostsState?: React.Dispatch<React.SetStateAction<PostType[]>>;
+  setGuestPostsState?: React.Dispatch<React.SetStateAction<PostType[]>>;
 }
 
 /* ---------------------------------------------------------------- */
 /*                           Main Function                          */
 /* ---------------------------------------------------------------- */
 
-const PostHeader = ({ owner, published, postID }: HeaderProps) => {
+const PostHeader = ({
+  owner,
+  published,
+  postID,
+  setMainPosts,
+  setProfilePostsState,
+  setGuestPostsState,
+}: HeaderProps) => {
   const mainProfile: FriendType = useAppSelector(
     (state) => state.friend.mainProfile
   );
   const postDetail: string = useAppSelector((state) => state.tool.postDetail);
-
+  const posts: PostType[] = useAppSelector((state) => state.post.posts);
+  const { mainProfilePosts, guestPosts } = useAppSelector(
+    (state) => state.profile
+  );
   const dispatch = useAppDispatch();
   const router = useRouter();
   const date = moment(published).format("LL");
@@ -62,9 +75,18 @@ const PostHeader = ({ owner, published, postID }: HeaderProps) => {
       const res = await fetch(URL_POST + postID, configDelete);
       const data = await res.json();
       if (data.id && data.id === postID) {
-        dispatch(resetPosts());
+        const filteredPost = posts.filter((post) => post.id !== postID);
+        const filterMainProfilePosts = mainProfilePosts.filter(
+          (post) => post.id !== postID
+        );
+
+        setMainPosts ? setMainPosts(filteredPost) : null;
+        setProfilePostsState
+          ? setProfilePostsState(filterMainProfilePosts)
+          : null;
+
         toast.success("Post Deleted");
-        router.reload();
+        // router.reload();
       }
     } catch (error) {
       console.log(error);
@@ -72,11 +94,22 @@ const PostHeader = ({ owner, published, postID }: HeaderProps) => {
   };
 
   const handleHide = async (postID: string, tId: string) => {
+    console.log(guestPosts);
     toast.dismiss(tId);
     dispatch(addToHiddenPost(postID));
     dispatch(hideProfilePost(postID));
+    const filteredPost = posts.filter((post) => post.id !== postID);
+
+    const filterGuestProfilePosts = guestPosts.filter(
+      (post) => post.id !== postID
+    );
+
+    setMainPosts ? setMainPosts(filteredPost) : null;
+    // setGuestPostsState ? setGuestPostsState(filterGuestProfilePosts) : null;
+    toast.success("Post Hidden");
     dispatch(closePostDetail());
   };
+
   const handlePost = async (postID: string, ownerId: string, text: string) => {
     if (text === "Delete") {
       if (ownerId === mainProfile?.id) {

@@ -5,12 +5,16 @@ export interface ToolState {
   postModal: string;
   postModalID: string;
   postDetail: string;
+  postCommentSection: string;
+  randomNumber: number;
 }
 
 const initialState: ToolState = {
   postModal: "",
   postModalID: "",
   postDetail: "",
+  postCommentSection: "",
+  randomNumber: 0,
 };
 export const ToolSlice = createSlice({
   name: "tool",
@@ -36,9 +40,22 @@ export const ToolSlice = createSlice({
     closePostDetail: (state) => {
       state.postDetail = "";
     },
+    openCommentSection: (state, action) => {
+      const postID = action.payload;
+      if (state.postCommentSection === postID) {
+        state.postCommentSection = "";
+      } else {
+        state.postCommentSection = postID;
+      }
+    },
+    closeCommentSection: (state) => {
+      state.postCommentSection = "";
+    },
+
     resetTool: (state) => {
       state.postModal = "";
       state.postDetail = "";
+      state.postCommentSection = "";
     },
   },
   extraReducers: {
@@ -52,10 +69,14 @@ export const ToolSlice = createSlice({
       if (!action.payload.tool.postDetail) {
         return state;
       }
+      if (!action.payload.tool.postCommentSection) {
+        return state;
+      }
 
       state.postModal = action.payload.tool.postModal;
       state.postModalID = action.payload.tool.postModalID;
       state.postDetail = action.payload.tool.postDetail;
+      state.postCommentSection = action.payload.tool.postCommentSection;
     },
   },
 });
@@ -67,5 +88,7 @@ export const {
   resetTool,
   setPostDetail,
   closePostDetail,
+  openCommentSection,
+  closeCommentSection,
 } = ToolSlice.actions;
 export default ToolSlice.reducer;

@@ -2,10 +2,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { useAppSelector } from "../../app/hooks";
-
-import MainContent from "../../components/HomePage/MainContent";
 import MainLeftSidebar from "../../components/HomePage/MainLeftSidebar";
-import MainRightSidebar from "../../components/HomePage/MainRightSidebar";
 
 const Bookmarks = () => {
   const { mainProfile } = useAppSelector((state) => state.friend);

@@ -8,14 +8,7 @@ import MainContent from "../../components/HomePage/MainContent";
 import MainLeftSidebar from "../../components/HomePage/MainLeftSidebar";
 import MainRightSidebar from "../../components/HomePage/MainRightSidebar";
 import { FriendType } from "../../typing.d";
-
-const URL_USER = "https://dummyapi.io/data/v1/user?";
-const URL_POST = "https://dummyapi.io/data/v1/post?";
-
-const config = {
-  method: "GET",
-  headers: { "app-id": process.env.KEYWORD_API || "" },
-};
+import { configGet, URL_POST, URL_USER } from "../../util/configAPI";
 
 interface Props {
   friends: FriendType[];
@@ -31,16 +24,16 @@ const Home = ({ friends }: Props) => {
     /* ------------------------- getting story ------------------------ */
 
     const responseStory = await fetch(
-      URL_POST + "page=" + storyPage + "&limit=5",
-      config
+      URL_POST + "?page=" + storyPage + "&limit=5",
+      configGet
     );
     const story = await responseStory.json();
     if (story.data) dispatch(setStories(story.data));
     /* ---------------------- getting main posts ---------------------- */
 
     const responsePost = await fetch(
-      URL_POST + "page=" + page + "&limit=5",
-      config
+      URL_POST + "?page=" + page + "&limit=5",
+      configGet
     );
     const post = await responsePost.json();
     if (post.data) dispatch(addMorePosts(post.data));
@@ -79,7 +72,11 @@ export default Home;
 export const getServerSideProps = async () => {
   /* ------------------------ getting friends ----------------------- */
 
-  const responseFriend = await fetch(URL_USER, config);
+  const randomNumber = Math.floor(Math.random() * 3);
+  const responseFriend = await fetch(
+    URL_USER + "?page=" + randomNumber,
+    configGet
+  );
   const friend = await responseFriend.json();
 
   /* ----------------------- getting comments ----------------------- */

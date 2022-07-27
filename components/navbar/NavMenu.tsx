@@ -4,11 +4,9 @@ import Image from "next/image";
 import React from "react";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { handleOpenMenu } from "../../app/store/post";
+import { closeCommentSection } from "../../app/store/tool";
 import { FriendType, OpenMenuType } from "../../typing.d";
 import IconBtn from "../Buttons/IconBtn";
-import ImgBtn from "../Buttons/ImgBtn";
-import CreateMenu from "./navBarDropMenu/CreateMenu";
-import MainMenu from "./navBarDropMenu/MainMenu";
 import NotificationMenu from "./navBarDropMenu/NotificationMenu";
 import ProfileMenu from "./navBarDropMenu/ProfileMenu";
 
@@ -34,7 +32,7 @@ const NavMenu = () => {
                     dispatch(handleOpenMenu("Create"));
                   }}
                 />
-                {openMenu?.menuTitle === "Create" && <CreateMenu />}
+                {/* {openMenu?.menuTitle === "Create" && <CreateMenu />} */}
               </div>
 
               <div className="relative h-14 items-center  hidden xl:flex">
@@ -46,7 +44,7 @@ const NavMenu = () => {
                     dispatch(handleOpenMenu("Main"));
                   }}
                 />
-                {openMenu?.menuTitle === "Main" && <MainMenu />}
+                {/* {openMenu?.menuTitle === "Main" && <MainMenu />} */}
               </div>
 
               <div className="relative h-14 items-center flex">
@@ -55,9 +53,10 @@ const NavMenu = () => {
                   text="Notification"
                   onClick={() => {
                     dispatch(handleOpenMenu("Notification"));
+                    dispatch(closeCommentSection());
                   }}
                 />
-                {openMenu.menuTitle === "Notification" && <NotificationMenu />}
+                {openMenu?.menuTitle === "Notification" && <NotificationMenu />}
               </div>
             </>
           )}
@@ -80,7 +79,7 @@ const NavMenu = () => {
               </button>
             )}
 
-            {openMenu.menuTitle === "Profile" && <ProfileMenu />}
+            {openMenu?.menuTitle === "Profile" && <ProfileMenu />}
           </div>
         </div>
       </div>

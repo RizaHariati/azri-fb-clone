@@ -1,30 +1,32 @@
 import { GetStaticProps, GetStaticPaths } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { closeNavbarMenu } from "../../app/store/post";
+import { setGuestProfilePost } from "../../app/store/profile";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import ProfileHeader from "../../components/Profile/ProfileHeader";
 import ProfileLeft from "../../components/Profile/ProfileLeftSide";
 import ProfilePost from "../../components/Profile/ProfilePost";
 import { FriendType, FullProfileType, PostType } from "../../typing.d";
-const URL_USER = "https://dummyapi.io/data/v1/user/";
-const config = {
-  method: "GET",
-  headers: { "app-id": process.env.KEYWORD_API || "" },
-};
+import { configGet, URL_USER } from "../../util/configAPI";
 
 interface Props {
   guestPost: PostType[];
   guestProfile: FullProfileType;
 }
 const Profile = ({ guestPost, guestProfile }: Props) => {
+  const [guestPostsState, setGuestPostsState] = useState<PostType[]>(guestPost);
   const ref: React.LegacyRef<HTMLDivElement> = useRef(null);
   const [fixHeaderBar, setFixHeaderBar] = useState<boolean>(true);
   const router = useRouter();
   const { friendList } = useAppSelector((state) => state.friend);
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(setGuestProfilePost(guestPost));
+  }, []);
 
   const setProfileHeader = () => {
     if (window.scrollY < window.innerHeight - 100) {
@@ -74,7 +76,10 @@ const Profile = ({ guestPost, guestProfile }: Props) => {
             {/* ------------------------- profile right   ---------------------- */}
             <div className="profile-right ">
               {/* <PostingForm /> */}
-              <ProfilePost profilePost={guestPost} />
+              <ProfilePost
+                profilePost={guestPostsState}
+                setGuestPostsState={setGuestPostsState}
+              />
             </div>
           </div>
         </main>
@@ -88,7 +93,7 @@ const Profile = ({ guestPost, guestProfile }: Props) => {
 export default Profile;
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const responseFriend = await fetch(URL_USER, config);
+  const responseFriend = await fetch(URL_USER, configGet);
   const friend = await responseFriend.json();
   let friendPaths = [{ params: {} }];
   if (friend.data) {
@@ -104,10 +109,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async (context) => {
   try {
     const id = context.params?.id;
-    const res = await fetch(URL_USER + id + "/post", config);
+    const res = await fetch(URL_USER + id + "/post", configGet);
     const guestPosts = await res.json();
 
-    const resUser = await fetch(URL_USER + id, config);
+    const resUser = await fetch(URL_USER + id, configGet);
     const guestProfile = await resUser.json();
     if (guestPosts.data && guestProfile) {
       return {

@@ -7,24 +7,19 @@ import { resetFriend, setMainProfile } from "../app/store/friend";
 import { resetPosts } from "../app/store/post";
 import { resetProfile } from "../app/store/profile";
 import { FriendType } from "../typing.d";
-
-const URL_USER = "https://dummyapi.io/data/v1/user/";
-const config = {
-  method: "GET",
-  headers: { "app-id": process.env.KEYWORD_API || "" },
-};
+import { configGet, URL_USER } from "../util/configAPI";
 
 interface Props {
   friendData: FriendType[];
-  allImage: string[];
+  randomNumber: number;
 }
-const Welcome = ({ friendData, allImage }: Props) => {
+const Welcome = ({ friendData, randomNumber }: Props) => {
   const route = useRouter();
   const dispatch = useAppDispatch();
 
   const fetchMainProfile = async (id: string) => {
     try {
-      const res = await fetch(URL_USER + id, config);
+      const res = await fetch(URL_USER + id, configGet);
       const profiledata = await res.json();
       if (profiledata) {
         const { id, title, firstName, lastName, picture } = profiledata;
@@ -107,13 +102,18 @@ const Welcome = ({ friendData, allImage }: Props) => {
 export default Welcome;
 
 export const getStaticProps = async () => {
-  const responseFriend = await fetch(URL_USER, config);
+  const randomNumber = Math.floor(Math.random() * 3);
+  const responseFriend = await fetch(
+    URL_USER + "?page=" + randomNumber,
+    configGet
+  );
   const friend = await responseFriend.json();
 
   if (friend.data.length > 0) {
     return {
       props: {
         friendData: friend.data,
+        randomNumber,
       },
     };
   } else {

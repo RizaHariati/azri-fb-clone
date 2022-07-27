@@ -1,5 +1,5 @@
 import React from "react";
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { useAppSelector } from "../../app/hooks";
 
 import { FriendType } from "../../typing.d";
 import LogoSearch from "./LogoSearch";

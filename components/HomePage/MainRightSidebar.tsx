@@ -5,8 +5,6 @@ import LinkImgTextBtn from "../Buttons/LinkImgTextBtn";
 import Contacts from "./Contacts";
 
 const MainRightSidebar = () => {
-  const { friendList } = useAppSelector((state) => state.friend);
-
   return (
     <div className="main-right-sidebar ">
       {/* --------------------------- Sponsored -------------------------- */}

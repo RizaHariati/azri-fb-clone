@@ -66,17 +66,14 @@ export const PostSlice = createSlice({
       state.commentPage = state.commentPage + 1;
     },
 
-    filteredComments: (state, action) => {
-      const id = action.payload;
-      state.comments = state.comments.filter((item) => item.id !== id);
-    },
-
     setImagePost: (state, action) => {
       state.imagePost = action.payload;
     },
+
     removeImagePost: (state) => {
       state.imagePost = null;
     },
+
     addToHiddenPost: (state, action) => {
       const postExist = postIDExist(state.hiddenPost, action.payload);
 
@@ -91,6 +88,7 @@ export const PostSlice = createSlice({
       }
       state.posts = state.posts.filter((post) => post.id !== action.payload);
     },
+
     handleOpenMenu: (state, action: PayloadAction<string>) => {
       const menu = action.payload;
       if (menu === "Notification") {
@@ -103,9 +101,11 @@ export const PostSlice = createSlice({
         state.openMenu = { status: false, menuTitle: menu };
       }
     },
+
     closeNavbarMenu: (state) => {
       state.openMenu = { status: false, menuTitle: "" };
     },
+
     handleDeleteNotification: (state) => {
       state.openMenu = { status: false, menuTitle: "" };
       state.commentPage = 0;
@@ -168,6 +168,5 @@ export const {
   removeImagePost,
   addToHiddenPost,
   closeNavbarMenu,
-  filteredComments,
 } = PostSlice.actions;
 export default PostSlice.reducer;

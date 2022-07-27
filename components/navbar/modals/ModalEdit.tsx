@@ -13,6 +13,7 @@ import {
 } from "../../../app/store/post";
 import { closePostModal } from "../../../app/store/tool";
 import { FriendType, PostType } from "../../../typing.d";
+import { header, URL_BASE, URL_POST } from "../../../util/configAPI";
 import IconBtn from "../../Buttons/IconBtn";
 import LinkImgTextBtn from "../../Buttons/LinkImgTextBtn";
 import PostingFormImage from "../../HomePage/PostingFormImage";
@@ -32,9 +33,7 @@ const ModalEdit = () => {
   const { imagePost } = useAppSelector((state) => state.post);
   const { mainProfile } = useAppSelector((state) => state.friend);
   const { postModalID } = useAppSelector((state) => state.tool);
-  const URL_POST = "https://dummyapi.io/data/v1/post/";
-  const URL_BASE = "https://dummyapi.io/data/v1/";
-  const headers = { "app-id": "615d134132c9c40bf2a39437" };
+
   const router = useRouter();
 
   const config = {
@@ -98,7 +97,7 @@ const ModalEdit = () => {
     await axios({
       method: "put",
       url: URL_POST + singlePost.id,
-      headers,
+      headers: header,
       data,
     })
       .then((res) => {

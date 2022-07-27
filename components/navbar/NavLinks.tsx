@@ -7,12 +7,10 @@ import {
   faTv,
 } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
-import { useAppDispatch } from "../../app/hooks";
 import ExtIconSquareBtn from "../Buttons/ExtIconSquareBtn";
 import IconSquareBtn from "../Buttons/IconSquareBtn";
 
 const NavLinks = () => {
-  const dispatch = useAppDispatch();
   return (
     <div className="nav-links-container">
       <div className="nav-links">

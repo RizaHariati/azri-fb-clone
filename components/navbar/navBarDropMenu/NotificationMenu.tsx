@@ -1,4 +1,7 @@
-import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
+import {
+  faRectangleTimes,
+  faTrashCan,
+} from "@fortawesome/free-regular-svg-icons";
 import moment from "moment";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
@@ -11,12 +14,8 @@ const config = {
   method: "GET",
   headers: { "app-id": process.env.KEYWORD_API || "key" },
 };
-import { addMoreComments, filteredComments } from "../../../app/store/post";
-
-const configDelete = {
-  method: "DELETE",
-  headers: { "app-id": process.env.KEYWORD_API || "key" },
-};
+import { addMoreComments } from "../../../app/store/post";
+import { configDelete, URL_COMMENT } from "../../../util/configAPI";
 
 /* ---------------------------------------------------------------- */
 /*                        start main function                       */
@@ -24,6 +23,7 @@ const configDelete = {
 const NotificationMenu = () => {
   const { comments, commentPage } = useAppSelector((state) => state.post);
   const [dataComments, setDataComments] = useState<CommentType[]>([]);
+  const { mainProfile } = useAppSelector((state) => state.friend);
   const dispatch = useAppDispatch();
 
   const { ref, inView } = useInView();
@@ -40,7 +40,7 @@ const NotificationMenu = () => {
   const fetchData = async () => {
     try {
       const res = await fetch(
-        "https://dummyapi.io/data/v1/comment/?limit=5&page=" + commentPage,
+        URL_COMMENT + "?limit=5&page=" + commentPage,
         config
       );
       const data = await res.json();
@@ -55,18 +55,14 @@ const NotificationMenu = () => {
     }
   };
 
-  const handleDelete = async (id: string) => {
+  const handleHide = async (id: string) => {
     try {
-      const res = await fetch(
-        "https://dummyapi.io/data/v1/comment/" + id,
-        configDelete
-      );
+      const res = await fetch(URL_COMMENT + id, configDelete);
       const data = await res.json();
       if (data.id === id) {
-        toast.success("Comment Deleted");
-        dispatch(filteredComments(id));
+        toast.success("Comment hidden");
 
-        const filterComments = comments.filter(
+        const filterComments = dataComments.filter(
           (comment: CommentType) => comment.id !== id
         );
         setDataComments(filterComments);
@@ -101,18 +97,23 @@ const NotificationMenu = () => {
                   />
                 </div>
                 <div className="text-sm col-span-6">
-                  <p>
-                    {comment.owner.firstName} {comment.owner.lastName}{" "}
-                    commented:
-                  </p>
+                  {comment.owner.id === mainProfile?.id && (
+                    <p> You commented: </p>
+                  )}
+                  {comment.owner.id !== mainProfile?.id && (
+                    <p>
+                      {comment.owner.firstName} {comment.owner.lastName}{" "}
+                      commented:
+                    </p>
+                  )}
                   <p>"{comment.message} "</p>
                   <p className="text-xs text-textDark">{date} </p>
                 </div>
                 <IconBtn
-                  text="delete"
-                  icon={faTrashCan}
+                  text="Hide notification"
+                  icon={faRectangleTimes}
                   btnClass="icon-btn block sm:hidden group-hover:block"
-                  onClick={() => handleDelete(comment.id)}
+                  onClick={() => handleHide(comment.id)}
                 />
               </div>
             );
@@ -132,18 +133,23 @@ const NotificationMenu = () => {
                   />
                 </div>
                 <div className="text-sm col-span-6">
-                  <p>
-                    {comment.owner.firstName} {comment.owner.lastName}{" "}
-                    commented:
-                  </p>
+                  {comment.owner.id === mainProfile?.id && (
+                    <p> You commented: </p>
+                  )}
+                  {comment.owner.id !== mainProfile?.id && (
+                    <p>
+                      {comment.owner.firstName} {comment.owner.lastName}{" "}
+                      commented:
+                    </p>
+                  )}
                   <p>"{comment.message} "</p>
                   <p className="text-xs text-textDark">{date} </p>
                 </div>
                 <IconBtn
-                  text="delete"
-                  icon={faTrashCan}
+                  text="hide notificationn"
+                  icon={faRectangleTimes}
                   btnClass="icon-btn "
-                  onClick={() => handleDelete(comment.id)}
+                  onClick={() => handleHide(comment.id)}
                 />
               </div>
             );

@@ -78,7 +78,7 @@ html {
     @apply col-span-8 h-10  w-full flex items-center justify-between px-3 bg-primaryMedium rounded-3xl;
   }
   .post-comment-input {
-    @apply h-full w-full col-span-2 bg-transparent outline-none py-2 resize-none;
+    @apply h-full w-full col-span-2 bg-transparent outline-none py-2 resize-none text-textLight;
   }
 
   .post-comment-input::-webkit-scrollbar {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useAppSelector } from "../../app/hooks";
 import { PostType } from "../../typing.d";
 import postIDExist from "../../util/postExist";
@@ -6,9 +6,16 @@ import Post from "../HomePage/Post";
 
 interface Props {
   profilePost: PostType[];
+  setProfilePostsState?: React.Dispatch<React.SetStateAction<PostType[]>>;
+  setGuestPostsState?: React.Dispatch<React.SetStateAction<PostType[]>>;
 }
-const ProfilePost = ({ profilePost }: Props) => {
+const ProfilePost = ({
+  profilePost,
+  setProfilePostsState,
+  setGuestPostsState,
+}: Props) => {
   const hiddenPost: string[] = useAppSelector((state) => state.post.hiddenPost);
+
   if (profilePost.length < 1) return <div></div>;
   else {
     return (
@@ -22,7 +29,14 @@ const ProfilePost = ({ profilePost }: Props) => {
             }
           })
           .map((post: PostType) => {
-            return <Post post={post} key={post.id} />;
+            return (
+              <Post
+                post={post}
+                key={post.id}
+                setProfilePostsState={setProfilePostsState}
+                setGuestPostsState={setGuestPostsState}
+              />
+            );
           })}
       </div>
     );

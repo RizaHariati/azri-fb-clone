@@ -1,26 +1,22 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
-import React, { ChangeEvent, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { closeNavbarMenu } from "../../app/store/post";
 import {
   setMainFullProfile,
   setMainProfilePost,
 } from "../../app/store/profile";
-import MainPosts from "../../components/HomePage/MainPosts";
 import PostingForm from "../../components/HomePage/PostingForm";
 import ProfileHeader from "../../components/Profile/ProfileHeader";
 import ProfileLeft from "../../components/Profile/ProfileLeftSide";
 import ProfilePost from "../../components/Profile/ProfilePost";
 import { FullProfileType, PostType } from "../../typing.d";
+import { configGet, URL_USER } from "../../util/configAPI";
 import postIDExist from "../../util/postExist";
-const URL_USER = "https://dummyapi.io/data/v1/user/";
-const config = {
-  method: "GET",
-  headers: { "app-id": process.env.KEYWORD_API || "" },
-};
 
 const MainProfile = () => {
+  const [profilePostsState, setProfilePostsState] = useState<PostType[]>([]);
   const ref: React.LegacyRef<HTMLDivElement> = useRef(null);
   const { friendList, mainProfile, randomNumber } = useAppSelector(
     (state) => state.friend
@@ -55,7 +51,7 @@ const MainProfile = () => {
   }, [mainProfile]);
 
   const fetchMainProfile = async (id: string) => {
-    const res = await fetch(URL_USER + id + "/post", config);
+    const res = await fetch(URL_USER + id + "/post", configGet);
     const mainprofilePosts = await res.json();
     if (mainprofilePosts.data) {
       const mainProfilePostFiltered = mainprofilePosts.data.filter(
@@ -67,10 +63,10 @@ const MainProfile = () => {
           }
         }
       );
-
+      setProfilePostsState(mainProfilePostFiltered);
       dispatch(setMainProfilePost(mainProfilePostFiltered));
     }
-    const resUser = await fetch(URL_USER + id, config);
+    const resUser = await fetch(URL_USER + id, configGet);
     const mainFullProfile = await resUser.json();
     if (mainFullProfile) dispatch(setMainFullProfile(mainFullProfile));
   };
@@ -110,7 +106,10 @@ const MainProfile = () => {
             {/* ------------------------- profile right   ---------------------- */}
             <div className="profile-right ">
               <PostingForm />
-              <ProfilePost profilePost={mainProfilePosts} />
+              <ProfilePost
+                profilePost={profilePostsState}
+                setProfilePostsState={setProfilePostsState}
+              />
             </div>
           </div>
         </main>
