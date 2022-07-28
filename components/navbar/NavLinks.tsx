@@ -31,7 +31,7 @@ const NavLinks = () => {
             className="icon-btn-square  w-12 sm:w-14 md:w-24 mx-auto "
           >
             <FontAwesomeIcon icon={faHome} className="text-lg md:text-xl" />
-            <p className="icon-note">"Home"</p>
+            <p className="icon-note">Home</p>
           </button>
 
           <ExtIconSquareBtn
@@ -69,7 +69,7 @@ const NavLinks = () => {
             className="icon-btn-square xl:hidden w-12 sm:w-14 md:w-24  "
           >
             <FontAwesomeIcon icon={faBars} className="text-xl md:text-2xl" />
-            <p className="icon-note">"More"</p>
+            <p className="icon-note">More</p>
           </button>
         </div>
       </div>
