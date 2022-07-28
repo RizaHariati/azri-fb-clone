@@ -16,7 +16,7 @@ interface Props {
 
 const Home = ({ friends }: Props) => {
   const { mainProfile } = useAppSelector((state) => state.friend);
-  const { storyPage, page } = useAppSelector((state) => state.post);
+  const { page } = useAppSelector((state) => state.post);
   const router = useRouter();
   const dispatch = useAppDispatch();
 

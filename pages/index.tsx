@@ -44,6 +44,7 @@ const Welcome = ({ friendData, randomNumber, stories }: Props) => {
     if (user) {
       route.push("/main/home");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
   return (
