@@ -100,12 +100,7 @@ const PostHeader = ({
     dispatch(hideProfilePost(postID));
     const filteredPost = posts.filter((post) => post.id !== postID);
 
-    const filterGuestProfilePosts = guestPosts.filter(
-      (post) => post.id !== postID
-    );
-
     setMainPosts ? setMainPosts(filteredPost) : null;
-    // setGuestPostsState ? setGuestPostsState(filterGuestProfilePosts) : null;
     toast.success("Post Hidden");
     dispatch(closePostDetail());
   };
@@ -151,21 +146,23 @@ const PostHeader = ({
   };
 
   return (
-    <div className="grid grid-cols-9 gap-2 px-5 ">
-      <LinkImgBtn
-        src={owner.picture}
-        href={`/profile/${owner.id}`}
-        imgClass="img-icon m-0 p-0"
-      />
+    <div className="grid grid-cols-9 gap-2 px-3 md:px-5 ">
+      <div className="col-span-8 flex items-center gap-2">
+        <LinkImgBtn
+          src={owner.picture}
+          href={`/profile/${owner.id}`}
+          imgClass="img-icon m-0 p-0"
+        />
 
-      <div className=" col-span-7 text-textMedium text-sm font-medium cursor-pointer hover:underline-offset-2 underline-offset-auto ">
-        <h4>{`${owner.firstName} ${owner.lastName}`}</h4>
+        <div className=" col-span-7 col-start-3 text-textMedium text-sm font-medium cursor-pointer hover:underline-offset-2 underline-offset-auto ">
+          <h4>{`${owner.firstName} ${owner.lastName}`}</h4>
 
-        <p className="flex gap-2 items-center text-textDark text-xs">
-          {date}
-          <FontAwesomeIcon icon={faCircle} style={{ fontSize: "3px" }} />
-          <FontAwesomeIcon icon={faGlobeAsia} className="text-xs" />
-        </p>
+          <p className="flex gap-2 items-center text-textDark text-xs">
+            {date}
+            <FontAwesomeIcon icon={faCircle} style={{ fontSize: "3px" }} />
+            <FontAwesomeIcon icon={faGlobeAsia} className="text-xs" />
+          </p>
+        </div>
       </div>
 
       <div className="relative">

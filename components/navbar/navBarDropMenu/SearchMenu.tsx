@@ -109,9 +109,21 @@ const SearchMenu = () => {
           </form>
         </div>
         {!text && (
-          <h3 className=" text-textLight text-xl font-semibold py-5 px-2 sm:px-5">
-            Search Friend
-          </h3>
+          <div>
+            <h3 className=" text-textLight text-xl font-semibold py-5 px-2 sm:px-5">
+              Search Friend
+            </h3>
+            {friends.map((friend: FriendType) => {
+              return (
+                <FriendLink
+                  key={friend.id}
+                  friend={friend}
+                  setFriends={setFriends}
+                  setText={setText}
+                />
+              );
+            })}
+          </div>
         )}
 
         {/* ----------------------- friendlist result ---------------------- */}
@@ -125,30 +137,12 @@ const SearchMenu = () => {
             friends.length > 0 &&
             friends.map((friend: FriendType) => {
               return (
-                <Link href={`/profile/${friend.id}`} key={friend.id}>
-                  <div
-                    onClick={() => {
-                      dispatch(closeNavbarMenu());
-                      setFriends(friendList);
-                      setText("");
-                    }}
-                    className="flex items-center justify-start gap-2 mb-3 cursor-pointer"
-                  >
-                    <div className={"img-icon-small"}>
-                      <Image
-                        src={friend.picture}
-                        width={30}
-                        height={30}
-                        layout="responsive"
-                        className="img-base rounded-full"
-                        alt={friend.lastName}
-                      />
-                    </div>
-                    <p className="text-textMedium font-normal">
-                      {friend.firstName} {friend.lastName}
-                    </p>
-                  </div>
-                </Link>
+                <FriendLink
+                  key={friend.id}
+                  friend={friend}
+                  setFriends={setFriends}
+                  setText={setText}
+                />
               );
             })}
         </div>
@@ -158,3 +152,40 @@ const SearchMenu = () => {
 };
 
 export default SearchMenu;
+
+interface Props {
+  friend: FriendType;
+  setFriends: React.Dispatch<React.SetStateAction<FriendType[]>>;
+  setText: React.Dispatch<React.SetStateAction<string>>;
+}
+
+const FriendLink = ({ friend, setFriends, setText }: Props) => {
+  const { friendList } = useAppSelector((state) => state.friend);
+  const dispatch = useAppDispatch();
+  return (
+    <Link href={`/profile/${friend.id}`} key={friend.id}>
+      <div
+        onClick={() => {
+          dispatch(closeNavbarMenu());
+          setFriends(friendList);
+          setText("");
+        }}
+        className="flex items-center justify-start gap-2 mb-3 cursor-pointer"
+      >
+        <div className={"img-icon-small"}>
+          <Image
+            src={friend.picture}
+            width={30}
+            height={30}
+            layout="responsive"
+            className="img-base rounded-full"
+            alt={friend.lastName}
+          />
+        </div>
+        <p className="text-textMedium font-normal">
+          {friend.firstName} {friend.lastName}
+        </p>
+      </div>
+    </Link>
+  );
+};

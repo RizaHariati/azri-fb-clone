@@ -50,7 +50,7 @@ const PostContent = ({
       <div className="px-5 py-3">
         <p>{text}</p>
       </div>
-      <div className=" w-full h-80 img-base overflow-hidden z-0">
+      <div className="w-full h-80 img-base overflow-hidden z-0">
         <Image
           src={image}
           width={250}
@@ -60,12 +60,12 @@ const PostContent = ({
           alt={image}
         />
       </div>
-      <div className="grid grid-cols-9 px-3 md:px-5 py-3 text-textDark text-xs">
+      <div className="flex items-center px-3 md:px-5 py-3 text-textDark text-xs">
         {(!likes || likes === 0) && (
           <div className=" col-span-7 flex items-center gap-1 "></div>
         )}
         {likes > 0 && likes <= 10 && (
-          <div className=" col-span-6 flex items-center gap-1  ">
+          <div className=" flex items-center gap-1  ">
             <div className="w-5 h-5 flex items-center justify-center bg-blue-600 rounded-full">
               <FontAwesomeIcon
                 icon={faThumbsUp}

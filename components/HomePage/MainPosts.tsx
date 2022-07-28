@@ -28,7 +28,7 @@ const MainPosts = () => {
       const postData = await res.json();
 
       if (postData.data) {
-        setMainPosts(postData.data);
+        setMainPosts((prev) => [...prev, ...postData.data]);
         dispatch(addMorePosts(posts.concat(postData.data)));
       }
       setLoading(false);
@@ -53,7 +53,7 @@ const MainPosts = () => {
           );
         }
       })}
-      {loading && (
+      {inView && (
         <div>
           <LoadingSpinner />
         </div>
