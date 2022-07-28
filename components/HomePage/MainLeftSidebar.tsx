@@ -33,7 +33,7 @@ const MainLeftSidebar = ({ leftClass }: Props) => {
       {/* ------------------------- main profile ------------------------- */}
       {mainProfile?.id !== "" && (
         <LinkImgTextBtn
-          href="/profile"
+          href="/profile/"
           src={
             mainProfile?.picture
               ? mainProfile.picture

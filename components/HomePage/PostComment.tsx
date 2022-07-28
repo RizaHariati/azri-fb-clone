@@ -4,15 +4,15 @@ import {
   faStickyNote,
   faTrashCan,
 } from "@fortawesome/free-regular-svg-icons";
-import { faCamera, faEllipsis } from "@fortawesome/free-solid-svg-icons";
+import { faCamera } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import { useAppSelector } from "../../app/hooks";
 import { CommentType, FriendType } from "../../typing.d";
 import LinkImgBtn from "../Buttons/LinkImgBtn";
 
 interface Props {
-  commentList?: CommentType[];
+  commentList: CommentType[];
   handleSubmit: (e: ChangeEvent<HTMLFormElement>, text: string) => void;
   handleDelete: (id: string) => void;
 }
@@ -27,6 +27,14 @@ const PostComment = ({ commentList, handleSubmit, handleDelete }: Props) => {
     e.preventDefault();
     setText(e.target.value);
   };
+  const [openComment, setOpenComment] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (commentList && commentList.length > 0) {
+      setOpenComment(true);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [commentList]);
 
   return (
     <div>
@@ -51,21 +59,24 @@ const PostComment = ({ commentList, handleSubmit, handleDelete }: Props) => {
           }}
         >
           <input
+            type="text"
             placeholder="Write a comment"
             className="post-comment-input "
             value={text}
             onChange={(e) => handleChange(e)}
           />
-          <div className="flex gap-2 ml-auto float-left text-textDark">
-            <FontAwesomeIcon icon={faLaugh} className="text-lg" />
-            <FontAwesomeIcon icon={faCamera} className="text-lg" />
-            <FontAwesomeIcon icon={faImage} className="text-lg" />
-            <FontAwesomeIcon icon={faStickyNote} className="text-lg" />
-          </div>
+          {!text && (
+            <div className="flex gap-2 ml-auto float-left text-textDark">
+              <FontAwesomeIcon icon={faLaugh} className="text-lg" />
+              <FontAwesomeIcon icon={faCamera} className="text-lg" />
+              <FontAwesomeIcon icon={faImage} className="text-lg" />
+              <FontAwesomeIcon icon={faStickyNote} className="text-lg" />
+            </div>
+          )}
         </form>
       </div>
 
-      {commentList && commentList.length > 0 && (
+      {openComment && (
         <div className="my-2">
           {commentList
             .map((comment: CommentType) => {

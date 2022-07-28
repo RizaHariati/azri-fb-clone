@@ -65,7 +65,7 @@ const SearchMenu = () => {
       }
     >
       <div>
-        <div className="search-form-container">
+        <div className="search-form-container ">
           {openMenu?.menuTitle === "Search" && (
             <button
               type="button"
@@ -113,21 +113,23 @@ const SearchMenu = () => {
             <h3 className=" text-textLight text-xl font-semibold py-5 px-2 sm:px-5">
               Search Friend
             </h3>
-            {friends.map((friend: FriendType) => {
-              return (
-                <FriendLink
-                  key={friend.id}
-                  friend={friend}
-                  setFriends={setFriends}
-                  setText={setText}
-                />
-              );
-            })}
+            <div className="px-3 md:px-5">
+              {friends.map((friend: FriendType) => {
+                return (
+                  <FriendLink
+                    key={friend.id}
+                    friend={friend}
+                    setFriends={setFriends}
+                    setText={setText}
+                  />
+                );
+              })}
+            </div>
           </div>
         )}
 
         {/* ----------------------- friendlist result ---------------------- */}
-        <div className="px-4">
+        <div className="p-3">
           {text && friends.length < 1 && (
             <h3 className=" text-textLight text-xl font-semibold py-5 px-2 sm:px-5">
               Friends not found

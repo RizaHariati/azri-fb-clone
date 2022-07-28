@@ -28,10 +28,10 @@ const Post = ({
   setGuestPostsState,
 }: Props) => {
   const { mainProfile } = useAppSelector((state) => state.friend);
-  const postCommenSection: string = useAppSelector(
+  const postCommentSection: string = useAppSelector(
     (state) => state.tool.postCommentSection
   );
-  const [openComment, setOpenComment] = useState<boolean>(false);
+
   const [commentList, setCommentList] = useState<CommentType[]>([]);
   const [commentData, setCommentData] = useState({
     message: "",
@@ -81,7 +81,7 @@ const Post = ({
   /* ------------------------ fetch comments ------------------------ */
 
   const getComments = async (id: string) => {
-    if (postCommenSection === id) {
+    if (post.id === id) {
       try {
         const res = await fetch(URL_POST + id + "/comment", configGet);
         const comments = await res.json();
@@ -92,9 +92,6 @@ const Post = ({
       } catch (error) {
         console.log(error);
       }
-      setOpenComment(!openComment);
-    } else {
-      setOpenComment(false);
     }
   };
 
@@ -138,7 +135,7 @@ const Post = ({
       />
 
       {/* -------------------------- postComment ------------------------- */}
-      {postCommenSection === post.id && (
+      {postCommentSection === post.id && (
         <PostComment
           commentList={commentList}
           handleSubmit={handleSubmit}
