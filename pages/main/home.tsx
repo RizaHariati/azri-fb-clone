@@ -21,14 +21,6 @@ const Home = ({ friends }: Props) => {
   const dispatch = useAppDispatch();
 
   const fetchData = async () => {
-    /* ------------------------- getting story ------------------------ */
-
-    const responseStory = await fetch(
-      URL_POST + "?page=" + storyPage + "&limit=5",
-      configGet
-    );
-    const story = await responseStory.json();
-    if (story.data) dispatch(setStories(story.data));
     /* ---------------------- getting main posts ---------------------- */
 
     const responsePost = await fetch(

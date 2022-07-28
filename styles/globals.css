@@ -63,7 +63,7 @@ html {
     @apply img-icon p-0 m-0 w-8 h-8;
   }
   .icon-round-text-btn {
-    @apply h-10  bg-none text-textLight flex  hover:bg-primaryMedium rounded-md transition-all relative  justify-start items-center w-full text-sm font-medium gap-2 p-3 mb-0;
+    @apply h-10  bg-none text-textPrimary flex  hover:bg-primaryMedium rounded-md transition-all relative  justify-start items-center w-full text-sm font-medium gap-2 p-3 mb-0;
   }
   .icon-round-text-btn-lg {
     @apply icon-round-text-btn h-14 text-base;
@@ -92,24 +92,18 @@ html {
     @apply bg-primaryMediumDark h-14 fixed top-0 w-full left-0 border-b border-b-primaryMediumLight z-50;
   }
   .navbar {
-    @apply grid grid-cols-12 max-w-7xl px-2 md:px-5 items-center h-full mx-auto gap-5;
-  }
-  .logo-search-container {
-    @apply col-span-3 sm:col-span-2 md:col-span-3 h-14;
+    @apply grid grid-cols-12 max-w-7xl px-1 md:px-5 items-center h-full mx-auto gap-0 md:gap-5;
   }
 
-  .logo-search {
-    @apply flex items-center gap-1 sm:gap-2 h-full;
-  }
   .nav-links-container {
-    @apply col-span-4 sm:col-span-6  h-full w-full;
+    @apply col-span-3 sm:col-span-6  h-full w-full;
   }
   .nav-links {
-    @apply flex justify-start h-full mx-auto  w-full items-center;
+    @apply grid grid-cols-2 sm:grid-cols-4 h-full;
     /* @apply grid grid-cols-5 h-full mx-auto  w-full items-center; */
   }
   .nav-menu-container {
-    @apply col-span-5 sm:col-span-4 md:col-span-3 h-full;
+    @apply col-span-6 sm:col-span-4 md:col-span-3 h-full;
   }
   .nav-menu {
     @apply flex items-center h-full gap-2 justify-end;
@@ -126,6 +120,13 @@ html {
     @apply menu-list overflow-hidden pl-5 sm:pl-0;
     height: calc(100vh - 20px);
   }
+  .logo-search-container {
+    @apply col-span-3 sm:col-span-2 md:col-span-3 h-14;
+  }
+
+  .logo-search {
+    @apply flex items-center gap-1 sm:gap-2 h-full;
+  }
 
   .search-menu {
     @apply fixed top-0 left-0 bg-primaryMediumDark w-screen md:w-80 rounded-none sm:rounded-b-md text-textPrimary z-50 transition-all h-screen md:h-fit md:max-h-screen overflow-y-scroll opacity-100 delay-75;
@@ -137,10 +138,10 @@ html {
     @apply flex items-center gap-1 sm:gap-2  border-b border-primaryMedium h-14;
   }
   .search-form {
-    @apply h-10 w-64 bg-primaryMedium flex items-center justify-start rounded-full overflow-clip transition-all relative outline-none hover:bg-primaryMediumLight;
+    @apply h-8 sm:h-10 w-64 bg-primaryMedium flex items-center justify-start rounded-full overflow-clip transition-all relative outline-none hover:bg-primaryMediumLight;
   }
   .search-form-navbar {
-    @apply search-form w-10 2xl:w-72;
+    @apply search-form w-8 sm:w-10 2xl:w-72;
   }
   .search-input {
     @apply absolute left-10 h-full w-full group-focus-within:left-0 px-3 text-textMedium bg-transparent transition-all active:ring-0 active:bg-primaryMedium group-hover:bg-primaryMediumLight outline-none cursor-pointer;

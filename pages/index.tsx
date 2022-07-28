@@ -1,41 +1,51 @@
 import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import React from "react";
-import { useAppDispatch } from "../app/hooks";
+import React, { useEffect, useState } from "react";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { resetFriend, setMainProfile } from "../app/store/friend";
-import { resetPosts } from "../app/store/post";
+import { resetPosts, setStories } from "../app/store/post";
 import { resetProfile } from "../app/store/profile";
-import { FriendType } from "../typing.d";
-import { configGet, URL_USER } from "../util/configAPI";
+import LoadingSpinner from "../components/LoadingSpinner";
+import { FriendType, PostType } from "../typing.d";
+import { configGet, URL_POST, URL_USER } from "../util/configAPI";
 
 interface Props {
   friendData: FriendType[];
   randomNumber: number;
+  stories: PostType[];
 }
-const Welcome = ({ friendData, randomNumber }: Props) => {
+const Welcome = ({ friendData, randomNumber, stories }: Props) => {
   const route = useRouter();
   const dispatch = useAppDispatch();
-
+  const { mainProfile } = useAppSelector((state) => state.friend);
+  const thestories = useAppSelector((state) => state.post.stories);
+  const [user, setUser] = useState<FriendType | null>(null);
   const fetchMainProfile = async (id: string) => {
     try {
       const res = await fetch(URL_USER + id, configGet);
       const profiledata = await res.json();
       if (profiledata) {
         const { id, title, firstName, lastName, picture } = profiledata;
-
+        const profile: FriendType = { id, title, firstName, lastName, picture };
+        setUser(profile);
         dispatch(resetFriend());
         dispatch(resetPosts());
         dispatch(resetProfile());
-        dispatch(setMainProfile({ id, title, firstName, lastName, picture }));
-        setTimeout(() => {
-          route.push("/main/home");
-        }, 1000);
+        dispatch(setMainProfile(profile));
+        dispatch(setStories({ stories, randomNumber }));
       }
     } catch (error) {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    if (user) {
+      route.push("/main/home");
+    }
+  }, [user]);
+
   return (
     <div>
       <Head>
@@ -68,31 +78,38 @@ const Welcome = ({ friendData, randomNumber }: Props) => {
             </h3>
             <h3>Please pick your account</h3>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 p-5 px-10 sm:px-5 gap-x-10 border-l border-r border-primaryMediumLight">
-            {friendData.map((friend: FriendType) => {
-              return (
-                <button
-                  key={friend.id}
-                  className="icon-round-text-btn-lg border-b sm:border-none rounded-none sm:rounded-md border-r-primaryMediumDark"
-                  onClick={() => fetchMainProfile(friend.id)}
-                >
-                  <div className="img-icon">
-                    <Image
-                      src={friend.picture}
-                      alt={friend.firstName}
-                      width={30}
-                      height={30}
-                      layout="responsive"
-                      className="img-base rounded-full"
-                    />
-                  </div>
-                  <p className="text-textMedium font-normal">{`${
-                    friend.firstName + " " + friend.lastName
-                  }`}</p>
-                </button>
-              );
-            })}
-          </div>
+          {!friendData && (
+            <div>
+              <LoadingSpinner />
+            </div>
+          )}
+          {friendData && friendData.length > 0 && (
+            <div className="grid grid-cols-1 sm:grid-cols-2 p-5 px-10 sm:px-5 gap-x-10 border-l border-r border-primaryMediumLight">
+              {friendData.map((friend: FriendType) => {
+                return (
+                  <button
+                    key={friend.id}
+                    className="icon-round-text-btn-lg border-b sm:border-none rounded-none md:rounded-md border-primaryMedium"
+                    onClick={() => fetchMainProfile(friend.id)}
+                  >
+                    <div className="img-icon w-8 h-8 overflow-hidden">
+                      <Image
+                        src={friend.picture}
+                        alt={friend.firstName}
+                        width={30}
+                        height={30}
+                        layout="responsive"
+                        className="img-base rounded-full"
+                      />
+                    </div>
+                    <p className="text-textMedium font-normal">{`${
+                      friend.firstName + " " + friend.lastName
+                    }`}</p>
+                  </button>
+                );
+              })}
+            </div>
+          )}
         </div>
         <div className="main-right-sidebar "></div>
       </main>
@@ -103,17 +120,26 @@ const Welcome = ({ friendData, randomNumber }: Props) => {
 export default Welcome;
 
 export const getStaticProps = async () => {
-  const randomNumber = Math.floor(Math.random() * 3);
+  const pageNumber = Math.floor(Math.random() * 3);
+  const randomNumber = Math.floor(Math.random() * 5);
   const responseFriend = await fetch(
-    URL_USER + "?page=" + randomNumber,
+    URL_USER + "?page=" + pageNumber,
     configGet
   );
   const friend = await responseFriend.json();
+  /* ------------------------- getting story ------------------------ */
 
-  if (friend.data.length > 0) {
+  const responseStory = await fetch(
+    URL_POST + "?page=" + 0 + "&limit=15",
+    configGet
+  );
+  const story = await responseStory.json();
+
+  if (friend.data.length > 0 && story.data.length > 0) {
     return {
       props: {
         friendData: friend.data,
+        stories: story.data,
         randomNumber,
       },
     };

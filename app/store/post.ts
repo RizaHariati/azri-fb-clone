@@ -6,7 +6,6 @@ import postIDExist from "../../util/postExist";
 
 export interface PostState {
   stories: PostType[];
-  storyPage: number;
   posts: PostType[];
   page: number;
   comments: CommentType[];
@@ -18,7 +17,6 @@ export interface PostState {
 
 const initialState: PostState = {
   stories: [],
-  storyPage: 3,
   posts: [],
   page: 0,
   comments: [],
@@ -32,13 +30,16 @@ export const PostSlice = createSlice({
   name: "post",
   initialState,
   reducers: {
-    setStories: (state, action: PayloadAction<PostType[]>) => {
-      state.stories = [...action.payload];
-      if (state.page === 20) {
-        state.storyPage = 0;
-      } else {
-        state.storyPage = state.storyPage + 1;
-      }
+    setStories: (
+      state,
+      action: PayloadAction<{ stories: PostType[]; randomNumber: number }>
+    ) => {
+      const randomNumber = action.payload.randomNumber;
+      const stories = action.payload.stories.slice(
+        randomNumber,
+        randomNumber + 4
+      );
+      state.stories = stories;
     },
 
     addMorePosts: (state, action: PayloadAction<PostType[]>) => {
@@ -113,7 +114,6 @@ export const PostSlice = createSlice({
 
     resetPosts: (state) => {
       state.stories = [];
-      state.storyPage = 3;
       state.posts = [];
       state.page = 0;
       state.comments = [];

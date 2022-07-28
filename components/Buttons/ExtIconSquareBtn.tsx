@@ -19,11 +19,9 @@ const ExtIconSquareBtn = ({
   hideClass,
 }: Props) => {
   return (
-    <a href={href ? href : "/"}>
-      <button className={`icon-btn-square ${hideClass}`}>
-        <FontAwesomeIcon icon={icon} className={iconClass} />
-        <p className="icon-note">{text}</p>
-      </button>
+    <a href={href ? href : "/"} className={`icon-btn-square ${hideClass}`}>
+      <FontAwesomeIcon icon={icon} className={iconClass} />
+      <p className="icon-note">{text}</p>
     </a>
   );
 };

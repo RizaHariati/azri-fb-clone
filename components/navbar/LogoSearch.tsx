@@ -12,7 +12,6 @@ import { resetTool } from "../../app/store/tool";
 import SearchMenu from "./navBarDropMenu/SearchMenu";
 
 const LogoSearch = () => {
-  const [openSearch, setopenSearch] = useState<boolean>(false);
   const { friendList } = useAppSelector((state) => state.friend);
   const { openMenu } = useAppSelector((state) => state.post);
   const dispatch = useAppDispatch();
@@ -26,7 +25,7 @@ const LogoSearch = () => {
     );
   } else {
     return (
-      <div className="logo-search-container relative">
+      <div className="logo-search-container relative ">
         <div className="logo-search">
           {openMenu?.menuTitle !== "Search" && <SearchLogo />}
 
@@ -48,7 +47,7 @@ const LogoSearch = () => {
                 e.preventDefault();
                 dispatch(handleOpenMenu("Search"));
               }}
-              className="flex text-textDark items-center gap-2 justify-start px-3"
+              className="flex text-textDark bg-blue h-8 items-center gap-2 justify-start px-2 sm:px-3"
             >
               <FontAwesomeIcon icon={faSearch} />
               Search AzriClone

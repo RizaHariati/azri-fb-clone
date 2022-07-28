@@ -7,6 +7,8 @@ import { handleOpenMenu } from "../../app/store/post";
 import { closeCommentSection } from "../../app/store/tool";
 import { FriendType, OpenMenuType } from "../../typing.d";
 import IconBtn from "../Buttons/IconBtn";
+import CreateMenu from "./navBarDropMenu/CreateMenu";
+import MainMenu from "./navBarDropMenu/MainMenu";
 import NotificationMenu from "./navBarDropMenu/NotificationMenu";
 import ProfileMenu from "./navBarDropMenu/ProfileMenu";
 
@@ -27,24 +29,24 @@ const NavMenu = () => {
                 <IconBtn
                   icon={faAdd}
                   text="Create"
-                  btnClass="icon-btn "
                   onClick={() => {
                     dispatch(handleOpenMenu("Create"));
                   }}
+                  btnClass="icon-btn w-8 h-8 sm:w-10 sm:h-10"
                 />
-                {/* {openMenu?.menuTitle === "Create" && <CreateMenu />} */}
+                {openMenu?.menuTitle === "Create" && <CreateMenu />}
               </div>
 
               <div className="relative h-14 items-center  hidden xl:flex">
                 <IconBtn
                   icon={faListDots}
                   text="Menu"
-                  btnClass="icon-btn"
                   onClick={() => {
                     dispatch(handleOpenMenu("Main"));
                   }}
+                  btnClass="icon-btn w-8 h-8 sm:w-10 sm:h-10"
                 />
-                {/* {openMenu?.menuTitle === "Main" && <MainMenu />} */}
+                {openMenu?.menuTitle === "Main" && <MainMenu />}
               </div>
 
               <div className="relative h-14 items-center flex">
@@ -55,6 +57,7 @@ const NavMenu = () => {
                     dispatch(handleOpenMenu("Notification"));
                     dispatch(closeCommentSection());
                   }}
+                  btnClass="icon-btn w-8 h-8 sm:w-10 sm:h-10"
                 />
                 {openMenu?.menuTitle === "Notification" && <NotificationMenu />}
               </div>
