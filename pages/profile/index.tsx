@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { useEffect, useRef, useState } from "react";
+import toast from "react-hot-toast";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { closeNavbarMenu } from "../../app/store/post";
 import {
@@ -43,6 +44,7 @@ const MainProfile = () => {
   window.addEventListener("scroll", setProfileHeader);
 
   useEffect(() => {
+    toast.dismiss();
     if (mainProfile?.id === "") {
       router.push("/");
     } else {

@@ -117,7 +117,7 @@ html {
   }
 
   .notification-menu {
-    @apply menu-list overflow-hidden pl-5 sm:pl-0;
+    @apply menu-list overflow-hidden;
     height: calc(100vh - 20px);
   }
   .logo-search-container {
@@ -179,11 +179,14 @@ html {
   }
 
   .notifications-container {
-    @apply w-full overflow-y-scroll p-5;
+    @apply w-full overflow-y-scroll mt-3 px-3 md:px-5 left-0 right-0;
     height: calc(100vh - 150px);
   }
   .notifications-container::-webkit-scrollbar {
     display: none;
+  }
+  .notification-line {
+    @apply grid grid-cols-6 cursor-pointer items-center hover:bg-primaryMedium rounded-md transition-all mb-2 p-2 gap-2;
   }
   /* ---------------------------- navbar ---------------------------- */
 

@@ -16,6 +16,7 @@ const config = {
 };
 import { addMoreComments } from "../../../app/store/post";
 import { configDelete, URL_COMMENT } from "../../../util/configAPI";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 /* ---------------------------------------------------------------- */
 /*                        start main function                       */
@@ -61,98 +62,38 @@ const NotificationMenu = () => {
     try {
       const res = await fetch(URL_COMMENT + id, configDelete);
       const data = await res.json();
-      if (data.id === id) {
-        toast.success("Comment hidden");
 
-        const filterComments = dataComments.filter(
-          (comment: CommentType) => comment.id !== id
-        );
-        setDataComments(filterComments);
-      }
+      toast.success("Comment hidden");
+      const filterComments = dataComments.filter(
+        (comment: CommentType) => comment.id !== id
+      );
+      setDataComments(filterComments);
     } catch (error) {
       console.log(error);
     }
   };
   return (
     <div className="notification-menu">
-      <h3 className=" text-textLight text-xl font-semibold px-5 pt-5 ">
+      <h3 className=" text-textLight text-xl font-semibold pt-5 px-3 md:px-5 ">
         Notifications
       </h3>
-      <hr className="w-full my-3 border-b border-primaryMedium" />
+      <hr className="w-full border-b border-primaryMedium" />
       <div className="notifications-container">
         {dataComments.map((comment: CommentType, index: number) => {
-          const date = moment(comment.publishDate).format("LL");
           if (dataComments.length - 1 === index) {
             return (
               <div
                 key={comment.id}
                 ref={ref}
-                className="grid grid-cols-9 cursor-pointer items-center hover:bg-primaryMedium p-2 sm:rounded-md transition-all group"
+                className=" notification-line group"
               >
-                <div className="object-full object-center w-14 h-14 col-span-2 rounded-full overflow-hidden">
-                  <Image
-                    src={comment.owner.picture}
-                    alt={comment.owner.firstName}
-                    width={60}
-                    height={60}
-                    className="img-base rounded-full"
-                  />
-                </div>
-                <div className="text-sm col-span-6">
-                  {comment.owner.id === mainProfile?.id && (
-                    <p> You commented: </p>
-                  )}
-                  {comment.owner.id !== mainProfile?.id && (
-                    <p>
-                      {comment.owner.firstName} {comment.owner.lastName}
-                      commented:
-                    </p>
-                  )}
-                  <p>{comment.message} </p>
-                  <p className="text-xs text-textDark">{date} </p>
-                </div>
-                <IconBtn
-                  text="Hide notification"
-                  icon={faRectangleTimes}
-                  btnClass="icon-btn block sm:hidden group-hover:block"
-                  onClick={() => handleHide(comment.id)}
-                />
+                <Notifications comment={comment} handleHide={handleHide} />
               </div>
             );
           } else {
             return (
-              <div
-                key={comment.id}
-                className="grid grid-cols-9 cursor-pointer items-center hover:bg-primaryMedium rounded-md transition-all group  mb-2 p-2 "
-              >
-                <div className="object-full object-center w-14 h-14 col-span-2 rounded-full overflow-hidden  ">
-                  <Image
-                    src={comment.owner.picture}
-                    alt={comment.owner.firstName}
-                    width={60}
-                    height={60}
-                    className="img-base rounded-full"
-                  />
-                </div>
-                <div className="text-sm col-span-6">
-                  {comment.owner.id === mainProfile?.id && (
-                    <p> You commented: </p>
-                  )}
-                  {comment.owner.id !== mainProfile?.id && (
-                    <p>
-                      {comment.owner.firstName} {comment.owner.lastName}
-                      commented:
-                    </p>
-                  )}
-                  <p>{comment.message} </p>
-                  <p className="text-xs text-textDark">{date} </p>
-                </div>
-                <IconBtn
-                  text="hide notificationn"
-                  icon={faRectangleTimes}
-                  btnClass="icon-btn "
-                  onClick={() => handleHide(comment.id)}
-                />
+              <div key={comment.id} className=" notification-line group">
+                <Notifications comment={comment} handleHide={handleHide} />
               </div>
             );
           }
@@ -164,3 +105,44 @@ const NotificationMenu = () => {
 };
 
 export default NotificationMenu;
+
+interface Props {
+  comment: CommentType;
+  handleHide: (id: string) => Promise<void>;
+}
+
+const Notifications = ({ comment, handleHide }: Props) => {
+  const { mainProfile } = useAppSelector((state) => state.friend);
+  const date = moment(comment.publishDate).format("LL");
+  return (
+    <>
+      <div className="col-span-1">
+        <Image
+          src={comment.owner.picture}
+          alt={comment.owner.firstName}
+          width={60}
+          height={60}
+          className="img-base rounded-full"
+        />
+      </div>
+      <div className="text-sm col-span-4">
+        {comment.owner.id === mainProfile?.id && <p> You commented: </p>}
+        {comment.owner.id !== mainProfile?.id && (
+          <p>
+            {comment.owner.firstName} {comment.owner.lastName}
+            commented:
+          </p>
+        )}
+        <p>{comment.message} </p>
+        <p className="text-xs text-textDark">{date} </p>
+      </div>
+      <button
+        onClick={() => handleHide(comment.id)}
+        className="icon-btn w-10 h-10 col-span-1 ml-auto rounded-full"
+      >
+        <FontAwesomeIcon icon={faRectangleTimes} className="text-sm" />
+        <p className="icon-note">hide notification</p>
+      </button>
+    </>
+  );
+};

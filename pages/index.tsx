@@ -2,6 +2,7 @@ import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { resetFriend, setMainProfile } from "../app/store/friend";
 import { resetPosts, setStories } from "../app/store/post";
@@ -18,9 +19,9 @@ interface Props {
 const Welcome = ({ friendData, randomNumber, stories }: Props) => {
   const route = useRouter();
   const dispatch = useAppDispatch();
-  const { mainProfile } = useAppSelector((state) => state.friend);
-  const thestories = useAppSelector((state) => state.post.stories);
+
   const [user, setUser] = useState<FriendType | null>(null);
+
   const fetchMainProfile = async (id: string) => {
     try {
       const res = await fetch(URL_USER + id, configGet);
@@ -41,6 +42,7 @@ const Welcome = ({ friendData, randomNumber, stories }: Props) => {
   };
 
   useEffect(() => {
+    toast.dismiss();
     if (user) {
       route.push("/main/home");
     }
@@ -60,7 +62,7 @@ const Welcome = ({ friendData, randomNumber, stories }: Props) => {
       <main className="main-container">
         <div className="main-left-sidebar"></div>
         <div className="main-content">
-          <div className="flex flex-col items-center justify-center text-xl mb-5 ">
+          <div className="flex flex-col items-center justify-center text-lg md:text-xl mt-5  w-full px-3">
             <h3>
               Welcome to{" "}
               <span className=" text-accentMain hover:text-accentDark transition-all font-semibold">

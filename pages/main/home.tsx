@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
+import toast from "react-hot-toast";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { setFriendData } from "../../app/store/friend";
 import { addMorePosts } from "../../app/store/post";
@@ -32,6 +33,7 @@ const Home = ({ friends }: Props) => {
   };
 
   useEffect(() => {
+    toast.dismiss();
     if (mainProfile?.id === "") {
       router.push("/");
     } else {

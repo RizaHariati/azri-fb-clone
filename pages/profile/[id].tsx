@@ -2,6 +2,7 @@ import { GetStaticProps, GetStaticPaths } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { useEffect, useRef, useState } from "react";
+import toast from "react-hot-toast";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { closeNavbarMenu } from "../../app/store/post";
 import { setGuestProfilePost } from "../../app/store/profile";
@@ -25,6 +26,7 @@ const Profile = ({ guestPost, guestProfile }: Props) => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
+    toast.dismiss();
     dispatch(setGuestProfilePost(guestPost));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

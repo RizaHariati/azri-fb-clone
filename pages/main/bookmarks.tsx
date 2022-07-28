@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
+import toast from "react-hot-toast";
 import { useAppSelector } from "../../app/hooks";
 import MainLeftSidebar from "../../components/HomePage/MainLeftSidebar";
 
@@ -10,6 +11,7 @@ const Bookmarks = () => {
   const router = useRouter();
 
   useEffect(() => {
+    toast.dismiss();
     if (mainProfile?.id === "") {
       router.push("/");
     }
