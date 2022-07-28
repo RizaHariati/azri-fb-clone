@@ -113,7 +113,6 @@ export const PostSlice = createSlice({
     },
 
     resetPosts: (state) => {
-      state.stories = [];
       state.posts = [];
       state.page = 0;
       state.comments = [];

@@ -1,7 +1,12 @@
-import { faComment } from "@fortawesome/free-regular-svg-icons";
+import {
+  faComment,
+  faShareFromSquare,
+} from "@fortawesome/free-regular-svg-icons";
 import {
   faHeart,
+  faMessage,
   faShare,
+  faShareAlt,
   faThumbsUp,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -48,28 +53,30 @@ const PostContent = ({
       <div className=" w-full h-80 img-base overflow-hidden z-0">
         <Image
           src={image}
-          width={450}
-          height={450}
+          width={250}
+          height={250}
           layout="responsive"
           className="img-base z-0"
           alt={image}
         />
       </div>
-      <div className="grid grid-cols-9 px-5 py-3 text-textDark">
+      <div className="grid grid-cols-9 px-3 md:px-5 py-3 text-textDark text-xs">
         {(!likes || likes === 0) && (
           <div className=" col-span-7 flex items-center gap-1 "></div>
         )}
         {likes > 0 && likes <= 10 && (
-          <div className=" col-span-6 flex items-center gap-1 ">
+          <div className=" col-span-6 flex items-center gap-1  ">
             <div className="w-5 h-5 flex items-center justify-center bg-blue-600 rounded-full">
               <FontAwesomeIcon
                 icon={faThumbsUp}
-                className=" text-textMedium w-3 h-3 rounded-full"
+                className=" text-textMedium text-xs"
               />
             </div>
-            {likePost && <p>{`You, and ${likesTotal} others`}</p>}
+            {likePost && (
+              <p className="text-xs">{`You, and ${likesTotal} others`}</p>
+            )}
             {!likePost && (
-              <p>
+              <p className="text-xs">
                 {`${friend?.firstName} ${friend?.lastName} and ${likesTotal} others`}
               </p>
             )}
@@ -77,50 +84,39 @@ const PostContent = ({
         )}
         {likes > 0 && likes > 10 && (
           <div className="col-span-6 flex items-center gap-1 ">
-            <div className="w-5 h-5 flex items-center justify-center bg-blue-600 rounded-full">
+            <div className="w-5 h-5 flex items-center justify-center bg-blue-600 rounded-full ">
               <FontAwesomeIcon
                 icon={faThumbsUp}
-                className=" text-textMedium w-3 h-3 rounded-full"
+                className="text-textMedium text-xs"
               />
             </div>
-            <div className="w-5 h-5 flex items-center justify-center bg-red-600 rounded-full">
+            <div className="w-5 h-5 flex items-center justify-center bg-red-600 rounded-full ">
               <FontAwesomeIcon
                 icon={faHeart}
-                className=" text-textMedium w-3 h-3 rounded-full"
+                className="text-textMedium text-xs"
               />
             </div>
             {!likePost && (
-              <p>
+              <p className="text-xs">
                 {`${friend?.firstName}, ${friend?.lastName} and ${likesTotal} others`}
               </p>
             )}
             {likePost && (
-              <p>{`You, ${friend?.lastName}, ${friend?.firstName} and ${likesTotal} others`}</p>
+              <p className="text-xs">{`You, ${friend?.lastName}, ${friend?.firstName} and ${likesTotal} others`}</p>
             )}
           </div>
         )}
-        <button
-          className="col-start-7 col-span-2 text-right"
-          onClick={() => {
-            dispatch(openCommentSection(postId));
-            getComments(postId);
-          }}
-        >
-          <p className=" underline underline-offset-2 text-textDark hover:text-textMedium">
-            comments
-          </p>
-        </button>
       </div>
       {/* ------------------------- postReaction ------------------------- */}
-      <div className="flex items-center justify-center gap-2 text-center h-10 px-5 border-t border-primaryMedium">
+      <div className=" items-center justify-center gap-1 text-center h-10 px-2 md:px-5 border-t border-primaryMedium grid grid-cols-3">
         <button
           onClick={() => handleLike()}
-          className="h-10 w-10  sm:h-11 sm:w-full bg-none text-textDark flex items-center justify-center hover:bg-primaryMedium rounded-md transition-all relative focus:h-full gap-2"
+          className="h-8 active:bg-primaryMediumLight hover:bg-primaryMedium rounded-md flex gap-2 items-center justify-center"
         >
           <FontAwesomeIcon
             icon={faThumbsUp}
             className={
-              likePost ? "text-xl text-accentMain font-bold " : "text-xl"
+              likePost ? "text-xl text-accentMain font-bold " : "text-lg"
             }
           />
           Like
@@ -130,13 +126,13 @@ const PostContent = ({
             dispatch(openCommentSection(postId));
             getComments(postId);
           }}
-          className="icon-btn-square w-full text-sm font-medium gap-2 focus:border-none foc"
+          className="h-8 active:bg-primaryMediumLight hover:bg-primaryMedium rounded-md flex gap-2 items-center justify-center"
         >
-          <FontAwesomeIcon icon={faComment} className="text-xl" />
+          <FontAwesomeIcon icon={faMessage} className="text-lg" />
           Comment
         </button>
-        <button className="icon-btn-square w-full text-sm font-medium gap-2 focus:border-none">
-          <FontAwesomeIcon icon={faShare} className="text-xl " />
+        <button className="h-8 active:bg-primaryMediumLight hover:bg-primaryMedium rounded-md flex gap-2 items-center justify-center">
+          <FontAwesomeIcon icon={faShareAlt} className="text-lg " />
           Share
         </button>
       </div>

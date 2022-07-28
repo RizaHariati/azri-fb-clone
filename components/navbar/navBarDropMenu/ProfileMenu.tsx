@@ -176,7 +176,7 @@ const Setting = ({ openSide, handleOpenSide }: SettingProps) => {
 const Support = ({ openSide, handleOpenSide }: SettingProps) => {
   return (
     <div
-      className={`absolute w-full h-60 bg-primaryMediumDark z-20 transition-all rounded-md p-2 sm:p-5 ${
+      className={`absolute w-full h-60 bg-primaryMediumDark z-20 transition-all rounded-md p-2 sm:p-5 bg to-blue-500 ${
         openSide.status && openSide.sidemenu === "support"
           ? "left-0 top-0 "
           : "left-full top-0"

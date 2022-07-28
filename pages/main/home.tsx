@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { setFriendData } from "../../app/store/friend";
-import { addMorePosts, setStories } from "../../app/store/post";
+import { addMorePosts } from "../../app/store/post";
 import MainContent from "../../components/HomePage/MainContent";
 import MainLeftSidebar from "../../components/HomePage/MainLeftSidebar";
 import MainRightSidebar from "../../components/HomePage/MainRightSidebar";

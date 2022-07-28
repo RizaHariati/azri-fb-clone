@@ -44,20 +44,20 @@ html {
     @apply h-10 w-10 flex items-center justify-center cursor-pointer bg-primaryMedium hover:bg-primaryMediumLight rounded-full transition-all relative text-textMedium;
   }
   .icon-note {
-    @apply hidden sm:block absolute top-12 left-1/2 bg-white bg-opacity-0 text-primaryDark -translate-x-1/2  z-10 rounded-md px-3 py-2 transition-all text-xs whitespace-nowrap  delay-200 opacity-0;
+    @apply hidden md:block absolute top-12 left-1/2 bg-white bg-opacity-0 text-primaryDark -translate-x-1/2  z-10 rounded-md px-3 py-2 transition-all text-xs whitespace-nowrap  delay-200 opacity-0;
   }
 
   .icon-btn:hover .icon-note {
-    @apply hidden sm:block bg-opacity-80 transition-all opacity-100;
+    @apply hidden md:block bg-opacity-80 transition-all opacity-100;
   }
   .icon-btn-square:hover .icon-note {
-    @apply hidden sm:block bg-opacity-80 transition-all opacity-100;
+    @apply hidden md:block bg-opacity-80 transition-all opacity-100;
   }
   .btn:hover .icon-note {
-    @apply hidden sm:block bg-opacity-80 transition-all opacity-100;
+    @apply hidden md:block bg-opacity-80 transition-all opacity-100;
   }
   .img-icon:hover .icon-note {
-    @apply hidden sm:block bg-opacity-80 transition-all opacity-100;
+    @apply hidden md:block bg-opacity-80 transition-all opacity-100;
   }
   .img-icon-small {
     @apply img-icon p-0 m-0 w-8 h-8;
@@ -110,10 +110,10 @@ html {
   }
 
   .menu-list {
-    @apply fixed sm:absolute top-12 sm:top-14 right-0 bg-primaryMediumDark w-screen sm:w-96 rounded-none sm:rounded-md text-textPrimary shadow-md z-50 shadow-black transition-all h-44 overflow-hidden;
+    @apply fixed sm:absolute top-14 sm:top-14 right-0 bg-primaryMediumDark w-screen sm:w-96 rounded-none sm:rounded-md text-textPrimary shadow-md z-50 shadow-black transition-all h-44 overflow-hidden;
   }
   .profile-menu {
-    @apply menu-list h-fit;
+    @apply menu-list h-fit overflow-visible;
   }
 
   .notification-menu {
@@ -153,17 +153,16 @@ html {
     @apply h-10 w-12 bg-transparent hover:bg-primaryMedium rounded-full;
   }
   .main-menu {
-    @apply menu-list -left-24;
-    height: calc(100vh - 70px);
+    @apply menu-list -right-24;
+    height: calc(100vh - 50px);
     width: 600px;
   }
 
   .create-menu {
-    @apply menu-list;
-    height: calc(100vh - 70px);
+    @apply menu-list h-screen;
+    /* height: calc(100vh - 70px); */
   }
-  .create-menu-scroll {
-  }
+
   .main-menu-left {
     @apply col-span-3 h-5/6 w-full bg-primaryDark rounded-md overflow-y-scroll py-3 px-5;
   }
@@ -249,10 +248,10 @@ html {
     display: none;
   }
   .stories-container {
-    @apply w-full my-5 h-52 sm:h-48 grid grid-cols-4  sm:grid-cols-5 xl:grid-cols-4 gap-2 sm:px-5;
+    @apply w-full my-5 h-40 sm:h-44 grid grid-cols-4  sm:grid-cols-5 xl:grid-cols-4 gap-2 sm:px-5;
   }
   .story {
-    @apply h-52 w-full  rounded-md relative overflow-hidden shadow-black shadow-sm hover:shadow-md transition-all cursor-pointer grid grid-rows-4;
+    @apply h-40 sm:h-44 w-full  rounded-md relative overflow-hidden shadow-black shadow-sm hover:shadow-md transition-all cursor-pointer grid grid-rows-4;
   }
 
   .story-last {

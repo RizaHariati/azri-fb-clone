@@ -23,7 +23,7 @@ export type MainMenuLeft = {
 
 const MainMenu = () => {
   return (
-    <div className={`main-menu  `}>
+    <div className={`main-menu`}>
       <h3 className=" text-textLight text-xl font-semibold py-5 px-2 sm:px-5">
         Menu
       </h3>

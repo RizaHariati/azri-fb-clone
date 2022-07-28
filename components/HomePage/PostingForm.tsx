@@ -9,9 +9,9 @@ const PostingForm = () => {
   const dispatch = useAppDispatch();
 
   return (
-    <div className=" bg-primaryMediumDark p-3 px-5 max-w-lg mx-auto shadow-sm shadow-black rounded-md md:mt-6">
+    <div className=" bg-primaryMediumDark p-3 md:px-5 max-w-lg mx-auto shadow-sm shadow-black rounded-md md:mt-6 bgpin">
       {/* ------------------------- posting form ------------------------- */}
-      <div className="grid grid-cols-10 justify-center gap-3 text-center h-10 ">
+      <div className="flex justify-center gap-2 md:gap-3 text-center h-10">
         {mainProfile && (
           <LinkImgBtn
             src={
@@ -26,7 +26,7 @@ const PostingForm = () => {
 
         <button
           onClick={() => dispatch(openPostModal("Create"))}
-          className="height-10 text-textDark hover:text-textMedium col-span-9 text-left bg-primaryMedium hover:bg-primaryMediumLight transition-all px-3 rounded-full"
+          className="height-10 text-textDark hover:text-textMedium text-left bg-primaryMedium hover:bg-primaryMediumLight transition-all px-3 rounded-full w-full text-sm md:text-base"
         >
           {`  What's on your mind, ${mainProfile?.firstName} ${mainProfile?.lastName} `}
         </button>
