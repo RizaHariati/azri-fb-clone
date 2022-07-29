@@ -1,6 +1,7 @@
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Link from "next/link";
 import React, { useState } from "react";
 import { useAppSelector } from "../../app/hooks";
 import { mainLeftLinks, mainShortcuts } from "../../data/main-data";
@@ -11,7 +12,8 @@ import LinkImgTextBtn from "../Buttons/LinkImgTextBtn";
 type IconTextBtn = {
   name: string;
   icon: IconProp;
-  href: string;
+  href?: string;
+  a?: string;
   color: string;
 };
 
@@ -20,6 +22,7 @@ type ShortcutType = {
   name: string;
   url: string;
   link: string;
+  text: string;
 };
 interface Props {
   leftClass: string;
@@ -51,15 +54,36 @@ const MainLeftSidebar = ({ leftClass }: Props) => {
         }
       >
         {mainLeftLinks.map((link: IconTextBtn, index: number) => {
-          return (
-            <LinkIconTextBtn
-              key={index}
-              href={link.href}
-              text={link.name}
-              icon={link.icon}
-              color={link.color}
-            />
-          );
+          if (link.href) {
+            return (
+              <Link href={link.href} key={index}>
+                <button className="icon-round-text-btn text-accentMain">
+                  <FontAwesomeIcon
+                    icon={link.icon}
+                    className={`text-xl w-8 ${link.color}`}
+                  />
+                  <p className="text-textMedium font-normal text-sm">
+                    {link.name}
+                  </p>
+                </button>
+              </Link>
+            );
+          }
+          if (link.a) {
+            return (
+              <a href={link.a} key={index}>
+                <button className="icon-round-text-btn text-accentMain">
+                  <FontAwesomeIcon
+                    icon={link.icon}
+                    className={`text-xl w-8 ${link.color}`}
+                  />
+                  <p className="text-textMedium font-normal text-sm">
+                    {link.name}
+                  </p>
+                </button>
+              </a>
+            );
+          }
         })}
       </div>
       <button

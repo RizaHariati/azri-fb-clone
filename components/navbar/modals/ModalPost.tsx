@@ -6,7 +6,11 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
-import { removeImagePost, resetPosts } from "../../../app/store/post";
+import {
+  closeNavbarMenu,
+  removeImagePost,
+  resetPosts,
+} from "../../../app/store/post";
 import { closePostModal } from "../../../app/store/tool";
 import { PostDataType, PostType } from "../../../typing.d";
 import { header, URL_BASE, URL_POST } from "../../../util/configAPI";
@@ -53,6 +57,7 @@ const ModalPost = () => {
   };
 
   useEffect(() => {
+    dispatch(closeNavbarMenu());
     if (!data) {
       return;
     }

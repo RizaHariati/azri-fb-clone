@@ -19,7 +19,7 @@ const Stories = () => {
     );
   else
     return (
-      <div className="stories-container">
+      <div className="stories-container max-w-xl mx-auto">
         {/* -------------------------- user-story -------------------------- */}
 
         <div className="story">

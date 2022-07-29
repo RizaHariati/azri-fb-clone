@@ -90,7 +90,7 @@ const SearchLogo = () => {
         className="img-base rounded-full"
         alt="Logo"
       />
-      <p className="icon-note">Home</p>
+      <p className="icon-note left-14 top-7 z-50 ">Select Account Page</p>
     </button>
   );
 };

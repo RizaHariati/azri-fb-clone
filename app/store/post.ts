@@ -51,7 +51,7 @@ export const PostSlice = createSlice({
         }
       });
       state.posts = [...postFiltered];
-      if (state.page === 20) {
+      if (state.page >= 10) {
         state.page = 1;
       } else {
         state.page = state.page + 1;
@@ -60,7 +60,7 @@ export const PostSlice = createSlice({
 
     addMoreComments: (state, action: PayloadAction<CommentType[]>) => {
       state.comments = [...action.payload];
-      if (state.commentPage === 20) {
+      if (state.commentPage >= 20) {
         state.commentPage = 0;
         state.comments = [];
       }

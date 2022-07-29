@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { resetFriend, setMainProfile } from "../app/store/friend";
-import { resetPosts, setStories } from "../app/store/post";
+import { closeNavbarMenu, resetPosts, setStories } from "../app/store/post";
 import { resetProfile } from "../app/store/profile";
 import LoadingSpinner from "../components/LoadingSpinner";
 import { FriendType, PostType } from "../typing.d";
@@ -43,6 +43,7 @@ const Welcome = ({ friendData, randomNumber, stories }: Props) => {
 
   useEffect(() => {
     toast.dismiss();
+    dispatch(closeNavbarMenu());
     if (user) {
       route.push("/main/home");
     }

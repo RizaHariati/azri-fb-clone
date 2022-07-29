@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 import toast from "react-hot-toast";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { setFriendData } from "../../app/store/friend";
-import { addMorePosts } from "../../app/store/post";
+import { addMorePosts, closeNavbarMenu } from "../../app/store/post";
 import MainContent from "../../components/HomePage/MainContent";
 import MainLeftSidebar from "../../components/HomePage/MainLeftSidebar";
 import MainRightSidebar from "../../components/HomePage/MainRightSidebar";
@@ -34,6 +34,7 @@ const Home = ({ friends }: Props) => {
 
   useEffect(() => {
     toast.dismiss();
+    dispatch(closeNavbarMenu());
     if (mainProfile?.id === "") {
       router.push("/");
     } else {

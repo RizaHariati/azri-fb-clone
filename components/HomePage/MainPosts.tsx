@@ -6,6 +6,7 @@ import { PostType } from "../../typing.d";
 import { configGet, URL_POST } from "../../util/configAPI";
 import LoadingSpinner from "../LoadingSpinner";
 import Post from "./Post";
+import Sponsor from "./Sponsor";
 
 const MainPosts = () => {
   const { posts, page } = useAppSelector((state) => state.post);
@@ -43,6 +44,15 @@ const MainPosts = () => {
           return (
             <div ref={ref} key={post.id}>
               <Post post={post} setMainPosts={setMainPosts} />;
+            </div>
+          );
+        } else if (index === 3) {
+          return (
+            <div key={post.id}>
+              <Post post={post} setMainPosts={setMainPosts} />
+              <div className="md:hidden">
+                <Sponsor />
+              </div>
             </div>
           );
         } else {

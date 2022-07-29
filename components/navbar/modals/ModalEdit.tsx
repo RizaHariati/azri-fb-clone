@@ -7,6 +7,7 @@ import React, { useEffect, useState } from "react";
 import toast, { ErrorIcon } from "react-hot-toast";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import {
+  closeNavbarMenu,
   removeImagePost,
   resetPosts,
   setImagePost,
@@ -84,6 +85,7 @@ const ModalEdit = () => {
   };
 
   useEffect(() => {
+    dispatch(closeNavbarMenu());
     fetchSinglePost();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
