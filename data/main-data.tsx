@@ -72,7 +72,7 @@ export const mainLeftLinks = [
   {
     name: "Ads Manager",
     icon: faChartSimple,
-    a: "https://www.facebook.com/",
+    a: "https://www.facebook.com/coronavirus_info/",
     color: "text-sky-500",
   },
   {

@@ -1,6 +1,7 @@
 import { faGratipay } from "@fortawesome/free-brands-svg-icons";
 import { faArrowLeft, faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Head from "next/head";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -34,6 +35,11 @@ const Friends = () => {
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-12 pt-14 h-screen">
+      <Head>
+        <title>AzriClone || Pages</title>
+        <meta name="description" content="Your Favorite Pages" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <div className="col-span-3 bg-primaryMediumDark h-14 md:h-full">
         <div className=" text-textPrimary flex text-2xl items-center gap-3 justify-start px-3 py-2 md:px-5 border-b border-primaryMedium cursor-pointer hover:bg-primaryMedium transition-all">
           <Link href="/main/home">

@@ -28,7 +28,7 @@ const Bookmarks = () => {
       <div>
         <Head>
           <title>AzriClone || Bookmarks</title>
-          <meta name="description" content="Your timeline homepage" />
+          <meta name="description" content="Menu shortcut" />
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <main className="bookmarks-container ">
