@@ -98,7 +98,7 @@ const Friends = ({ friends }: Props) => {
                     key={friend.id}
                     className="mb-2 "
                   >
-                    <div className=" col-span-6 md:col-span-4 lg:col-span-3 w-40 h-52 bg-primaryMediumDark rounded-md flex flex-col items-center justify-center text-textLight p-2 md:p-3 text-center cursor-pointer">
+                    <div className=" col-span-6 md:col-span-4 lg:col-span-3 w-40 h-52 bg-primaryMediumDark rounded-md flex flex-col items-center justify-start text-textLight p-2 md:p-3 text-center cursor-pointer">
                       <div className="w-20 h-20 rounded-full overflow-hidden mb-2">
                         <Image
                           width={60}
