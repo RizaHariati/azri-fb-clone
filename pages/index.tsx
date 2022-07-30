@@ -66,9 +66,8 @@ const Welcome = ({ friendData, stories }: Props) => {
         <div className="main-content">
           <div className="flex flex-col items-center justify-center text-lg md:text-xl mt-5  w-full px-3">
             <h3>
-              Welcome to{" "}
+              Welcome to
               <span className=" text-accentMain hover:text-accentDark transition-all font-semibold">
-                {" "}
                 AzriClone
               </span>
             </h3>
