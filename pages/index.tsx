@@ -29,6 +29,7 @@ const Welcome = ({ friendData, randomNumber, stories }: Props) => {
       if (profiledata) {
         const { id, title, firstName, lastName, picture } = profiledata;
         const profile: FriendType = { id, title, firstName, lastName, picture };
+
         setUser(profile);
         dispatch(resetFriend());
         dispatch(resetPosts());
@@ -124,8 +125,8 @@ const Welcome = ({ friendData, randomNumber, stories }: Props) => {
 export default Welcome;
 
 export const getStaticProps = async () => {
-  const pageNumber = Math.floor(Math.random() * 3);
-  const randomNumber = Math.floor(Math.random() * 5);
+  const pageNumber = Math.floor(Math.random() * 2);
+
   const responseFriend = await fetch(
     URL_USER + "?page=" + pageNumber,
     configGet
@@ -133,13 +134,14 @@ export const getStaticProps = async () => {
   const friend = await responseFriend.json();
   /* ------------------------- getting story ------------------------ */
 
+  const randomNumber = Math.floor(Math.random() * 5);
   const responseStory = await fetch(
     URL_POST + "?page=" + 0 + "&limit=15",
     configGet
   );
   const story = await responseStory.json();
 
-  if (friend.data.length > 0 && story.data.length > 0) {
+  if (friend.data && story.data) {
     return {
       props: {
         friendData: friend.data,
