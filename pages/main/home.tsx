@@ -68,11 +68,7 @@ export default Home;
 export const getServerSideProps = async () => {
   /* ------------------------ getting friends ----------------------- */
 
-  const randomNumber = Math.floor(Math.random() * 2);
-  const responseFriend = await fetch(
-    URL_USER + "?page=" + randomNumber,
-    configGet
-  );
+  const responseFriend = await fetch(URL_USER, configGet);
   const friend = await responseFriend.json();
 
   /* ----------------------- getting comments ----------------------- */

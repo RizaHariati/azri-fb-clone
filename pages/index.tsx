@@ -13,10 +13,9 @@ import { configGet, URL_POST, URL_USER } from "../util/configAPI";
 
 interface Props {
   friendData: FriendType[];
-  randomNumber: number;
   stories: PostType[];
 }
-const Welcome = ({ friendData, randomNumber, stories }: Props) => {
+const Welcome = ({ friendData, stories }: Props) => {
   const route = useRouter();
   const dispatch = useAppDispatch();
 
@@ -27,6 +26,7 @@ const Welcome = ({ friendData, randomNumber, stories }: Props) => {
       const res = await fetch(URL_USER + id, configGet);
       const profiledata = await res.json();
       if (profiledata) {
+        const randomNumber = Math.floor(Math.random() * 5);
         const { id, title, firstName, lastName, picture } = profiledata;
         const profile: FriendType = { id, title, firstName, lastName, picture };
 
@@ -90,29 +90,31 @@ const Welcome = ({ friendData, randomNumber, stories }: Props) => {
           )}
           {friendData && friendData.length > 0 && (
             <div className="grid grid-cols-1 sm:grid-cols-2 p-5 px-10 sm:px-5 gap-x-10 border-l border-r border-primaryMediumLight">
-              {friendData.map((friend: FriendType) => {
-                return (
-                  <button
-                    key={friend.id}
-                    className="icon-round-text-btn-lg border-b sm:border-none rounded-none md:rounded-md border-primaryMedium"
-                    onClick={() => fetchMainProfile(friend.id)}
-                  >
-                    <div className="img-icon w-8 h-8 overflow-hidden">
-                      <Image
-                        src={friend.picture}
-                        alt={friend.firstName}
-                        width={30}
-                        height={30}
-                        layout="responsive"
-                        className="img-base rounded-full"
-                      />
-                    </div>
-                    <p className="text-textMedium font-normal">{`${
-                      friend.firstName + " " + friend.lastName
-                    }`}</p>
-                  </button>
-                );
-              })}
+              {friendData
+                .sort(() => Math.random() - 0.5)
+                .map((friend: FriendType) => {
+                  return (
+                    <button
+                      key={friend.id}
+                      className="icon-round-text-btn-lg border-b sm:border-none rounded-none md:rounded-md border-primaryMedium"
+                      onClick={() => fetchMainProfile(friend.id)}
+                    >
+                      <div className="img-icon w-8 h-8 overflow-hidden">
+                        <Image
+                          src={friend.picture}
+                          alt={friend.firstName}
+                          width={30}
+                          height={30}
+                          layout="responsive"
+                          className="img-base rounded-full"
+                        />
+                      </div>
+                      <p className="text-textMedium font-normal">{`${
+                        friend.firstName + " " + friend.lastName
+                      }`}</p>
+                    </button>
+                  );
+                })}
             </div>
           )}
         </div>
@@ -125,16 +127,10 @@ const Welcome = ({ friendData, randomNumber, stories }: Props) => {
 export default Welcome;
 
 export const getStaticProps = async () => {
-  const pageNumber = Math.floor(Math.random() * 2);
-
-  const responseFriend = await fetch(
-    URL_USER + "?page=" + pageNumber,
-    configGet
-  );
+  const responseFriend = await fetch(URL_USER + "?page=" + 1, configGet);
   const friend = await responseFriend.json();
   /* ------------------------- getting story ------------------------ */
 
-  const randomNumber = Math.floor(Math.random() * 5);
   const responseStory = await fetch(
     URL_POST + "?page=" + 0 + "&limit=15",
     configGet
@@ -146,7 +142,6 @@ export const getStaticProps = async () => {
       props: {
         friendData: friend.data,
         stories: story.data,
-        randomNumber,
       },
     };
   } else {
