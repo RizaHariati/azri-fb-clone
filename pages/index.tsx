@@ -51,76 +51,85 @@ const Welcome = ({ friendData, stories }: Props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
-  return (
-    <div>
-      <Head>
-        <title>AzriClone || Welcome</title>
-        <meta
-          name="description"
-          content="Welcome to AzriFBClone, Pick your account"
-        />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <main className="main-container">
+  if (user) {
+    return (
+      <div className="main-container">
+        <Head>
+          <title>AzriClone || Loading {user.firstName}</title>
+          <meta name="description" content="Loading Friends" />
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
         <div className="main-left-sidebar"></div>
         <div className="main-content">
-          <div className="flex flex-col items-center justify-center text-lg md:text-xl mt-5  w-full px-3">
-            <h3>
-              Welcome to
-              <span className=" text-accentMain hover:text-accentDark transition-all font-semibold">
-                AzriClone
-              </span>
-            </h3>
-            <h3 className="text-center">
-              A clone of Facebook using fake data from{" "}
-              <a
-                href="https://dummyapi.io/"
-                className=" underline underline-offset-4 text-textMedium"
-              >
-                dummyapi.io
-              </a>
-            </h3>
-            <h3>Please pick your account</h3>
-          </div>
-          {!friendData && (
-            <div>
-              <LoadingSpinner />
-            </div>
-          )}
-          {friendData && friendData.length > 0 && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 p-5 px-10 sm:px-5 gap-x-10 border-l border-r border-primaryMediumLight">
-              {friendData
-                .sort(() => Math.random() - 0.5)
-                .map((friend: FriendType) => {
-                  return (
-                    <button
-                      key={friend.id}
-                      className="icon-round-text-btn-lg border-b sm:border-none rounded-none md:rounded-md border-primaryMedium"
-                      onClick={() => fetchMainProfile(friend.id)}
-                    >
-                      <div className="img-icon w-8 h-8 overflow-hidden">
-                        <Image
-                          src={friend.picture}
-                          alt={friend.firstName}
-                          width={30}
-                          height={30}
-                          layout="responsive"
-                          className="img-base rounded-full"
-                        />
-                      </div>
-                      <p className="text-textMedium font-normal">{`${
-                        friend.firstName + " " + friend.lastName
-                      }`}</p>
-                    </button>
-                  );
-                })}
-            </div>
-          )}
+          <LoadingSpinner />
         </div>
         <div className="main-right-sidebar "></div>
-      </main>
-    </div>
-  );
+      </div>
+    );
+  } else {
+    return (
+      <div>
+        <main className="main-container">
+          <div className="main-left-sidebar"></div>
+          <div className="main-content">
+            <div className="flex flex-col items-center justify-center text-lg md:text-xl mt-5  w-full px-3">
+              <h3>
+                Welcome to
+                <span className=" text-accentMain hover:text-accentDark transition-all font-semibold">
+                  AzriClone
+                </span>
+              </h3>
+              <h3 className="text-center">
+                A clone of Facebook using fake data from
+                <a
+                  href="https://dummyapi.io/"
+                  className=" underline underline-offset-4 text-textMedium"
+                >
+                  dummyapi.io
+                </a>
+              </h3>
+              <h3>Please pick your account</h3>
+            </div>
+            {!friendData && (
+              <div>
+                <LoadingSpinner />
+              </div>
+            )}
+            {friendData && friendData.length > 0 && (
+              <div className="grid grid-cols-1 sm:grid-cols-2 p-5 px-10 sm:px-5 gap-x-10 border-l border-r border-primaryMediumLight">
+                {friendData
+                  .sort(() => Math.random() - 0.5)
+                  .map((friend: FriendType) => {
+                    return (
+                      <button
+                        key={friend.id}
+                        className="icon-round-text-btn-lg border-b sm:border-none rounded-none md:rounded-md border-primaryMedium"
+                        onClick={() => fetchMainProfile(friend.id)}
+                      >
+                        <div className="img-icon w-8 h-8 overflow-hidden">
+                          <Image
+                            src={friend.picture}
+                            alt={friend.firstName}
+                            width={30}
+                            height={30}
+                            layout="responsive"
+                            className="img-base rounded-full"
+                          />
+                        </div>
+                        <p className="text-textMedium font-normal">{`${
+                          friend.firstName + " " + friend.lastName
+                        }`}</p>
+                      </button>
+                    );
+                  })}
+              </div>
+            )}
+          </div>
+          <div className="main-right-sidebar "></div>
+        </main>
+      </div>
+    );
+  }
 };
 
 export default Welcome;

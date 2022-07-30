@@ -73,7 +73,7 @@ const Friends = ({ friends }: Props) => {
           <div className="mb-3">
             <h2 className="text-textPrimary text-xl">Your Friends</h2>
           </div>
-          <div className="grid grid-cols-12 gap-3 max-w-sm md:max-w-lg lg:max-w-2xl  mx-auto">
+          <div className="grid grid-cols-12 gap-3 max-w-sm md:max-w-lg lg:max-w-2xl  mx-auto items-start">
             {friends
               .filter((friend: FriendType) => friend.id !== mainProfile.id)
               .map((friend: FriendType, index: number) => {
@@ -98,11 +98,11 @@ const Friends = ({ friends }: Props) => {
                     key={friend.id}
                     className="mb-2 "
                   >
-                    <div className=" col-span-6 md:col-span-4 lg:col-span-3 w-40 h-52 bg-primaryMediumDark rounded-md flex flex-col items-center justify-center text-textLight p-3 text-center cursor-pointer">
-                      <div className="w-24 h-24 rounded-full overflow-hidden">
+                    <div className=" col-span-6 md:col-span-4 lg:col-span-3 w-40 h-52 bg-primaryMediumDark rounded-md flex flex-col items-center justify-center text-textLight p-2 md:p-3 text-center cursor-pointer">
+                      <div className="w-20 h-20 rounded-full overflow-hidden mb-2">
                         <Image
-                          width={80}
-                          height={80}
+                          width={60}
+                          height={60}
                           layout="responsive"
                           src={friend.picture}
                           className="img-base rounded-full "
@@ -110,17 +110,17 @@ const Friends = ({ friends }: Props) => {
                         />
                       </div>
                       <div>
-                        <p className="text-lg font-semibold mb-2">{`${
+                        <p className="text-Base leading-6 font-semibold">{`${
                           friend.firstName + " " + friend.lastName
                         }`}</p>
-                        <p className="text-sm text-textDark">
+                        <p className="text-sm text-textDark leading-4">
                           <FontAwesomeIcon
                             icon={faLocationDot}
                             className="mr-2"
                           />
                           {location}
                         </p>
-                        <p className="text-xs text-textDark">
+                        <p className="text-sm text-textDark leading-4">
                           <FontAwesomeIcon icon={faGratipay} className="mr-2" />
                           member since : {`${month} ${member}`}
                         </p>
