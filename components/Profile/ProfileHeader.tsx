@@ -36,7 +36,7 @@ const ProfileHeader = ({
             <Image
               src={post.image}
               width={1200}
-              height={1100}
+              height={1200}
               layout="responsive"
               alt={post.owner.firstName}
               className="img-base"
