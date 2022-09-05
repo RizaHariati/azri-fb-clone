@@ -28,10 +28,11 @@ function MyApp({ Component, pageProps }: AppProps) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Script
+        id="gtm-script-1"
         strategy="lazyOnload"
         src={`https://www.googletagmanager.com/gtag/js?id=G-67SXRGBGG8`}
       />
-      <Script strategy="lazyOnload">
+      <Script id="gtm-script-2" strategy="lazyOnload">
         {`window.dataLayer = window.dataLayer || [];`}
         {`function gtag(){dataLayer.push(arguments);}`}
         {`gtag('js', new Date());`}
