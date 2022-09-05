@@ -71,10 +71,7 @@ const Welcome = ({ friendData, stories }: Props) => {
           <meta name="description" content={description} />
           <meta name="keywords" content={process.env.NEXT_PUBLIC_GOOGLE_KEY} />
           <meta property="og:image" content="/images/azriclone.png" />
-          <meta
-            name="google-site-verification"
-            content={process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION}
-          />
+
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <div className="main-left-sidebar"></div>
@@ -89,14 +86,10 @@ const Welcome = ({ friendData, stories }: Props) => {
       <div>
         <Head>
           <title>AzriClone || Welcome</title>
-
           <meta name="description" content={description} />
           <meta name="keywords" content={process.env.NEXT_PUBLIC_GOOGLE_KEY} />
           <meta property="og:image" content="/images/azriclone.png" />
-          <meta
-            name="google-site-verification"
-            content={process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION}
-          />
+
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <main className="main-container">
