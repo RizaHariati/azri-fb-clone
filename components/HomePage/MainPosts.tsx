@@ -3,7 +3,7 @@ import { useInView } from "react-intersection-observer";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { addMorePosts } from "../../app/store/post";
 import { PostType } from "../../typing.d";
-import { configGet, URL_POST } from "../../util/configAPI";
+import { configGetPublic, URL_POST } from "../../util/configAPI";
 import LoadingSpinner from "../LoadingSpinner";
 import Post from "./Post";
 import Sponsor from "./Sponsor";
@@ -24,7 +24,7 @@ const MainPosts = () => {
       setLoading(true);
       const res = await fetch(
         URL_POST + "?page=" + page + "&limit=5",
-        configGet
+        configGetPublic
       );
       const postData = await res.json();
 

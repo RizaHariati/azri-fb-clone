@@ -6,7 +6,7 @@ import { useAppSelector } from "../../app/hooks";
 import { CommentType, PostType } from "../../typing.d";
 import {
   configDelete,
-  configGet,
+  configGetPublic,
   header,
   URL_COMMENT,
   URL_POST,
@@ -83,7 +83,7 @@ const Post = ({
   const getComments = async (id: string) => {
     if (post.id === id) {
       try {
-        const res = await fetch(URL_POST + id + "/comment", configGet);
+        const res = await fetch(URL_POST + id + "/comment", configGetPublic);
         const comments = await res.json();
 
         if (comments.data.length > 0) {

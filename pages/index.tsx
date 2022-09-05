@@ -9,7 +9,12 @@ import { closeNavbarMenu, resetPosts, setStories } from "../app/store/post";
 import { resetProfile } from "../app/store/profile";
 import LoadingSpinner from "../components/LoadingSpinner";
 import { FriendType, PostType } from "../typing.d";
-import { configGet, URL_POST, URL_USER } from "../util/configAPI";
+import {
+  configGet,
+  configGetPublic,
+  URL_POST,
+  URL_USER,
+} from "../util/configAPI";
 
 interface Props {
   friendData: FriendType[];
@@ -25,8 +30,9 @@ const Welcome = ({ friendData, stories }: Props) => {
 
   const fetchMainProfile = async (id: string) => {
     try {
-      const res = await fetch(URL_USER + id, configGet);
+      const res = await fetch(URL_USER + id, configGetPublic);
       const profiledata = await res.json();
+      console.log({ profiledata });
       if (profiledata) {
         const randomNumber = Math.floor(Math.random() * 5);
         const { id, title, firstName, lastName, picture } = profiledata;
@@ -58,24 +64,16 @@ const Welcome = ({ friendData, stories }: Props) => {
       <div className="main-container">
         <Head>
           <meta
-            name="google-site-verification"
-            content={process.env.SECRET_GOOGLE_VERIFICATION}
-          />
-          <meta
             name="viewport"
             content="initial-scale=1.0, width=device-width"
           />
           <title>AzriClone || Loading {user.firstName}</title>
           <meta name="description" content={description} />
-          <meta
-            name="google-site-verification"
-            content="ToQHHEWK48t95I0a2-VCdlbdgY7joocmPhmLPMS2KUw"
-          />
-
+          <meta name="keywords" content={process.env.NEXT_PUBLIC_GOOGLE_KEY} />
           <meta property="og:image" content="/images/azriclone.png" />
           <meta
             name="google-site-verification"
-            content={process.env.SECRET_GOOGLE_VERIFICATION}
+            content={process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION}
           />
           <link rel="icon" href="/favicon.ico" />
         </Head>
@@ -91,15 +89,13 @@ const Welcome = ({ friendData, stories }: Props) => {
       <div>
         <Head>
           <title>AzriClone || Welcome</title>
+
           <meta name="description" content={description} />
-          <meta
-            name="google-site-verification"
-            content="ToQHHEWK48t95I0a2-VCdlbdgY7joocmPhmLPMS2KUw"
-          />
+          <meta name="keywords" content={process.env.NEXT_PUBLIC_GOOGLE_KEY} />
           <meta property="og:image" content="/images/azriclone.png" />
           <meta
             name="google-site-verification"
-            content={process.env.SECRET_GOOGLE_VERIFICATION}
+            content={process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION}
           />
           <link rel="icon" href="/favicon.ico" />
         </Head>

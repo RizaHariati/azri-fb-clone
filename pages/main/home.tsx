@@ -9,7 +9,12 @@ import MainContent from "../../components/HomePage/MainContent";
 import MainLeftSidebar from "../../components/HomePage/MainLeftSidebar";
 import MainRightSidebar from "../../components/HomePage/MainRightSidebar";
 import { FriendType } from "../../typing.d";
-import { configGet, URL_POST, URL_USER } from "../../util/configAPI";
+import {
+  configGet,
+  configGetPublic,
+  URL_POST,
+  URL_USER,
+} from "../../util/configAPI";
 
 interface Props {
   friends: FriendType[];
@@ -29,7 +34,7 @@ const Home = ({ friends }: Props) => {
 
     const responsePost = await fetch(
       URL_POST + "?page=" + page + "&limit=5",
-      configGet
+      configGetPublic
     );
     const post = await responsePost.json();
     if (post.data) dispatch(addMorePosts(post.data));

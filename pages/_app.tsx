@@ -6,7 +6,7 @@ import { config } from "@fortawesome/fontawesome-svg-core";
 import { PersistGate } from "redux-persist/integration/react";
 import { persistor, store, wrapper } from "../app";
 import { Provider } from "react-redux";
-import { useEffect } from "react";
+
 config.autoAddCss = false;
 
 function MyApp({ Component, pageProps }: AppProps) {

@@ -13,7 +13,12 @@ import {
 } from "../../../app/store/post";
 import { closePostModal } from "../../../app/store/tool";
 import { PostDataType, PostType } from "../../../typing.d";
-import { header, URL_BASE, URL_POST } from "../../../util/configAPI";
+import {
+  configGetPublic,
+  header,
+  URL_BASE,
+  URL_POST,
+} from "../../../util/configAPI";
 import IconBtn from "../../Buttons/IconBtn";
 import LinkImgTextBtn from "../../Buttons/LinkImgTextBtn";
 import PostingFormImage from "../../HomePage/PostingFormImage";
@@ -28,14 +33,9 @@ const ModalPost = () => {
   const { mainProfile } = useAppSelector((state) => state.friend);
   const router = useRouter();
 
-  const config = {
-    method: "GET",
-    headers: { "app-id": process.env.KEYWORD_API || "" },
-  };
-
   const fetchImage = async () => {
     try {
-      const res = await fetch(`${URL_BASE}tag/nature/post`, config);
+      const res = await fetch(`${URL_BASE}tag/nature/post`, configGetPublic);
       const imagePosts = await res.json();
       if (imagePosts.data) {
         const image: PostType =

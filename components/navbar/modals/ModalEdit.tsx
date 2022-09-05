@@ -13,8 +13,13 @@ import {
   setImagePost,
 } from "../../../app/store/post";
 import { closePostModal } from "../../../app/store/tool";
-import { FriendType, PostType } from "../../../typing.d";
-import { header, URL_BASE, URL_POST } from "../../../util/configAPI";
+import { PostType } from "../../../typing.d";
+import {
+  configGetPublic,
+  header,
+  URL_BASE,
+  URL_POST,
+} from "../../../util/configAPI";
 import IconBtn from "../../Buttons/IconBtn";
 import LinkImgTextBtn from "../../Buttons/LinkImgTextBtn";
 import PostingFormImage from "../../HomePage/PostingFormImage";
@@ -37,15 +42,10 @@ const ModalEdit = () => {
 
   const router = useRouter();
 
-  const config = {
-    method: "GET",
-    headers: { "app-id": process.env.KEYWORD_API || "" },
-  };
-
   /* ------------------------- fetching data ------------------------ */
   const fetchSinglePost = async () => {
     try {
-      const res = await fetch(`${URL_POST}${postModalID}`, config);
+      const res = await fetch(`${URL_POST}${postModalID}`, configGetPublic);
       const singlePostData: PostType = await res.json();
       if (singlePostData) {
         setSinglePost(singlePostData);
@@ -63,7 +63,7 @@ const ModalEdit = () => {
   const fetchImage = async (newText: string) => {
     if (!singlePost) return;
     try {
-      const res = await fetch(`${URL_BASE}tag/nature/post`, config);
+      const res = await fetch(`${URL_BASE}tag/nature/post`, configGetPublic);
       const imagePosts = await res.json();
       if (imagePosts.data) {
         const image: PostType =
