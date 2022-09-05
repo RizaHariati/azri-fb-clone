@@ -33,7 +33,7 @@ const Bookmarks = () => {
           <title>AzriClone || Bookmarks</title>
           <meta name="description" content={description} />
           <meta name="keywords" content={process.env.GOOGLE_KEY} />
-          <meta name="image" content="/images/azriclone.png" />
+          <meta name="og:image" content="/images/azriclone.png" />
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <main className="bookmarks-container ">

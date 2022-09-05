@@ -55,7 +55,7 @@ const Home = ({ friends }: Props) => {
           <title>AzriClone || Home</title>
           <meta name="description" content={description} />
           <meta name="keywords" content={process.env.GOOGLE_KEY} />
-          <meta name="image" content="/images/azriclone.png" />
+          <meta name="og:image" content="/images/azriclone.png" />
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <main className="main-container ">

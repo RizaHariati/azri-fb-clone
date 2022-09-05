@@ -51,7 +51,7 @@ const Profile = ({ guestPost, guestProfile }: Props) => {
           <title>AzriClone || Loading...</title>
           <meta name="description" content={description} />
           <meta name="keywords" content={process.env.GOOGLE_KEY} />
-          <meta name="image" content="/images/azrifriend.png" />
+          <meta name="og:image" content="/images/azrifriend.png" />
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <main className="h-fit w-full scroll-smooth">
@@ -70,7 +70,7 @@ const Profile = ({ guestPost, guestProfile }: Props) => {
           </title>
           <meta name="description" content={description} />
           <meta name="keywords" content={process.env.GOOGLE_KEY} />
-          <meta name="image" content="/images/azrifriend.png" />
+          <meta name="og:image" content="/images/azrifriend.png" />
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <main className="h-fit w-full scroll-smooth">

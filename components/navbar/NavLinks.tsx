@@ -12,7 +12,6 @@ import React from "react";
 import { useAppDispatch } from "../../app/hooks";
 import { closeNavbarMenu } from "../../app/store/post";
 import ExtIconSquareBtn from "../Buttons/ExtIconSquareBtn";
-import IconSquareBtn from "../Buttons/IconSquareBtn";
 
 const NavLinks = () => {
   const route = useRouter();

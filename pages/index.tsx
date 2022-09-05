@@ -60,7 +60,11 @@ const Welcome = ({ friendData, stories }: Props) => {
           <title>AzriClone || Loading {user.firstName}</title>
           <meta name="description" content={description} />
           <meta name="keywords" content={process.env.GOOGLE_KEY} />
-          <meta name="image" content="/images/azriclone.png" />
+          <meta
+            name="viewport"
+            content="initial-scale=1.0, width=device-width"
+          />
+          <meta name="og:image" content="/images/azriclone.png" />
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <div className="main-left-sidebar"></div>
@@ -77,7 +81,7 @@ const Welcome = ({ friendData, stories }: Props) => {
           <title>AzriClone || Welcome</title>
           <meta name="description" content={description} />
           <meta name="keywords" content={process.env.GOOGLE_KEY} />
-          <meta name="image" content="/images/azriclone.png" />
+          <meta name="og:image" content="/images/azriclone.png" />
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <main className="main-container">
