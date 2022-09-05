@@ -67,7 +67,10 @@ const Welcome = ({ friendData, stories }: Props) => {
           />
           <title>AzriClone || Loading {user.firstName}</title>
           <meta name="description" content={description} />
-          <meta name="keywords" content={process.env.GOOGLE_KEY} />
+          <meta
+            name="google-site-verification"
+            content="ToQHHEWK48t95I0a2-VCdlbdgY7joocmPhmLPMS2KUw"
+          />
 
           <meta property="og:image" content="/images/azriclone.png" />
           <meta
@@ -89,7 +92,10 @@ const Welcome = ({ friendData, stories }: Props) => {
         <Head>
           <title>AzriClone || Welcome</title>
           <meta name="description" content={description} />
-          <meta name="keywords" content={process.env.GOOGLE_KEY} />
+          <meta
+            name="google-site-verification"
+            content="ToQHHEWK48t95I0a2-VCdlbdgY7joocmPhmLPMS2KUw"
+          />
           <meta property="og:image" content="/images/azriclone.png" />
           <meta
             name="google-site-verification"
