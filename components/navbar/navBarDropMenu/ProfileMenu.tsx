@@ -37,11 +37,9 @@ const ProfileMenu = () => {
   return (
     <div className="profile-menu   ">
       <div
-        className={`h-fit w-full p-2 sm:p-5 relative ${
-          openSide.status && openSide.sidemenu === "support"
-            ? "h-60 overflow-hidden"
-            : "h-fit"
-        }`}
+        className={`h-fit w-full p-2 sm:p-5 relative  ${
+          openSide.sidemenu === "support" && "h-60 "
+        }  ${openSide.sidemenu === "setting" && "h-96"} overflow-hidden`}
       >
         <Setting openSide={openSide} handleOpenSide={handleOpenSide} />
         <Support openSide={openSide} handleOpenSide={handleOpenSide} />
@@ -176,7 +174,7 @@ const Setting = ({ openSide, handleOpenSide }: SettingProps) => {
 const Support = ({ openSide, handleOpenSide }: SettingProps) => {
   return (
     <div
-      className={`absolute w-full h-60 bg-primaryMediumDark z-20 transition-all rounded-md p-2 sm:p-5 bg to-blue-500 ${
+      className={`absolute w-full h-60 bg-primaryMediumDark z-20 transition-all rounded-md p-2 sm:p-5  ${
         openSide.status && openSide.sidemenu === "support"
           ? "left-0 top-0 "
           : "left-full top-0"

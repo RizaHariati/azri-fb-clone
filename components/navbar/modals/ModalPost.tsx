@@ -26,7 +26,6 @@ const ModalPost = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const { imagePost } = useAppSelector((state) => state.post);
   const { mainProfile } = useAppSelector((state) => state.friend);
-
   const router = useRouter();
 
   const config = {

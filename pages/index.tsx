@@ -18,7 +18,6 @@ interface Props {
 const Welcome = ({ friendData, stories }: Props) => {
   const route = useRouter();
   const dispatch = useAppDispatch();
-
   const [user, setUser] = useState<FriendType | null>(null);
 
   const fetchMainProfile = async (id: string) => {
@@ -29,7 +28,6 @@ const Welcome = ({ friendData, stories }: Props) => {
         const randomNumber = Math.floor(Math.random() * 5);
         const { id, title, firstName, lastName, picture } = profiledata;
         const profile: FriendType = { id, title, firstName, lastName, picture };
-
         setUser(profile);
         dispatch(resetFriend());
         dispatch(resetPosts());

@@ -4,17 +4,21 @@ import Layout from "../components/navbar/Layout";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import { PersistGate } from "redux-persist/integration/react";
-import { persistor, wrapper } from "../app";
+import { persistor, store, wrapper } from "../app";
+import { Provider } from "react-redux";
+import { useEffect } from "react";
 config.autoAddCss = false;
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <PersistGate loading={null} persistor={persistor}>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </PersistGate>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </PersistGate>
+    </Provider>
   );
 }
 
-export default wrapper.withRedux(MyApp);
+export default MyApp;
