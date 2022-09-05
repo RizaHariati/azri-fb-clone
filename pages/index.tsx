@@ -57,14 +57,23 @@ const Welcome = ({ friendData, stories }: Props) => {
     return (
       <div className="main-container">
         <Head>
-          <title>AzriClone || Loading {user.firstName}</title>
-          <meta name="description" content={description} />
-          <meta name="keywords" content={process.env.GOOGLE_KEY} />
+          <meta
+            name="google-site-verification"
+            content={process.env.SECRET_GOOGLE_VERIFICATION}
+          />
           <meta
             name="viewport"
             content="initial-scale=1.0, width=device-width"
           />
+          <title>AzriClone || Loading {user.firstName}</title>
+          <meta name="description" content={description} />
+          <meta name="keywords" content={process.env.GOOGLE_KEY} />
+
           <meta property="og:image" content="/images/azriclone.png" />
+          <meta
+            name="google-site-verification"
+            content={process.env.SECRET_GOOGLE_VERIFICATION}
+          />
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <div className="main-left-sidebar"></div>
