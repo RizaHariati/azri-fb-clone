@@ -33,6 +33,9 @@ interface Props {
   friends: FriendType[];
 }
 
+const description =
+  "Friend page from AzriClone showing the friends that interact with you the most";
+
 const Friends = ({ friends }: Props) => {
   const { mainProfile } = useAppSelector((state) => state.friend);
   const router = useRouter();
@@ -58,7 +61,9 @@ const Friends = ({ friends }: Props) => {
       <div className="grid grid-cols-1 sm:grid-cols-12 pt-14 h-screen">
         <Head>
           <title>AzriClone || Friends</title>
-          <meta name="description" content="Friends you interact lately" />
+          <meta name="description" content={description} />
+          <meta name="keywords" content={process.env.GOOGLE_KEY} />
+          <meta name="image" content="/images/azrifriend.png" />
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <div className="col-span-3 bg-primaryMediumDark h-full">

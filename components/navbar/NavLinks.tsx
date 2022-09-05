@@ -58,7 +58,7 @@ const NavLinks = () => {
         </div>
         <div className="col-span-1 sm:col-span-3 md:col-span-1 h-full grid items-center w-full">
           <ExtIconSquareBtn
-            href="https://rizahariati.netlify.app/"
+            href="https://www.facebook.com/gaming/feed/"
             icon={faPuzzlePiece}
             text="Gaming"
             iconClass="text-lg md:text-xl"

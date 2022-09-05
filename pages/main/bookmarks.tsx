@@ -6,6 +6,9 @@ import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { closeNavbarMenu } from "../../app/store/post";
 import MainLeftSidebar from "../../components/HomePage/MainLeftSidebar";
 
+const description =
+  "A clone of Facebook using Next.JS, Typescript as the core of this web design with the help of Redux/toolkit, Redux/persist and Next Redux Wrapper. For styling I use FontAwesome Icons and Tailwind CSS";
+
 const Bookmarks = () => {
   const { mainProfile } = useAppSelector((state) => state.friend);
   const dispatch = useAppDispatch();
@@ -28,7 +31,9 @@ const Bookmarks = () => {
       <div>
         <Head>
           <title>AzriClone || Bookmarks</title>
-          <meta name="description" content="Menu shortcut" />
+          <meta name="description" content={description} />
+          <meta name="keywords" content={process.env.GOOGLE_KEY} />
+          <meta name="image" content="/images/azriclone.png" />
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <main className="bookmarks-container ">

@@ -17,6 +17,10 @@ interface Props {
   guestPost: PostType[];
   guestProfile: FullProfileType;
 }
+
+const description =
+  "Friend page from AzriClone showing the friends that interact with you the most";
+
 const Profile = ({ guestPost, guestProfile }: Props) => {
   const [guestPostsState, setGuestPostsState] = useState<PostType[]>(guestPost);
   const ref: React.LegacyRef<HTMLDivElement> = useRef(null);
@@ -42,9 +46,18 @@ const Profile = ({ guestPost, guestProfile }: Props) => {
   window.addEventListener("scroll", setProfileHeader);
   if (router.isFallback) {
     return (
-      <main className="h-fit w-full scroll-smooth">
-        <LoadingSpinner />
-      </main>
+      <div>
+        <Head>
+          <title>AzriClone || Loading...</title>
+          <meta name="description" content={description} />
+          <meta name="keywords" content={process.env.GOOGLE_KEY} />
+          <meta name="image" content="/images/azrifriend.png" />
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
+        <main className="h-fit w-full scroll-smooth">
+          <LoadingSpinner />
+        </main>
+      </div>
     );
   }
 
@@ -55,7 +68,9 @@ const Profile = ({ guestPost, guestProfile }: Props) => {
           <title>
             AzriClone || {guestProfile.firstName} {guestProfile.lastName}
           </title>
-          <meta name="description" content="Your timeline homepage" />
+          <meta name="description" content={description} />
+          <meta name="keywords" content={process.env.GOOGLE_KEY} />
+          <meta name="image" content="/images/azrifriend.png" />
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <main className="h-fit w-full scroll-smooth">

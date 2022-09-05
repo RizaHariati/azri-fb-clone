@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { useAppDispatch, useAppSelector } from "../app/hooks";
+import { useAppDispatch } from "../app/hooks";
 import { resetFriend, setMainProfile } from "../app/store/friend";
 import { closeNavbarMenu, resetPosts, setStories } from "../app/store/post";
 import { resetProfile } from "../app/store/profile";
@@ -15,6 +15,9 @@ interface Props {
   friendData: FriendType[];
   stories: PostType[];
 }
+const description =
+  "A clone of Facebook using Next.JS, Typescript as the core of this web design with the help of Redux/toolkit, Redux/persist and Next Redux Wrapper. For styling I use FontAwesome Icons and Tailwind CSS";
+
 const Welcome = ({ friendData, stories }: Props) => {
   const route = useRouter();
   const dispatch = useAppDispatch();
@@ -28,6 +31,7 @@ const Welcome = ({ friendData, stories }: Props) => {
         const randomNumber = Math.floor(Math.random() * 5);
         const { id, title, firstName, lastName, picture } = profiledata;
         const profile: FriendType = { id, title, firstName, lastName, picture };
+
         setUser(profile);
         dispatch(resetFriend());
         dispatch(resetPosts());
@@ -54,7 +58,9 @@ const Welcome = ({ friendData, stories }: Props) => {
       <div className="main-container">
         <Head>
           <title>AzriClone || Loading {user.firstName}</title>
-          <meta name="description" content="Loading Friends" />
+          <meta name="description" content={description} />
+          <meta name="keywords" content={process.env.GOOGLE_KEY} />
+          <meta name="image" content="/images/azriclone.png" />
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <div className="main-left-sidebar"></div>
@@ -67,18 +73,22 @@ const Welcome = ({ friendData, stories }: Props) => {
   } else {
     return (
       <div>
+        <Head>
+          <title>AzriClone || Welcome</title>
+          <meta name="description" content={description} />
+          <meta name="keywords" content={process.env.GOOGLE_KEY} />
+          <meta name="image" content="/images/azriclone.png" />
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
         <main className="main-container">
           <div className="main-left-sidebar"></div>
           <div className="main-content">
             <div className="flex flex-col items-center justify-center text-lg md:text-xl mt-5  w-full px-3">
-              <h3>
-                Welcome to
-                <span className=" text-accentMain hover:text-accentDark transition-all font-semibold">
-                  AzriClone
-                </span>
-              </h3>
+              <h2 className=" text-accentMain hover:text-accentDark transition-all font-semibold text-2xl cursor-pointer">
+                Welcome to AzriClone
+              </h2>
               <h3 className="text-center">
-                A clone of Facebook using fake data from
+                A clone of Facebook using fake data from &nbsp;
                 <a
                   href="https://dummyapi.io/"
                   className=" underline underline-offset-4 text-textMedium"

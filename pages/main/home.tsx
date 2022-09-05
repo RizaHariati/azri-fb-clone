@@ -15,6 +15,9 @@ interface Props {
   friends: FriendType[];
 }
 
+const description =
+  "A clone of Facebook using Next.JS, Typescript as the core of this web design with the help of Redux/toolkit, Redux/persist and Next Redux Wrapper. For styling I use FontAwesome Icons and Tailwind CSS";
+
 const Home = ({ friends }: Props) => {
   const { mainProfile } = useAppSelector((state) => state.friend);
   const { page } = useAppSelector((state) => state.post);
@@ -50,7 +53,9 @@ const Home = ({ friends }: Props) => {
       <div>
         <Head>
           <title>AzriClone || Home</title>
-          <meta name="description" content="Your timeline homepage" />
+          <meta name="description" content={description} />
+          <meta name="keywords" content={process.env.GOOGLE_KEY} />
+          <meta name="image" content="/images/azriclone.png" />
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <main className="main-container ">

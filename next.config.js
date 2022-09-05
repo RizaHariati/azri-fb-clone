@@ -23,5 +23,7 @@ module.exports = {
     NEXTAUTH_URL2: "https://nextauthexample.vercel.app/",
     NEXTAUTH_SECRET: "Thisismysecretwhatisyours",
     KEYWORD_API: "615d134132c9c40bf2a39437",
+    GOOGLE_KEY:
+      "riza, hariati, rizahariati, website, portfolio, azricoding, facebook",
   },
 };

@@ -16,6 +16,8 @@ import { FullProfileType, PostType } from "../../typing.d";
 import { configGet, URL_USER } from "../../util/configAPI";
 import postIDExist from "../../util/postExist";
 
+const description =
+  "Friend page from AzriClone showing the friends that interact with you the most";
 const MainProfile = () => {
   const [profilePostsState, setProfilePostsState] = useState<PostType[]>([]);
   const ref: React.LegacyRef<HTMLDivElement> = useRef(null);
@@ -74,7 +76,18 @@ const MainProfile = () => {
     if (mainFullProfile) dispatch(setMainFullProfile(mainFullProfile));
   };
 
-  if (mainProfile?.id === "") return <div></div>;
+  if (mainProfile?.id === "")
+    return (
+      <div>
+        <Head>
+          <title>AzriClone || Loading...</title>
+          <meta name="description" content={description} />
+          <meta name="keywords" content={process.env.GOOGLE_KEY} />
+          <meta name="image" content="/images/azrifriend.png" />
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
+      </div>
+    );
   else {
     return (
       <div className="bg-primaryDark">
@@ -82,7 +95,9 @@ const MainProfile = () => {
           <title>
             AzriClone || {mainProfile.firstName} {mainProfile.lastName}
           </title>
-          <meta name="description" content="Your timeline homepage" />
+          <meta name="description" content={description} />
+          <meta name="keywords" content={process.env.GOOGLE_KEY} />
+          <meta name="image" content="/images/azrifriend.png" />
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <main className="h-fit w-full scroll-smooth">
