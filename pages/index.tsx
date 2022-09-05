@@ -82,6 +82,10 @@ const Welcome = ({ friendData, stories }: Props) => {
           <meta name="description" content={description} />
           <meta name="keywords" content={process.env.GOOGLE_KEY} />
           <meta property="og:image" content="/images/azriclone.png" />
+          <meta
+            name="google-site-verification"
+            content={process.env.SECRET_GOOGLE_VERIFICATION}
+          />
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <main className="main-container">
@@ -89,7 +93,7 @@ const Welcome = ({ friendData, stories }: Props) => {
           <div className="main-content">
             <div className="flex flex-col items-center justify-center text-lg md:text-xl mt-5  w-full px-3">
               <h2 className=" text-accentMain hover:text-accentDark transition-all font-semibold text-2xl cursor-pointer">
-                Welcome to AzriClone
+                Welcome to AzriClone by Riza Hariati
               </h2>
               <h3 className="text-center">
                 A clone of Facebook using fake data from &nbsp;

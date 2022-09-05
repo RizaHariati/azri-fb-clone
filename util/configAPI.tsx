@@ -14,4 +14,3 @@ export const URL_POST = "https://dummyapi.io/data/v1/post/";
 export const URL_COMMENT = "https://dummyapi.io/data/v1/comment/";
 export const URL_USER = "https://dummyapi.io/data/v1/user/";
 export const URL_BASE = "https://dummyapi.io/data/v1/";
-("https://dummyapi.io/data/v1/comment/");

@@ -10,12 +10,11 @@ const Navbar = () => {
   const mainProfile: FriendType = useAppSelector(
     (state) => state.friend.mainProfile
   );
-
   return (
     <nav className="navbar-container">
       <div className="navbar">
         <LogoSearch />
-        {mainProfile?.id !== "" && (
+        {mainProfile.id && mainProfile?.id !== "" && (
           <>
             <NavLinks />
             <NavMenu />

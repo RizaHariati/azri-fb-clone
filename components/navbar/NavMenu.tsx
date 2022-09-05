@@ -19,7 +19,7 @@ const NavMenu = () => {
   );
   const openMenu: OpenMenuType = useAppSelector((state) => state.post.openMenu);
 
-  if (mainProfile?.picture !== "") {
+  if (mainProfile.picture && mainProfile.picture !== "") {
     return (
       <div className="nav-menu-container">
         <div className="nav-menu ">

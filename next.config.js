@@ -24,5 +24,6 @@ module.exports = {
     NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
     KEYWORD_API: process.env.KEYWORD_API,
     GOOGLE_KEY: process.env.GOOGLE_KEY,
+    SECRET_GOOGLE_VERIFICATION: process.env.SECRET_GOOGLE_VERIFICATION,
   },
 };
