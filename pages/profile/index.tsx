@@ -13,7 +13,7 @@ import ProfileHeader from "../../components/Profile/ProfileHeader";
 import ProfileLeft from "../../components/Profile/ProfileLeftSide";
 import ProfilePost from "../../components/Profile/ProfilePost";
 import { FullProfileType, PostType } from "../../typing.d";
-import { configGet, URL_USER } from "../../util/configAPI";
+import { configGetPublic, URL_USER } from "../../util/configAPI";
 import postIDExist from "../../util/postExist";
 
 const description =
@@ -56,7 +56,7 @@ const MainProfile = () => {
   }, [mainProfile]);
 
   const fetchMainProfile = async (id: string) => {
-    const res = await fetch(URL_USER + id + "/post", configGet);
+    const res = await fetch(URL_USER + id + "/post", configGetPublic);
     const mainprofilePosts = await res.json();
     if (mainprofilePosts.data) {
       const mainProfilePostFiltered = mainprofilePosts.data.filter(
@@ -71,7 +71,7 @@ const MainProfile = () => {
       setProfilePostsState(mainProfilePostFiltered);
       dispatch(setMainProfilePost(mainProfilePostFiltered));
     }
-    const resUser = await fetch(URL_USER + id, configGet);
+    const resUser = await fetch(URL_USER + id, configGetPublic);
     const mainFullProfile = await resUser.json();
     if (mainFullProfile) dispatch(setMainFullProfile(mainFullProfile));
   };
