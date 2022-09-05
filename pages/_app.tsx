@@ -11,7 +11,8 @@ import Script from "next/script";
 
 config.autoAddCss = false;
 const description =
-  "A clone of Facebook using Next.JS, Typescript as the core of this web design with the help of Redux/toolkit, Redux/persist and Next Redux Wrapper. For styling I use FontAwesome Icons and Tailwind CSS";
+  "A website clone of Facebook using Next.JS, Typescript as the core of this web design with the help of Redux/toolkit, Redux/persist and Next Redux Wrapper. For styling I use FontAwesome Icons and Tailwind CSS";
+
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>

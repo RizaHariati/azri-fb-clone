@@ -96,7 +96,7 @@ const Welcome = ({ friendData, stories }: Props) => {
           <div className="main-left-sidebar"></div>
           <div className="main-content">
             <div className="flex flex-col items-center justify-center text-lg md:text-xl mt-5  w-full px-3">
-              <h2 className=" text-accentMain hover:text-accentDark transition-all font-semibold text-2xl cursor-pointer">
+              <h2 className=" text-accentMain hover:text-accentDark transition-all font-semibold text-2xl cursor-pointer text-center p-5">
                 Welcome to AzriClone by Riza Hariati
               </h2>
               <h3 className="text-center">
