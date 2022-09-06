@@ -4,6 +4,7 @@ import ModalPost from "./modals/ModalPost";
 import Navbar from "./Navbar";
 import { Toaster } from "react-hot-toast";
 import ModalEdit from "./modals/ModalEdit";
+import Footer from "./Footer";
 interface Props {
   children?: JSX.Element | JSX.Element[];
 }
@@ -17,6 +18,7 @@ const Layout = ({ children }: Props) => {
       {children}
       {postModal === "Create" && <ModalPost />}
       {postModal === "Edit" && <ModalEdit />}
+      <Footer />
     </div>
   );
 };
