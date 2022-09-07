@@ -21,7 +21,7 @@ interface Props {
 }
 
 const description =
-  "A clone of Facebook using Next.JS, Typescript as the core of this web design with the help of Redux/toolkit, Redux/persist and Next Redux Wrapper. For styling I use FontAwesome Icons and Tailwind CSS";
+  "The homepage of AzriClone, my study on facebook project. All of the data is from dummyapi.io.";
 
 const Home = ({ friends }: Props) => {
   const { mainProfile } = useAppSelector((state) => state.friend);
@@ -52,15 +52,27 @@ const Home = ({ friends }: Props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mainProfile]);
 
-  if (mainProfile?.id === "") return <div></div>;
+  if (mainProfile?.id === "")
+    return (
+      <div>
+        <Head>
+          <title>AzriClone || Home</title>
+          <meta name="description" content={description} />
+          <meta name="keywords" content={process.env.NEXT_PUBLIC_GOOGLE_KEY} />
+          <meta property="og:image" content="/images/azrifriend.png" />
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
+        <main className="main-container "></main>
+      </div>
+    );
   else {
     return (
       <div>
         <Head>
           <title>AzriClone || Home</title>
           <meta name="description" content={description} />
-          <meta name="keywords" content={process.env.GOOGLE_KEY} />
-          <meta property="og:image" content="/images/azriclone.png" />
+          <meta name="keywords" content={process.env.NEXT_PUBLIC_GOOGLE_KEY} />
+          <meta property="og:image" content="/images/azrifriend.png" />
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <main className="main-container ">

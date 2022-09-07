@@ -32,7 +32,7 @@ const Welcome = ({ friendData, stories }: Props) => {
     try {
       const res = await fetch(URL_USER + id, configGetPublic);
       const profiledata = await res.json();
-      console.log({ profiledata });
+
       if (profiledata) {
         const randomNumber = Math.floor(Math.random() * 5);
         const { id, title, firstName, lastName, picture } = profiledata;

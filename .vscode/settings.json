@@ -1,5 +1,12 @@
 {
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnType": true,
-  "cSpell.words": ["Azri", "gtag", "persistor", "sidemenu", "SXRGBGG"]
+  "cSpell.words": [
+    "Azri",
+    "changefreq",
+    "gtag",
+    "persistor",
+    "sidemenu",
+    "SXRGBGG"
+  ]
 }
