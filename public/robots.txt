@@ -1,4 +1,9 @@
+# *
 User-agent: *
 Allow: /
-Sitemap: https://azriclone.netlify.app/api/sitemap
+
+# Host
 Host: https://azriclone.netlify.app/
+
+# Sitemaps
+Sitemap: https://azriclone.netlify.app/sitemap.xml
