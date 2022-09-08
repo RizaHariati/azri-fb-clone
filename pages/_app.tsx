@@ -4,7 +4,7 @@ import Layout from "../components/navbar/Layout";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import { PersistGate } from "redux-persist/integration/react";
-import { persistor, store, wrapper } from "../app";
+import { persistor, store } from "../app";
 import { Provider } from "react-redux";
 import Head from "next/head";
 import Script from "next/script";
@@ -26,6 +26,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           name="google-site-verification"
           content={process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION}
         />
+         <meta name="author" content="rizahariati"/>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Script
