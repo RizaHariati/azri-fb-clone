@@ -20,13 +20,10 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <title>AzriClone</title>
         <meta name="description" content={description} />
-        <meta name="keywords" content={process.env.NEXT_PUBLIC_GOOGLE_KEY} />
+
         <meta property="og:image" content="/images/azriclone.png" />
-        <meta
-          name="google-site-verification"
-          content={process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION}
-        />
-         <meta name="author" content="rizahariati"/>
+
+        <meta name="author" content="rizahariati" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Script

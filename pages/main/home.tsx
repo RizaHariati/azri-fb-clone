@@ -58,7 +58,7 @@ const Home = ({ friends }: Props) => {
         <Head>
           <title>AzriClone || Home</title>
           <meta name="description" content={description} />
-          <meta name="keywords" content={process.env.NEXT_PUBLIC_GOOGLE_KEY} />
+
           <meta property="og:image" content="/images/azrifriend.png" />
           <link rel="icon" href="/favicon.ico" />
         </Head>
@@ -71,7 +71,7 @@ const Home = ({ friends }: Props) => {
         <Head>
           <title>AzriClone || Home</title>
           <meta name="description" content={description} />
-          <meta name="keywords" content={process.env.NEXT_PUBLIC_GOOGLE_KEY} />
+
           <meta property="og:image" content="/images/azrifriend.png" />
           <link rel="icon" href="/favicon.ico" />
         </Head>
