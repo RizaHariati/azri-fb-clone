@@ -90,7 +90,7 @@ const MainProfile = () => {
     );
   else {
     return (
-      <div className="bg-primaryDark">
+      <div className="bg-primaryDark ">
         <Head>
           <title>
             AzriClone || {mainProfile.firstName} {mainProfile.lastName}

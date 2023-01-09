@@ -1,6 +1,5 @@
 import Image from "next/image";
 import React from "react";
-import LinkImgTextBtn from "../Buttons/LinkImgTextBtn";
 import Contacts from "./Contacts";
 import Sponsor from "./Sponsor";
 

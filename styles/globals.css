@@ -286,7 +286,7 @@ html {
 
   /* ------------------------- Profile Header ------------------------- */
   .profile-header-container {
-    @apply w-full bg-gradient-to-b from-primaryDark to-accentDark h-screen;
+    @apply w-full bg-gradient-to-t from-primaryDark to-accentDark h-screen;
   }
   .profile-header {
     @apply w-full h-full relative max-w-4xl grid grid-rows-6 md:grid-rows-5 mx-auto bg-primaryMediumDark;
