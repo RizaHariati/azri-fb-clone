@@ -54,20 +54,16 @@ const PostHeader = ({
   postID,
   setMainPosts,
   setProfilePostsState,
-  setGuestPostsState,
 }: HeaderProps) => {
   const mainProfile: FriendType = useAppSelector(
     (state) => state.friend.mainProfile
   );
+
   const postDetail: string = useAppSelector((state) => state.tool.postDetail);
   const posts: PostType[] = useAppSelector((state) => state.post.posts);
-  const { mainProfilePosts, guestPosts } = useAppSelector(
-    (state) => state.profile
-  );
+  const { mainProfilePosts } = useAppSelector((state) => state.profile);
   const dispatch = useAppDispatch();
-  const router = useRouter();
   const date = moment(published).format("LL");
-
   const handleDelete = async (postID: string, tId: string) => {
     toast.dismiss(tId);
     dispatch(closePostDetail());
@@ -94,7 +90,6 @@ const PostHeader = ({
   };
 
   const handleHide = async (postID: string, tId: string) => {
-    console.log(guestPosts);
     toast.dismiss(tId);
     dispatch(addToHiddenPost(postID));
     dispatch(hideProfilePost(postID));

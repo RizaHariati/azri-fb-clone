@@ -1,4 +1,5 @@
 /** @type {import('next').NextConfig} */
+
 const nextConfig = {
   reactStrictMode: true,
 };
@@ -22,5 +23,8 @@ module.exports = {
     NEXTAUTH_URL: "http://localhost:3000/",
     NEXTAUTH_URL2: "https://nextauthexample.vercel.app/",
     NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
+    KEYWORD_API: process.env.KEYWORD_API,
+    GOOGLE_KEY: process.env.GOOGLE_KEY,
+    GOOGLE_VERIFICATION: process.env.GOOGLE_VERIFICATION,
   },
 };
