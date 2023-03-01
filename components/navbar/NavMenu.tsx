@@ -42,7 +42,13 @@ const NavMenu = () => {
                   icon={faListDots}
                   text="Menu"
                   onClick={() => {
-                    dispatch(handleOpenMenu("Main"));
+                    dispatch(closeCommentSection());
+
+                    if (openMenu.status) {
+                      return dispatch(closeNavbarMenu());
+                    } else {
+                      return dispatch(handleOpenMenu("Main"));
+                    }
                   }}
                   btnClass="icon-btn w-8 h-8 sm:w-10 sm:h-10"
                 />
@@ -55,11 +61,12 @@ const NavMenu = () => {
                   text="Notification"
                   onClick={() => {
                     dispatch(closeCommentSection());
-                    dispatch(closeNavbarMenu());
 
-                    setTimeout(() => {
-                      dispatch(handleOpenMenu("Notification"));
-                    }, 50);
+                    if (openMenu.status) {
+                      return dispatch(closeNavbarMenu());
+                    } else {
+                      return dispatch(handleOpenMenu("Notification"));
+                    }
                   }}
                   btnClass="icon-btn w-8 h-8 sm:w-10 sm:h-10"
                 />
@@ -72,11 +79,13 @@ const NavMenu = () => {
             {mainProfile?.picture !== "" && (
               <button
                 onClick={() => {
-                  dispatch(closeNavbarMenu());
+                  dispatch(closeCommentSection());
 
-                  setTimeout(() => {
-                    dispatch(handleOpenMenu("Profile"));
-                  }, 50);
+                  if (openMenu.status) {
+                    return dispatch(closeNavbarMenu());
+                  } else {
+                    return dispatch(handleOpenMenu("Profile"));
+                  }
                 }}
                 className="img-icon"
               >
