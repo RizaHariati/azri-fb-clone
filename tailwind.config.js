@@ -8,6 +8,9 @@ module.exports = {
       DEFAULT: "300ms",
     },
     extend: {
+      fontFamily: {
+        body: ["Nunito", "sans-serif"],
+      },
       colors: {
         accentMain: "#347294",
         accentDark: "#2C6381",

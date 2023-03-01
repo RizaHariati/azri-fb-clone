@@ -113,7 +113,7 @@ const MainProfile = () => {
             />
           </div>
           {/* ------------------------- profile body ------------------------- */}
-          <div className="h-fit md:h-screen w-full max-w-4xl bg-mainBackground grid mx-auto grid-cols-1 md:grid-cols-5 grid-rows-1 :md:grid-rows-1 ">
+          <div className="h-fit md:h-screen w-full max-w-4xl grid mx-auto grid-cols-1 md:grid-cols-5 grid-rows-1 :md:grid-rows-1 ">
             {/* ------------------------- profile left ------------------------- */}
 
             <ProfileLeft
