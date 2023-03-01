@@ -9,7 +9,8 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        body: ["Nunito", "sans-serif"],
+        bodyFont: ["Public Sans", "sans-serif"],
+        headerFont: ["Montserrat", "sans-serif"],
       },
       colors: {
         accentMain: "#347294",

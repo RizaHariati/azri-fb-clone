@@ -81,8 +81,12 @@ const Contacts = () => {
 
             {openModal === friend.id && (
               <div
-                className="contact-modal"
-                style={{ left: position.x, top: position.y - 50 }}
+                className="contact-modal "
+                style={{
+                  left: position.x,
+                  top: position.y - 50,
+                  transition: "all 0.15s ease-in-out",
+                }}
               >
                 <div className="w-24 h-24 rounded-full overflow-hidden">
                   <Image
@@ -95,17 +99,27 @@ const Contacts = () => {
                   />
                 </div>
                 <div>
-                  <p className="text-lg font-semibold mb-2 font-mono">{`${
+                  <p className="text-lg font-semibold font-headerFont">{`${
                     friend.firstName + " " + friend.lastName
                   }`}</p>
-                  <p className="text-sm text-textDark">
-                    <FontAwesomeIcon icon={faLocationDot} className="mr-2" />
-                    {location}
-                  </p>
-                  <p className="text-xs text-textDark">
-                    <FontAwesomeIcon icon={faGratipay} className="mr-2" />
-                    member since : {`${month} ${member}`}
-                  </p>
+                  <div className="text-sm text-textDark grid grid-cols-12 gap-1">
+                    <FontAwesomeIcon
+                      icon={faLocationDot}
+                      className=" col-span-2 text-lg"
+                    />
+
+                    <p className="col-span-10"> {location}</p>
+                  </div>
+                  <div className="text-sm text-textDark grid grid-cols-12">
+                    <FontAwesomeIcon
+                      icon={faGratipay}
+                      className="col-span-2 text-base pt-1"
+                    />
+
+                    <p className=" col-span-10">
+                      Member since : {`${month} ${member}`}
+                    </p>
+                  </div>
                 </div>
               </div>
             )}

@@ -48,7 +48,10 @@ const PostContent = ({
   return (
     <div className=" text-textMedium">
       <div className="px-5 py-3">
-        <p>{text}</p>
+        <p>
+          {text.replace("@", "").slice(0, 1).toUpperCase() +
+            text.replace("@", "").slice(1, text.length)}
+        </p>
       </div>
       <div className="w-full h-80 img-base overflow-hidden z-0">
         <Image
