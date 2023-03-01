@@ -10,13 +10,15 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 
-import { useAppSelector } from "../../../app/hooks";
+import { useAppDispatch, useAppSelector } from "../../../app/hooks";
+import { closeNavbarMenu } from "../../../app/store/post";
 import { settingData, supportData } from "../../../data/navbar-menu-data";
 import IconBtn from "../../Buttons/IconBtn";
 import IconTextBtn from "../../Buttons/IconTextBtn";
 import LinkImgTextBtn from "../../Buttons/LinkImgTextBtn";
 
 const ProfileMenu = () => {
+  const dispatch = useAppDispatch();
   const { mainProfile } = useAppSelector((state) => state.friend);
   const [openSide, setOpenSide] = useState<{
     status: boolean;
@@ -45,6 +47,11 @@ const ProfileMenu = () => {
         <Support openSide={openSide} handleOpenSide={handleOpenSide} />
         <div>
           <LinkImgTextBtn
+            onClick={() => {
+              setTimeout(() => {
+                dispatch(closeNavbarMenu());
+              }, 150);
+            }}
             href="/profile"
             src={
               mainProfile.picture
@@ -142,7 +149,7 @@ interface SettingProps {
 const Setting = ({ openSide, handleOpenSide }: SettingProps) => {
   return (
     <div
-      className={`absolute w-full h-fit bg-primaryMediumDark z-30 transition-all rounded-md p-2 sm:p-5 ${
+      className={`absolute w-full h-fit bg-secondaryMedium z-30 transition-all rounded-md p-2 sm:p-5 ${
         openSide.status && openSide.sidemenu === "setting"
           ? "left-0 top-0 "
           : "left-full top-0"
@@ -174,7 +181,7 @@ const Setting = ({ openSide, handleOpenSide }: SettingProps) => {
 const Support = ({ openSide, handleOpenSide }: SettingProps) => {
   return (
     <div
-      className={`absolute w-full h-60 bg-primaryMediumDark z-20 transition-all rounded-md p-2 sm:p-5  ${
+      className={`absolute w-full h-60 bg-secondaryMedium z-20 transition-all rounded-md p-2 sm:p-5  ${
         openSide.status && openSide.sidemenu === "support"
           ? "left-0 top-0 "
           : "left-full top-0"

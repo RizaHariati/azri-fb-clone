@@ -13,6 +13,7 @@ import { closeNavbarMenu } from "../../app/store/post";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import { FriendType } from "../../typing.d";
 import { configGet, URL_USER } from "../../util/configAPI";
+import { getDataMember } from "../../util/getDataMember";
 
 const months = [
   "January",
@@ -65,9 +66,9 @@ const Friends = ({ friends }: Props) => {
           <meta name="image" content="/images/azrifriend.png" />
           <link rel="icon" href="/favicon.ico" />
         </Head>
-        <div className="col-span-3 bg-primaryMediumDark h-full">
+        <div className="col-span-3 bg-mainBackground h-full">
           <div className=" text-textPrimary flex text-2xl items-center gap-3 justify-start px-3 py-2 md:px-5 border-b border-primaryMedium cursor-pointer hover:bg-primaryMedium transition-all">
-            <Link href="/main/home">
+            <Link href="/main/home/">
               <FontAwesomeIcon icon={faArrowLeft} />
             </Link>
             <h1>Home</h1>
@@ -81,20 +82,7 @@ const Friends = ({ friends }: Props) => {
             {friends
               .filter((friend: FriendType) => friend.id !== mainProfile.id)
               .map((friend: FriendType, index: number) => {
-                const month = months[Math.floor(Math.random() * 11)];
-                let location = "Jakarta, Indonesia";
-                let member = 2010;
-                if (index % 2 === 0) {
-                  location = "Kuala Lumpur, Malaysia";
-                  member = member + index / 2;
-                }
-                if (index % 3 === 0) {
-                  location = "Perth, Australia";
-                  member = member + index / 3;
-                }
-                if (member + index > 2022) {
-                  member = 2022;
-                }
+                const { month, member, location } = getDataMember(index);
 
                 return (
                   <Link
@@ -102,7 +90,7 @@ const Friends = ({ friends }: Props) => {
                     key={friend.id}
                     className="mb-2 "
                   >
-                    <div className=" col-span-6 md:col-span-4 lg:col-span-3 w-40 h-52 bg-primaryMediumDark rounded-md flex flex-col items-center justify-start text-textLight p-2 md:p-3 text-center cursor-pointer">
+                    <div className=" col-span-6 md:col-span-4 lg:col-span-3 w-40 h-52 bg-primaryMedium hover:bg-primaryMediumLight transition-all active:bg-textDark rounded-md flex flex-col items-center justify-start text-textLight p-2 md:p-3 text-center cursor-pointer">
                       <div className="w-20 h-20 rounded-full overflow-hidden mb-2">
                         <Image
                           width={60}

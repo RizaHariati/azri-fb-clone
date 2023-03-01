@@ -44,6 +44,7 @@ const Profile = ({ guestPost, guestProfile }: Props) => {
     }
   };
   window.addEventListener("scroll", setProfileHeader);
+
   if (router.isFallback) {
     return (
       <div>
@@ -125,6 +126,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 export const getStaticProps: GetStaticProps = async (context) => {
+  let loading = false;
   try {
     const id = context.params?.id;
     const res = await fetch(URL_USER + id + "/post", configGet);
@@ -137,6 +139,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
         props: {
           guestPost: guestPosts.data,
           guestProfile: guestProfile,
+          loading,
         },
       };
     } else {

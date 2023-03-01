@@ -64,8 +64,8 @@ const SearchMenu = () => {
           : `search-menu h-0 opacity-40 z-0`
       }
     >
-      <div>
-        <div className="search-form-container ">
+      <div className=" relative h-screen">
+        <div className="search-form-container sticky z-50 top-0">
           {openMenu?.menuTitle === "Search" && (
             <button
               type="button"

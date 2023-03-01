@@ -128,25 +128,25 @@ html {
   }
 
   .search-menu {
-    @apply fixed top-0 left-0 bg-primaryMediumDark w-screen md:w-80 rounded-none sm:rounded-b-md text-textPrimary z-50 transition-all h-screen md:h-fit md:max-h-screen overflow-y-scroll opacity-100 delay-75;
+    @apply fixed top-0 left-0 bg-primaryMedium w-screen md:w-80 rounded-none sm:rounded-b-md text-textPrimary z-50 transition-all h-screen md:h-fit md:max-h-screen overflow-y-scroll opacity-100 delay-75;
   }
   .search-menu::-webkit-scrollbar {
     display: none;
   }
   .search-form-container {
-    @apply flex items-center  gap-1 sm:gap-2  border-b border-primaryMedium h-14 px-2 md:px-5;
+    @apply flex items-center  gap-1 sm:gap-2  border-b border-primaryMediumLight h-14 px-2 md:px-5 bg-mainBackground;
   }
   .search-form {
-    @apply h-8 sm:h-10 w-64 bg-primaryMedium flex items-center justify-start rounded-full overflow-clip transition-all relative outline-none hover:bg-primaryMediumLight;
+    @apply h-8 sm:h-10 w-64 bg-secondaryMedium flex items-center justify-start rounded-full overflow-clip transition-all relative outline-none hover:bg-primaryMediumLight;
   }
   .search-form-navbar {
-    @apply search-form w-8 sm:w-10 2xl:w-72;
+    @apply search-form w-8 sm:w-10 2xl:w-72 bg-secondaryMedium;
   }
   .search-input {
-    @apply absolute left-10 h-full w-full group-focus-within:left-0 px-3 text-textMedium bg-transparent transition-all active:ring-0 active:bg-primaryMedium group-hover:bg-primaryMediumLight outline-none cursor-pointer;
+    @apply absolute left-10 h-full w-full group-focus-within:left-0 px-3 text-textMedium bg-transparent transition-all active:ring-0  active:bg-primaryMedium group-hover:bg-primaryMediumLight outline-none cursor-pointer;
   }
   .search-button-magnify {
-    @apply icon-btn absolute group-hover:bg-primaryMediumLight group-focus-within:hidden;
+    @apply icon-btn absolute  group-hover:bg-primaryMediumLight group-focus-within:hidden;
   }
   .search-button-arrow {
     @apply h-10 w-10 bg-transparent hover:bg-primaryMedium rounded-full;
@@ -205,7 +205,7 @@ html {
     display: none;
   }
   .text-area-modal {
-    @apply w-full text-xl text-textPrimary rounded-md p-3 bg-primaryMediumDark outline-none;
+    @apply w-full text-base text-textPrimary rounded-md p-3 bg-mainBackground outline-none shadow-inner shadow-primaryDark placeholder-stone-500;
   }
 
   .text-area-modal::-webkit-scrollbar {
@@ -330,7 +330,7 @@ html {
     @apply absolute left-0  h-full transition-all overflow-hidden flex items-center whitespace-pre-wrap;
   }
   .header-bar-profile {
-    @apply h-full transition-all overflow-hidden  bg-primaryMediumDark;
+    @apply h-full transition-all overflow-hidden  bg-mainBackground;
   }
   .profile-header-image {
     @apply absolute w-44 h-44 rounded-full overflow-hidden border-accentMain border-8 transition-all bottom-0 my-auto md:top-1/2 md:-translate-y-1/2;
@@ -361,4 +361,14 @@ html {
   /* ---------------------------------------------------------------- */
   /*                           Profile Page                           */
   /* ---------------------------------------------------------------- */
+  .your-pages-container {
+    @apply col-span-9 p-3 md:p-5 overflow-y-scroll h-full;
+  }
+  .your-pages-container::-webkit-scrollbar {
+    display: none;
+  }
+
+  .your-pages-content {
+    @apply flex flex-col max-w-2xl items-start justify-start mx-auto gap-3 w-full h-full;
+  }
 }

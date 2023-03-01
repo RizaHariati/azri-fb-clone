@@ -3,7 +3,7 @@ import Image from "next/image";
 
 import React from "react";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { handleOpenMenu } from "../../app/store/post";
+import { closeNavbarMenu, handleOpenMenu } from "../../app/store/post";
 import { closeCommentSection } from "../../app/store/tool";
 import { FriendType, OpenMenuType } from "../../typing.d";
 import IconBtn from "../Buttons/IconBtn";
@@ -54,8 +54,12 @@ const NavMenu = () => {
                   icon={faBell}
                   text="Notification"
                   onClick={() => {
-                    dispatch(handleOpenMenu("Notification"));
                     dispatch(closeCommentSection());
+                    dispatch(closeNavbarMenu());
+
+                    setTimeout(() => {
+                      dispatch(handleOpenMenu("Notification"));
+                    }, 50);
                   }}
                   btnClass="icon-btn w-8 h-8 sm:w-10 sm:h-10"
                 />
@@ -67,7 +71,13 @@ const NavMenu = () => {
           <div className="relative h-fit items-center flex">
             {mainProfile?.picture !== "" && (
               <button
-                onClick={() => dispatch(handleOpenMenu("Profile"))}
+                onClick={() => {
+                  dispatch(closeNavbarMenu());
+
+                  setTimeout(() => {
+                    dispatch(handleOpenMenu("Profile"));
+                  }, 50);
+                }}
                 className="img-icon"
               >
                 <Image
