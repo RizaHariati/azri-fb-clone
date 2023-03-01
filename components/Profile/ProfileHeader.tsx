@@ -47,7 +47,6 @@ const ProfileHeader = ({
             <p className=" text-primaryDark font-normal text-sm hidden md:block">
               Edit Cover Photo
             </p>
-            s
           </button>
         </div>
 

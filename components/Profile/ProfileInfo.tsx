@@ -53,7 +53,7 @@ const ProfileInfo = ({ profile }: Props) => {
           <p className="text-sm">Call me on {profile.phone}</p>
         </div>
       </div>
-      <button className="btn"> button</button>
+      <button className="profile-info-btn"> button</button>
     </div>
   );
 };

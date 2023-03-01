@@ -29,6 +29,9 @@ html {
   .btn {
     @apply w-full bg-primaryMedium capitalize hover:bg-primaryMediumLight py-1 rounded-md transition-all mt-1;
   }
+  .profile-info-btn {
+    @apply w-full bg-accentMain capitalize hover:bg-accentDark active:bg-opacity-20 py-1 rounded-md transition-all mt-1;
+  }
   .img-base {
     @apply object-cover object-center;
   }
