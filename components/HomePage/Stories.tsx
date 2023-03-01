@@ -61,7 +61,7 @@ const Stories = () => {
                       />
                     </button>
                   </Link>
-                  <div className="row-start-4 row-span-1 bg-primaryMediumDark bg-opacity-50 z-10 flex items-end justify-start p-2 relative">
+                  <div className="row-start-4 row-span-1 bg-primaryMedium bg-opacity-50 z-10 flex items-end justify-start p-2 relative">
                     <p className="text-xs font-semibold">{`${story.owner.firstName} ${story.owner.lastName}`}</p>
                   </div>
                 </div>
@@ -90,8 +90,8 @@ const MainProfile = () => {
           />
         )}
       </div>
-      <div className="row-span-1 bg-primaryMediumDark z-10 flex items-center justify-center relative">
-        <button className="icon-btn bg-accentMain border-4 border-primaryMediumDark absolute -top-7 left-1/2 -translate-x-1/2">
+      <div className="row-span-1 bg-primaryMedium z-10 flex items-center justify-center relative">
+        <button className="icon-btn bg-accentMain border-4 border-secondaryMedium absolute -top-7 left-1/2 -translate-x-1/2">
           <FontAwesomeIcon icon={faAdd} />
         </button>
         <p className="text-xs font-semibold">Create Story</p>
@@ -110,7 +110,7 @@ const EmptyStory = ({ storyClass }: StoryProps) => {
         <Link href="/profile">
           <button className="img-icon absolute top-2 left-2 border-accentMain border-4 rounded-full"></button>
         </Link>
-        <div className="row-start-4 row-span-1 bg-primaryMediumDark bg-opacity-50 z-10 flex items-end justify-start p-2 relative">
+        <div className="row-start-4 row-span-1 bg-secondaryMedium bg-opacity-50 z-10 flex items-end justify-start p-2 relative">
           <p className="text-xs font-semibold"></p>
         </div>
       </div>

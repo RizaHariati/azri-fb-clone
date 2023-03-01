@@ -21,7 +21,7 @@ const ProfileFriends = () => {
   else {
     if (!router.query?.id) {
       return (
-        <div className=" bg-primaryMediumDark rounded-md shadow-sm shadow-black mt-5 text-textMedium p-5 ">
+        <div className=" bg-primaryMedium rounded-md shadow-sm shadow-black mt-5 text-textMedium p-5 ">
           <h1 className="text-xl text-textLight font-semibold mb-3">Photos</h1>
           <div className="grid grid-cols-3 gap-2">
             {friendList.slice(0.9).map((friend: FriendType, index: number) => {

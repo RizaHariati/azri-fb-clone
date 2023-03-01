@@ -29,7 +29,7 @@ const ProfileHeader = ({
 }: Props) => {
   return (
     <div className={`profile-header-container ${classAddition} z-10`}>
-      <div className="profile-header bg">
+      <div className="profile-header ">
         {/* ------------------------- header image ------------------------- */}
         <div className="relative h-full row-span-3 w-full md:rounded-b-lg img-base overflow-hidden bg-primaryMedium">
           {post?.image && (
@@ -47,12 +47,13 @@ const ProfileHeader = ({
             <p className=" text-primaryDark font-normal text-sm hidden md:block">
               Edit Cover Photo
             </p>
+            s
           </button>
         </div>
 
-        <div className="h-full row-span-3 md:row-span-2 z-10 grid grid-rows-6 lg:grid-rows-5 grid-cols-1 lg:grid-cols-9 px-0 md:px-10 pb-16 transition-all">
-          <div className="relative w-full flex justify-center row-span-1 md:row-span-2 col-span-1 lg:col-span-2 lg:row-span-5 lg:row-start-1 transition-all">
-            <div className="profile-header-image bg-primaryMedium">
+        <div className="h-full row-span-3 md:row-span-2 z-10 grid grid-rows-6 lg:grid-rows-5 grid-cols-1 lg:grid-cols-9 px-0 md:px-10 pb-16 transition-all ">
+          <div className="relative w-full flex justify-center row-span-1 md:row-span-2 col-span-1 lg:col-span-2 lg:row-span-5 lg:row-start-1 transition-all items-center  h-full ">
+            <div className="profile-header-image bg-primaryMedium ">
               {profile?.picture && (
                 <Image
                   src={profile.picture}

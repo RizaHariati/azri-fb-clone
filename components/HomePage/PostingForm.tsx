@@ -9,7 +9,7 @@ const PostingForm = () => {
   const dispatch = useAppDispatch();
 
   return (
-    <div className=" bg-primaryMediumDark p-3 md:px-5 max-w-lg mx-auto shadow-sm shadow-black rounded-md md:mt-6 bgpin">
+    <div className=" bg-primaryMedium p-3 md:px-5 max-w-lg mx-auto shadow-sm shadow-black rounded-md md:mt-6 bgpin">
       {/* ------------------------- posting form ------------------------- */}
       <div className="flex justify-center gap-2 md:gap-3 text-center h-10">
         {mainProfile && (
@@ -26,12 +26,12 @@ const PostingForm = () => {
 
         <button
           onClick={() => dispatch(openPostModal("Create"))}
-          className="height-10 text-textDark hover:text-textMedium text-left bg-primaryMedium hover:bg-primaryMediumLight transition-all px-3 rounded-full w-full text-sm md:text-base"
+          className="height-10 text-textDark hover:text-textMedium text-left bg-primaryMediumLight hover:bg-primaryMediumLight transition-all px-3 rounded-full w-full text-sm md:text-base"
         >
           {`  What's on your mind, ${mainProfile?.firstName} ${mainProfile?.lastName} `}
         </button>
       </div>
-      <hr className="col-span-9 my-3 border-b border-primaryMedium" />
+      <hr className="col-span-9 my-3 border-b border-secondaryMedium" />
       {/* ------------------------ posting buttons ----------------------- */}
 
       <PostingFormImage />

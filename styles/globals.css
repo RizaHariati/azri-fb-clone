@@ -37,11 +37,11 @@ html {
     @apply object-cover object-center h-10 w-10 my-auto hover:mix-blend-lighten transition-all relative;
   }
   .icon-btn-square {
-    @apply h-10 w-10  sm:h-11 sm:w-full bg-none text-textDark flex items-center justify-center hover:bg-primaryMedium rounded-md transition-all relative focus:h-full focus:text-accentMain border-accentMain focus:border-b-2 focus:rounded-none;
+    @apply h-10 w-10  sm:h-11 sm:w-full bg-none text-textDark flex items-center justify-center hover:bg-secondaryMedium rounded-md transition-all relative focus:h-full focus:text-accentMain border-accentMain focus:border-b-2 focus:rounded-none;
   }
 
   .icon-btn {
-    @apply h-10 w-10 flex items-center justify-center cursor-pointer bg-primaryMedium hover:bg-primaryMediumLight rounded-full transition-all relative text-textMedium;
+    @apply h-10 w-10 flex items-center justify-center cursor-pointer bg-secondaryMedium hover:bg-primaryMediumLight rounded-full transition-all relative text-textMedium;
   }
   .icon-note {
     @apply hidden md:block absolute top-12 left-1/2 bg-white bg-opacity-0 text-primaryDark -translate-x-1/2  z-10 rounded-md px-3 py-2 transition-all text-xs whitespace-nowrap  delay-200 opacity-0;
@@ -66,16 +66,16 @@ html {
     @apply h-10  bg-none text-textPrimary flex  hover:bg-primaryMedium rounded-md transition-all relative  justify-start items-center w-full text-sm font-medium gap-2 p-3 mb-0;
   }
   .icon-round-text-btn-lg {
-    @apply icon-round-text-btn h-14 text-base;
+    @apply icon-round-text-btn h-14 text-base hover:bg-primaryMediumLight;
   }
   /* ---------------------------- general   --------------------------- */
 
   /* ----------------------------- post ----------------------------- */
   .post-container {
-    @apply max-w-lg bg-primaryMediumDark mt-5 mx-auto rounded-md shadow-sm shadow-black py-3 text-sm;
+    @apply max-w-lg bg-primaryMedium mt-5 mx-auto rounded-md shadow-sm shadow-black py-3 text-sm;
   }
   .post-comment-form {
-    @apply col-span-8 h-10  w-full flex items-center justify-between px-3 bg-primaryMedium rounded-3xl;
+    @apply col-span-8 h-10  w-full flex items-center justify-between px-3 bg-primaryMediumLight rounded-3xl;
   }
   .post-comment-input {
     @apply h-full w-full col-span-2 bg-transparent outline-none py-2 resize-none text-textLight;
@@ -89,7 +89,7 @@ html {
 
   /* ---------------------------- Navbar ---------------------------- */
   .navbar-container {
-    @apply bg-primaryMediumDark h-14 fixed top-0 w-full left-0 border-b border-b-primaryMediumLight z-50;
+    @apply bg-mainBackground h-14 fixed top-0 w-full left-0 border-b border-b-primaryMediumLight z-50;
   }
   .navbar {
     @apply grid grid-cols-12 max-w-7xl px-2 md:px-5 items-center h-full mx-auto gap-0 md:gap-5;
@@ -110,7 +110,7 @@ html {
   }
 
   .menu-list {
-    @apply fixed sm:absolute top-14 sm:top-14 right-0 bg-primaryMediumDark w-screen sm:w-96 rounded-none sm:rounded-md text-textPrimary shadow-md z-50 shadow-black transition-all h-44 overflow-hidden;
+    @apply fixed sm:absolute top-14 sm:top-14 right-0 bg-secondaryMedium w-screen sm:w-96 rounded-none sm:rounded-md text-textPrimary shadow-md z-50 shadow-black transition-all h-44 overflow-hidden;
   }
   .profile-menu {
     @apply menu-list h-fit overflow-visible;
@@ -164,11 +164,11 @@ html {
   }
 
   .main-menu-left {
-    @apply col-span-3 h-5/6 w-full bg-primaryDark rounded-md overflow-y-scroll py-3 px-5;
+    @apply col-span-3 h-5/6 w-full bg-primaryMedium rounded-md overflow-y-scroll py-3 px-5;
   }
 
   .main-menu-right {
-    @apply col-span-2 h-5/6 w-full bg-primaryDark rounded-md overflow-y-scroll;
+    @apply col-span-2 h-5/6 w-full bg-primaryMedium rounded-md overflow-y-scroll;
   }
 
   .main-menu-left::-webkit-scrollbar {
@@ -195,7 +195,7 @@ html {
     @apply bg-primaryDark bg-opacity-80 fixed left-0 top-0 w-full h-full z-50 flex justify-center;
   }
   .modal-container {
-    @apply relative rounded-lg shadow-md shadow-black border border-primaryMedium mt-0 sm:mt-10 z-50 bg-primaryMediumDark p-5 w-full sm:w-9/12 md:w-7/12 lg:w-6/12 xl:w-5/12 transition-all overflow-hidden h-full sm:h-fit;
+    @apply relative rounded-lg shadow-primaryMediumLight shadow-inner mt-0 sm:mt-10 z-50 bg-primaryMedium p-5 w-full sm:w-9/12 md:w-7/12 lg:w-6/12 xl:w-5/12 transition-all overflow-hidden h-full sm:h-fit;
 
     /* height: 80vh; */
   }
@@ -235,7 +235,7 @@ html {
   }
   /* ------------------------- Left Sidebar ------------------------- */
   .main-left-sidebar {
-    @apply hidden xl:block col-span-3 p-3 overflow-y-scroll;
+    @apply hidden xl:block col-span-3 p-3 overflow-y-scroll bg-mainBackground;
     height: calc(100vh - 56px);
   }
   .main-left-sidebar::-webkit-scrollbar {
@@ -244,7 +244,7 @@ html {
   /* ------------------------- Main Content ------------------------- */
 
   .main-content {
-    @apply w-full overflow-y-scroll col-span-4 sm:col-span-6 px-0 max-w-2xl mx-auto;
+    @apply w-full overflow-y-scroll col-span-4 sm:col-span-6 px-0 max-w-2xl mx-auto bg-mainBackground;
     height: calc(100vh - 56px);
   }
   .main-content::-webkit-scrollbar {
@@ -254,16 +254,16 @@ html {
     @apply w-full my-5 h-40 sm:h-44 grid grid-cols-4  sm:grid-cols-5 xl:grid-cols-4 gap-2 sm:px-5;
   }
   .story {
-    @apply h-40 sm:h-44 w-full  rounded-md relative overflow-hidden shadow-black shadow-sm hover:shadow-md transition-all cursor-pointer grid grid-rows-4;
+    @apply h-40 sm:h-44 w-full bg-primaryMedium  rounded-md relative overflow-hidden shadow-black shadow-sm hover:shadow-md transition-all cursor-pointer grid grid-rows-4;
   }
 
   .story-last {
-    @apply hidden sm:grid xl:hidden;
+    @apply hidden sm:grid xl:hidden bg-primaryMedium;
   }
   /* ------------------------- Right Sidebar ------------------------- */
 
   .main-right-sidebar {
-    @apply hidden w-full lg:block lg:col-span-3 px-3 overflow-y-scroll;
+    @apply hidden w-full lg:block lg:col-span-3 px-3 overflow-y-scroll bg-mainBackground;
     height: calc(100vh - 56px);
   }
   .main-right-sidebar::-webkit-scrollbar {
@@ -274,7 +274,7 @@ html {
   }
 
   .contact-modal {
-    @apply fixed top-0 left-0 z-20 bg-primaryMedium w-80 h-36 opacity-0 group-hover:opacity-100 transition-all flex items-start rounded-md p-5 gap-5 shadow-md shadow-primaryMediumDark delay-200;
+    @apply fixed top-0 left-0 z-20 bg-secondaryMedium w-80 h-36 opacity-0 group-hover:opacity-100 transition-all flex items-start rounded-md p-5 gap-5 shadow-md shadow-primaryMediumDark delay-200;
   }
   /* ---------------------------------------------------------------- */
   /*                             main-page                            */
@@ -289,11 +289,11 @@ html {
     @apply w-full bg-gradient-to-t from-primaryDark to-accentDark h-screen;
   }
   .profile-header {
-    @apply w-full h-full relative max-w-4xl grid grid-rows-6 md:grid-rows-5 mx-auto bg-primaryMediumDark;
+    @apply w-full h-full relative max-w-4xl grid grid-rows-6 md:grid-rows-5 mx-auto bg-mainBackground;
   }
 
   .header-bar {
-    @apply z-0 h-14 w-full transition-all left-0 bg-primaryMediumDark;
+    @apply z-0 h-14 w-full transition-all left-0 bg-mainBackground;
   }
 
   .header-bar-menu {
@@ -303,7 +303,7 @@ html {
     @apply h-full transition-all overflow-hidden  bg-primaryMediumDark;
   }
   .profile-header-image {
-    @apply absolute w-44 h-44 rounded-full overflow-hidden border-primaryMediumDark border-8 transition-all bottom-0;
+    @apply absolute w-44 h-44 rounded-full overflow-hidden border-accentMain border-8 transition-all bottom-0 my-auto md:top-1/2 md:-translate-y-1/2;
     /* left: 50%;
     transform: translateX(-50%); */
   }
@@ -312,7 +312,7 @@ html {
     @apply flex gap-2 items-center mb-3;
   }
   .profile-right {
-    @apply w-full col-span-1 md:col-span-3 overflow-y-visible md:overflow-y-scroll h-fit md:h-screen;
+    @apply bg-mainBackground w-full col-span-1 md:col-span-3 overflow-y-visible md:overflow-y-scroll h-fit md:h-screen;
   }
   .profile-right::-webkit-scrollbar {
     display: none;
@@ -320,7 +320,7 @@ html {
   }
 
   .profile-left {
-    @apply h-fit md:h-screen overflow-y-visible md:overflow-y-scroll w-full col-span-1 md:col-span-2;
+    @apply bg-mainBackground h-fit md:h-screen overflow-y-visible md:overflow-y-scroll w-full col-span-1 md:col-span-2 md:pl-3;
   }
 
   .profile-left::-webkit-scrollbar {

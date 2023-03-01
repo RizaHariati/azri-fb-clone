@@ -7,7 +7,7 @@ interface Props {
 }
 const ProfilePhotos = ({ posts }: Props) => {
   return (
-    <div className=" bg-primaryMediumDark rounded-md shadow-sm shadow-black mt-5 text-textMedium p-5 ">
+    <div className=" bg-primaryMedium rounded-md shadow-sm shadow-black mt-5 text-textMedium p-5 ">
       <h1 className="text-xl text-textLight font-semibold mb-3">Photos</h1>
       <div className="grid grid-cols-3 gap-1 rounded-md overflow-hidden">
         {posts.map((post: PostType) => {

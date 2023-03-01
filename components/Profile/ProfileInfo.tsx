@@ -21,7 +21,7 @@ const ProfileInfo = ({ profile }: Props) => {
 
   const { city, state, country } = profile.location;
   return (
-    <div className=" bg-primaryMediumDark rounded-md shadow-sm shadow-black mt-5 text-textMedium p-5">
+    <div className=" bg-primaryMedium rounded-md shadow-sm shadow-black mt-5 text-textMedium p-5">
       <h1 className="text-xl text-textLight font-semibold mb-3">Intro</h1>
       <div>
         <div className="profile-intro">

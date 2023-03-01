@@ -92,7 +92,7 @@ const Welcome = ({ friendData, stories }: Props) => {
 
           <link rel="icon" href="/favicon.ico" />
         </Head>
-        <main className="main-container">
+        <main className="main-container bg-purple-500">
           <div className="main-left-sidebar"></div>
           <div className="main-content">
             <div className="flex flex-col items-center justify-center text-lg md:text-xl mt-5  w-full px-3">

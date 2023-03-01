@@ -7,7 +7,7 @@ const Sponsor = () => {
       <h4 className=" text-textDark font-semibold">Sponsored</h4>
       <a
         href="https://dompetdhuafa.org/"
-        className="grid grid-cols-5 gap-2 items-center w-full hover:bg-primaryMedium transition-all rounded-md p-2 bg-primaryMediumDark"
+        className="grid grid-cols-5 gap-2 items-center w-full hover:bg-primaryMediumLight transition-all rounded-md p-2 bg-primaryMedium"
       >
         <div className="sponsor-img bg-textLight w-16 md:w-18 h-16 md:h-18">
           <Image
@@ -25,22 +25,41 @@ const Sponsor = () => {
         </div>
       </a>
       <a
-        href="https://rizahariati.netlify.app/"
-        className="grid grid-cols-5 gap-2 items-center w-full hover:bg-primaryMedium transition-all rounded-md p-2 bg-primaryMediumDark"
+        href="https://www.ichacodes.com/"
+        className="grid grid-cols-5 gap-2 items-center w-full hover:bg-primaryMediumLight transition-all rounded-md p-2 bg-primaryMedium"
       >
-        <div className="sponsor-img w-16 md:w-18 h-16 md:h-18 bg-primaryMedium p-2 group-hover:bg-primaryMediumLight">
+        <div className="sponsor-img bg-textLight w-16 md:w-18 h-16 md:h-18">
           <Image
             width={120}
             height={120}
             layout="responsive"
-            src="/images/pagesImages/azricoding.png"
+            src="/images/pagesImages/icon.png"
             alt="azricoding"
             className="img-base"
           />
         </div>
         <div className=" col-span-3 text-left">
-          <h5 className=" text-textLight ">AzriCoding website portfolio</h5>
-          <p className="text-xs text-textDark">rizahariati.netlify.app</p>
+          <h5 className=" text-textLight ">IchaCodes website portfolio</h5>
+          <p className="text-xs text-textDark">visit ichacodes.com</p>
+        </div>
+      </a>
+      <a
+        href="https://bayarplanner.com/"
+        className="grid grid-cols-5 gap-2 items-center w-full hover:bg-primaryMediumLight transition-all rounded-md p-2 bg-primaryMedium"
+      >
+        <div className="sponsor-img bg-textLight w-16 md:w-18 h-16 md:h-18">
+          <Image
+            width={120}
+            height={120}
+            layout="responsive"
+            src="/images/pagesImages/bayarplanner-logo.png"
+            alt="azricoding"
+            className="img-base"
+          />
+        </div>
+        <div className=" col-span-3 text-left">
+          <h5 className=" text-textLight ">BayarPlanner</h5>
+          <p className="text-xs text-textDark">bayarplanner.com</p>
         </div>
       </a>
     </div>

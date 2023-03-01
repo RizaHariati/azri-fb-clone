@@ -165,12 +165,12 @@ const PostHeader = ({
           onClick={() => {
             dispatch(setPostDetail(postID));
           }}
-          className="icon-btn bg-primaryMediumDark hover:bg-primaryMedium"
+          className="icon-btn bg-secondaryMedium hover:bg-primaryMedium"
         >
           <FontAwesomeIcon icon={faEllipsis} className="text-xl" />
         </button>
         {postDetail === postID && (
-          <div className="absolute w-52 h-fit bg-primaryMedium rounded-md right-0 z-10 p-3">
+          <div className="absolute w-52 h-fit bg-secondaryMedium rounded-md right-0 z-10 p-3">
             {mainProfile?.id === owner.id && (
               <>
                 <IconRoundTextBtn

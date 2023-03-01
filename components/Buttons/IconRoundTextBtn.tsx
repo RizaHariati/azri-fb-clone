@@ -20,9 +20,9 @@ const IconRoundTextBtn = ({
   return (
     <button
       onClick={() => onClick?.()}
-      className={`icon-round-text-btn text-textMedium h-12 hover:bg-primaryMedium group ${classAdd}`}
+      className={`icon-round-text-btn text-textMedium h-12 hover:bg-primaryMediumLight group ${classAdd}`}
     >
-      <div className="h-10 w-10 bg-primaryMedium rounded-full flex items-center justify-center group-hover:bg-primaryMediumLight">
+      <div className="h-10 w-10 bg-secondaryMedium  rounded-full flex items-center justify-center group-hover:bg-primaryMediumLight">
         <FontAwesomeIcon icon={icon} className={`text-lg ${iconClass}`} />
       </div>
       <p className="text-textMedium font-normal text-sm">{text}</p>

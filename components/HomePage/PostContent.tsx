@@ -108,10 +108,10 @@ const PostContent = ({
         )}
       </div>
       {/* ------------------------- postReaction ------------------------- */}
-      <div className=" items-center justify-center gap-1 text-center h-10 px-2 md:px-5 border-t border-primaryMedium grid grid-cols-3">
+      <div className=" items-center justify-center gap-1 text-center h-10 px-2 md:px-5 border-t border-primaryMediumLight grid grid-cols-3">
         <button
           onClick={() => handleLike()}
-          className="h-8 active:bg-primaryMediumLight hover:bg-primaryMedium rounded-md flex gap-2 items-center justify-center"
+          className="h-8 active:bg-primaryMediumLight hover:bg-secondaryMedium rounded-md flex gap-2 items-center justify-center"
         >
           <FontAwesomeIcon
             icon={faThumbsUp}

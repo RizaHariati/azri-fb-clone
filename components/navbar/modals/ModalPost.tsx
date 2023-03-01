@@ -119,7 +119,7 @@ const ModalPost = () => {
             <h2 className="text-textLight text-xl font-bold w-full text-center">
               Create post
             </h2>
-            <hr className="w-full my-2 border-b border-primaryMedium" />
+            <hr className="w-full my-2 border-b border-primaryMediumLight" />
             <div className="grid  grid-cols-2">
               {mainProfile?.id !== "" && (
                 <LinkImgTextBtn
@@ -137,7 +137,7 @@ const ModalPost = () => {
             </div>
           </div>
 
-          <hr className="w-full my-5 border-b border-primaryMedium" />
+          <hr className="w-full my-5 border-b border-primaryMediumLight" />
           {loading && <LoadingSpinner />}
           {!loading && (
             <div className="posting-form-image">
@@ -181,7 +181,7 @@ const ModalPost = () => {
               <button
                 onClick={() => handleSubmit()}
                 type="button"
-                className=" bg-accentMain h-10 text-textLight flex  hover:bg-accentDark rounded-md transition-all relative  justify-center items-center  text-sm font-medium gap-2 p-3 my-2 text-center w-full"
+                className=" bg-accentMain h-10 text-textLight flex  hover:bg-accentDark rounded-md transition-all relative  justify-center items-center  text-sm font-medium gap-2 p-3 my-2 text-center w-full uppercase"
               >
                 <p>Post</p>
               </button>
