@@ -50,12 +50,13 @@ const FriendList = ({ friendData, fetchMainProfile }: Props) => {
                   >
                     <div className="welcome-img ">
                       <Image
+                        loading="lazy"
                         src={friend.picture}
                         alt={friend.firstName}
                         width={80}
                         height={80}
                         layout="responsive"
-                        className="img-base rounded-full z-20 shadow-md "
+                        className="img-base rounded-full z-20 shadow-md  bg-primaryMediumLight transition-all"
                       />
                       <div className=" bg-accentMain img-base absolute -top-2 right-1 w-16 h-16 sm:w-20 sm:h-20 z-10 rounded-full "></div>
                     </div>
